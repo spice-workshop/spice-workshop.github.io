@@ -1,0 +1,220 @@
+import React, { useState } from 'react';
+import { 
+  Calendar, ArrowRight, Users, Utensils, MapPin, Compass, Bus
+} from 'lucide-react';
+import { CONSTANTS } from '../../data/constants';
+import { SCHEDULE_DATA } from '../../data/schedule';
+import SectionTitle from '../ui/SectionTitle';
+import Card from '../ui/Card';
+import StatusIndicator from '../ui/StatusIndicator';
+
+const ScheduleView = () => {
+  const [activeDay, setActiveDay] = useState(0);
+  
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 animate-fade-in">
+      <div className="flex flex-col md:flex-row md:items-center justify-between mb-8">
+          <SectionTitle>Workshop Schedule</SectionTitle>
+          <a href={CONSTANTS.links.googleCalendar} target="_blank" rel="noreferrer" className="flex items-center text-indigo-600 font-medium hover:underline px-4 py-2">
+              <Calendar className="w-4 h-4 mr-2" /> Add to Calendar
+          </a>
+      </div>
+
+      <div className="flex overflow-x-auto pb-4 mb-6 gap-2 hide-scrollbar">
+        {SCHEDULE_DATA.map((data, index) => (
+          <button
+            key={index}
+            onClick={() => setActiveDay(index)}
+            className={`flex-shrink-0 px-6 py-3 rounded-full text-sm font-bold transition-all whitespace-nowrap ${
+              activeDay === index 
+                ? 'bg-indigo-600 text-white shadow-md transform scale-105' 
+                : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
+            }`}
+          >
+            {data.day}
+          </button>
+        ))}
+      </div>
+
+      <Card className="border-t-4 border-t-indigo-500 min-h-[400px]">
+          <div className="border-b border-slate-100 dark:border-slate-700 pb-4 mb-6">
+              <h3 className="text-2xl font-bold text-slate-800 dark:text-white">{SCHEDULE_DATA[activeDay].day}</h3>
+              <p className="text-slate-500 dark:text-slate-400">{SCHEDULE_DATA[activeDay].date}</p>
+          </div>
+          
+          <div className="space-y-4">
+              {SCHEDULE_DATA[activeDay].events.map((event, idx) => (
+                  <div key={idx} className={`flex flex-col md:flex-row md:items-center p-4 rounded-lg transition-colors border border-transparent hover:border-slate-100 dark:hover:border-slate-700 group ${event.highlight ? 'bg-amber-50 dark:bg-amber-900/20 border-amber-100 dark:border-amber-900/30 hover:border-amber-200' : 'hover:bg-slate-50 dark:hover:bg-slate-700/50'}`}>
+                      <div className="w-32 flex-shrink-0 text-sm font-mono font-bold text-slate-500 dark:text-slate-400 mb-2 md:mb-0">
+                          {event.time}
+                      </div>
+                      <div className="flex-grow md:border-l-2 md:border-slate-200 dark:border-slate-700 md:pl-4">
+                          <div className="flex justify-between items-start">
+                            <div className="flex-grow">
+                              {event.linkId ? (
+                                <a 
+                                  href={`#${event.linkId}`} 
+                                  className={`font-bold text-lg hover:underline flex items-center ${event.highlight ? 'text-amber-900 dark:text-amber-400' : 'text-slate-800 dark:text-slate-100'}`}
+                                >
+                                  {event.title}
+                                  <ArrowRight className="w-4 h-4 ml-2 opacity-70" />
+                                </a>
+                              ) : (
+                                <h4 className={`font-bold text-lg ${event.highlight ? 'text-amber-900 dark:text-amber-400' : 'text-slate-800 dark:text-slate-100'}`}>{event.title}</h4>
+                              )}
+                              
+                              {event.speaker && (
+                                <p className="text-slate-600 dark:text-slate-300 text-sm mt-1 flex items-center">
+                                  {event.highlight ? <Utensils className="w-3 h-3 mr-1" /> : <Users className="w-3 h-3 mr-1" />} {event.speaker}
+                                </p>
+                              )}
+                            </div>
+                            <div className="ml-4 flex-shrink-0">
+                              <StatusIndicator status={event.status} />
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+              ))}
+          </div>
+      </Card>
+      
+      {/* Special Events Section */}
+      <div className="mt-20">
+        <h3 className="font-bold text-2xl mb-6 flex items-center text-slate-800 dark:text-slate-100">
+           <Utensils className="w-6 h-6 mr-3 text-amber-500" /> Special Events
+        </h3>
+        
+        {/* Lunch Info Block */}
+        <div id="lunch-info" className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden mb-12 scroll-mt-32">
+            <div className="grid md:grid-cols-2">
+                <div className="p-8 flex flex-col h-full">
+                    <div className="mb-6">
+                      <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs font-bold uppercase tracking-wide mb-3">
+                        Daily Lunch
+                      </div>
+                        <h4 className="font-bold text-2xl text-slate-800 dark:text-slate-100 mb-2">Lunch Details</h4>
+                      <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Lunch details will be updated soon.
+                      </p>
+                    </div>
+
+                    <div className="space-y-4 mt-auto">
+                      <div className="flex items-start p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-100 dark:border-slate-700">
+                         <Calendar className="w-6 h-6 text-indigo-600 dark:text-indigo-400 mt-1 mr-4 flex-shrink-0" />
+                         <div>
+                            <h5 className="font-bold text-slate-800 dark:text-white">Schedule</h5>
+                            <p className="text-slate-600 dark:text-slate-400 text-sm">To be updated</p>
+                         </div>
+                      </div>
+                      
+                      <div className="flex items-start p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-100 dark:border-slate-700">
+                         <MapPin className="w-6 h-6 text-indigo-600 dark:text-indigo-400 mt-1 mr-4 flex-shrink-0" />
+                         <div>
+                            <h5 className="font-bold text-slate-800 dark:text-white">Address</h5>
+                            <p className="text-slate-600 dark:text-slate-400 text-sm">To be updated</p>
+                         </div>
+                      </div>
+                    </div>
+                </div>
+                <div className="h-full min-h-[300px] bg-slate-100 dark:bg-slate-700 border-l border-slate-200 dark:border-slate-700 relative">
+                   <iframe 
+                      src={CONSTANTS.links.crousMap}
+                      width="100%" 
+                      height="100%" 
+                      style={{ border: 0, minHeight: '100%' }} 
+                      allowFullScreen="" 
+                      loading="lazy" 
+                      title="CROUS Location"
+                      className="absolute inset-0"
+                   ></iframe>
+                   <div className="absolute bottom-6 right-6">
+                      <a 
+                          href={CONSTANTS.links.crousDirections} 
+                          target="_blank" 
+                          rel="noreferrer"
+                          className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full shadow-lg flex items-center transition-transform transform hover:scale-105"
+                      >
+                          <Compass className="w-5 h-5 mr-2" /> Get Directions
+                      </a>
+                   </div>
+                </div>
+            </div>
+        </div>
+
+        {/* Gala Dinner Block */}
+        <div id="gala-dinner" className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden scroll-mt-32">
+            <div className="grid md:grid-cols-2">
+                {/* Info Side */}
+                <div className="p-8 flex flex-col h-full">
+                    <div className="mb-6">
+                      <div className="inline-block px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-xs font-bold uppercase tracking-wide mb-3">
+                        Conference Dinner
+                      </div>
+
+                      <h4 className="font-bold text-2xl text-slate-800 dark:text-white mb-2">Conference Dinner</h4>
+                      <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Details for the Conference Dinner will be announced soon.
+                      </p>
+                    </div>
+
+                    <div className="space-y-6 mt-auto">
+                      <div className="flex items-start p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-100 dark:border-slate-700">
+                         <Calendar className="w-6 h-6 text-indigo-600 dark:text-indigo-400 mt-1 mr-4 flex-shrink-0" />
+                         <div>
+                            <h5 className="font-bold text-slate-800 dark:text-white">Date & Time</h5>
+                            <p className="text-slate-600 dark:text-slate-400 text-sm">To be updated</p>
+                         </div>
+                      </div>
+                      
+                      <div className="flex items-start p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-100 dark:border-slate-700">
+                         <Bus className="w-6 h-6 text-indigo-600 dark:text-indigo-400 mt-1 mr-4 flex-shrink-0" />
+                         <div>
+                            <h5 className="font-bold text-slate-800 dark:text-white">Transport</h5>
+                            <p className="text-slate-600 dark:text-slate-400 text-sm mb-1">
+                               Information coming soon.
+                            </p>
+                         </div>
+                      </div>
+                      
+                      <div className="flex items-start p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-100 dark:border-slate-700">
+                         <MapPin className="w-6 h-6 text-indigo-600 dark:text-indigo-400 mt-1 mr-4 flex-shrink-0" />
+                         <div>
+                            <h5 className="font-bold text-slate-800 dark:text-white">Address</h5>
+                            <p className="text-slate-600 dark:text-slate-400 text-sm">To be updated</p>
+                         </div>
+                      </div>
+                    </div>
+                </div>
+
+                {/* Map Side */}
+                <div className="h-full min-h-[400px] bg-slate-100 dark:bg-slate-700 border-l border-slate-200 dark:border-slate-700 relative">
+                   <iframe 
+                      src={CONSTANTS.links.restaurantMap}
+                      width="100%" 
+                      height="100%" 
+                      style={{ border: 0, minHeight: '100%' }} 
+                      allowFullScreen="" 
+                      loading="lazy" 
+                      title="Restaurant Location"
+                      className="absolute inset-0"
+                   ></iframe>
+                   <div className="absolute bottom-6 right-6">
+                      <a 
+                          href={CONSTANTS.links.restaurantDirections} 
+                          target="_blank" 
+                          rel="noreferrer"
+                          className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full shadow-lg flex items-center transition-transform transform hover:scale-105"
+                      >
+                          <Compass className="w-5 h-5 mr-2" /> Get Directions
+                      </a>
+                   </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ScheduleView;
