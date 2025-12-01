@@ -1,8 +1,8 @@
 import React from 'react';
-import { 
-  Calendar, MapPin, Users, MessageCircle, Camera, ArrowRight
-} from 'lucide-react';
-import { CONSTANTS, SOC_LIST, LOC_LIST, PARTNERS_LIST } from '../../data/constants';
+import { Calendar, MapPin, MessageCircle, Users, Camera } from 'lucide-react';
+import { CONSTANTS } from '../../data/Constants';
+import { SOC_LIST, LOC_LIST } from '../../data/CommitteeData';
+import { PARTNERS_LIST } from '../../data/PartnerData';
 import SectionTitle from '../ui/SectionTitle';
 
 const HomeView = () => (
@@ -39,34 +39,12 @@ const HomeView = () => (
       </div>
     </header>
 
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       {/* About Section */}
-      <div className="mb-24">
-          <SectionTitle>About the Workshop</SectionTitle>
-          <div className="prose prose-lg prose-slate dark:prose-invert max-w-none">
-              <p className="lead text-xl text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
-                In April 2024, we organised the workshop <a href={CONSTANTS.links.spice1} target="_blank" rel="noreferrer" className="text-indigo-600 dark:text-indigo-400 hover:underline">"Simulating Physics In Celestial Ecosystem (SPiCE): Star, Disk, and Planet Formation"</a> at Tohoku University in Sendai, Japan. The idea of the workshop emerged during the Protostars and Planets VII in 2023, where major progress and insights in the fields of star formation, protoplanetary disks, and planet formation were extensively presented and discussed. However, it has also become evident that connections between these fields are lacking, which preclude the establishment of a coherent scenario from star to planet formation. The follow-up workshop, SPiCE-2, will be held at Ecole Nomale Supérieure de Lyon in France from March 16th to 20th, 2026. The workshop will again focus on computational simulations linking star, disk, and planet formation, with the goal of bridging the gaps between these fields and fostering cross-disciplinary collaborations.
-              </p>
-              <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
-                {CONSTANTS.details.description.split('\n').slice(1, 2).join('\n')}
-              </p>
-              
-              <p className="mb-4 font-semibold text-slate-800 dark:text-slate-200">
-                The topics we want to cover include but not limited to:
-              </p>
-              <ul className="list-disc pl-6 space-y-2 mb-6 text-slate-600 dark:text-slate-300">
-                <li>molecular cloud evolution</li>
-                <li>protostellar collapse and disk formation</li>
-                <li>structures in protoplanetary disks</li>
-                <li>evolution of protoplanetary disks</li>
-                <li>planet formation in protoplanetary disks</li>
-                <li>accretion onto and outflows from protostars</li>
-                <li>planet-disk interaction and circumplanetary disks</li>
-                <li>non-ideal MHD effects and ionization</li>
-                <li>radiation transport and thermodynamics</li>
-                <li>dust growth (and destruction) in ISM and disks</li>
-                <li>synthetic observations</li>
-              </ul>
+      <div className="mb-16">
+          <SectionTitle>Rationale</SectionTitle>
+          <div className="prose prose-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl whitespace-pre-wrap">
+              {CONSTANTS.details.description}
           </div>
           <div className="mt-8 flex flex-wrap gap-4">
               <a href={CONSTANTS.links.discord} target="_blank" rel="noreferrer" className="flex items-center bg-[#5865F2] text-white px-4 py-2 rounded-md hover:bg-[#4752C4] transition-colors"><MessageCircle className="w-5 h-5 mr-2" /> Join Discord</a>
@@ -137,7 +115,7 @@ const HomeView = () => (
               </div>
           </div>
       </div>
-    </>
+  </>
 );
 
 export default HomeView;
