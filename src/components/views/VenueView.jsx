@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plane, Train, Bus, MapPin, Moon, ArrowRight, Compass, Map } from 'lucide-react';
+import { Plane, Train, Bus, MapPin, Moon, ArrowRight, Compass, Map, Lightbulb } from 'lucide-react';
 import { CONSTANTS } from '../../data/constants';
 import SectionTitle from '../ui/SectionTitle';
 import Card from '../ui/Card';
@@ -58,6 +58,7 @@ const VenueView = () => {
                                     <ul className="list-disc pl-5 text-slate-600 dark:text-slate-400 space-y-1">
                                         <li>Take <strong>Metro line B</strong> towards Saint-Genis-Laval Hôpital Lyon Sud.</li>
                                         <li>Get off at <strong>Debourg</strong>.</li>
+                                        <li>Walk for 5 minutes to reach the ENS de Lyon Monod site.</li>
                                     </ul>
                                 </div>
                                 <div>
@@ -65,6 +66,7 @@ const VenueView = () => {
                                     <ul className="list-disc pl-5 text-slate-600 dark:text-slate-400 space-y-1">
                                         <li>Take <strong>Tramway T1</strong> towards Debourg.</li>
                                         <li>Get off at <strong>ENS Lyon</strong> (for Monod) or <strong>Debourg</strong>.</li>
+                                        <li>Walk for 5 minutes to reach the ENS de Lyon Monod site.</li>
                                     </ul>
                                 </div>
                                 <a href={CONSTANTS.links.sncf} target="_blank" rel="noreferrer" className="text-indigo-600 font-bold hover:underline flex items-center mt-2">Book on SNCF <ArrowRight className="w-4 h-4 ml-1" /></a>
@@ -73,10 +75,14 @@ const VenueView = () => {
                          {activeTravelTab === "local" && (
                             <div className="space-y-3">
                                 <div>
-                                    <p className="text-slate-700 dark:text-slate-300 font-bold">Metro & Tramway:</p>
+                                    <p className="text-slate-700 dark:text-slate-300 font-bold">Tramway:</p>
+                                    <ul className="list-disc pl-5 text-slate-600 dark:text-slate-400 space-y-1">
+                                        <li><strong>Tramway T1:</strong> ENS Lyon Stop (Monod).</li>
+                                        <li><strong>Tramway T6:</strong> Debourg Stop (Descartes).</li>
+                                    </ul>
+                                    <p className="text-slate-700 dark:text-slate-300 font-bold">Metro:</p>
                                     <ul className="list-disc pl-5 text-slate-600 dark:text-slate-400 space-y-1">
                                         <li><strong>Metro Line B:</strong> Debourg Stop.</li>
-                                        <li><strong>Tramway T1 or T6:</strong> Debourg Stop (Descartes) or ENS Lyon Stop (Monod).</li>
                                     </ul>
                                 </div>
                                 <div>
@@ -136,21 +142,16 @@ const VenueView = () => {
             <div className="grid md:grid-cols-2 gap-12">
                 <div>
                      <div className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                        <h4 className="font-bold text-slate-800 dark:text-white mb-2">ENS de Lyon</h4>
-                        <p className="text-slate-600 dark:text-slate-300 text-sm mb-4">
-                            ENS de Lyon is located in the Gerland area of the 7th district of Lyon, near the Pasteur bridge on the left bank of the Rhône.
-                        </p>
+                        <h4 className="font-bold text-slate-800 dark:text-white mb-1">Salle Condorcet - ENS de Lyon (Monod Site)</h4>
+                        <p className="text-slate-600 dark:text-slate-400 text-s mb-2">1 Pl. de l'École, 69007 Lyon</p>
                         
-                        <div className="space-y-6 mt-4 border-t border-slate-100 dark:border-slate-700 pt-4">
-                            <div>
-                                <h5 className="font-bold text-indigo-700 dark:text-indigo-400 mb-1">Monod Campus</h5>
-                                <p className="font-bold text-slate-700 dark:text-slate-300 text-sm">Welcome Desk (MGN1)</p>
-                                <p className="text-slate-600 dark:text-slate-400 text-xs">46 allée d’Italie (halfway between Place de l'École and Halle Tony Garnier)</p>
-                            </div>
-                            <div>
-                                <h5 className="font-bold text-indigo-700 dark:text-indigo-400 mb-1">Descartes Campus</h5>
-                                <p className="font-bold text-slate-700 dark:text-slate-300 text-sm">Welcome Desk (D1)</p>
-                                <p className="text-slate-600 dark:text-slate-400 text-xs">15 parvis René Descartes, plaza at the corner of avenue Jean Jaurès and avenue Debourg</p>
+                        <div className="bg-amber-400 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mb-4 flex items-start gap-3">
+                            <Lightbulb className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
+                            <div className="text-sm text-slate-700 dark:text-slate-300">
+                                <span className="font-bold text-amber-700 dark:text-amber-400 block mb-1">Note for Attendees</span>
+                                The ENS de Lyon has two main sites (Monod and Descartes). Please ensure you go to the <strong>Monod site</strong> and not the Descartes site.
+                                <br />
+                                Look for the entrance at <strong>1 Place de l'École</strong>.
                             </div>
                         </div>
                      </div>
