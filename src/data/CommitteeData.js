@@ -1,12 +1,12 @@
 export const SOC_LIST = [
   { name: "Kengo Tomida", affiliation: "Tohoku University", role: "Co-Chair" },
   { name: "Benoit Commercon", affiliation: "CRAL - ENS de Lyon", role: "Co-Chair" },
-  { name: "Pablo Benítez Llambay", affiliation: "", role: "" },
-  { name: "Joanna Drazkowska", affiliation: "", role: "" },
-  { name: "Mario Flock", affiliation: "", role: "" },
-  { name: "Kaitlin Kratter", affiliation: "", role: "" },
-  { name: "Ugo Lebreuilly", affiliation: "", role: "" },
-  { name: "Yueh-Ning Lee", affiliation: "", role: "" },
+  { name: "Pablo Benítez Llambay", affiliation: "Universidad Adolfo Ibáñez", role: "" },
+  { name: "Joanna Drazkowska", affiliation: "Max Planck Institute", role: "" },
+  { name: "Mario Flock", affiliation: "Max Planck Institute", role: "" },
+  { name: "Kaitlin Kratter", affiliation: "University of Arizona", role: "" },
+  { name: "Ugo Lebreuilly", affiliation: "CEA", role: "" },
+  { name: "Yueh-Ning Lee", affiliation: "National Taiwan NormalUniversity", role: "" },
 ];
 
 export const LOC_LIST = [
