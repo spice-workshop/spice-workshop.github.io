@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { 
-  Search, ChevronUp, ChevronDown, FileText
-} from 'lucide-react';
+import { Search, ChevronDown, ChevronUp, FileText } from 'lucide-react';
+import { TALKS_DATA } from '../../data/scheduleData';
 import { CONSTANTS } from '../../data/constants';
-import { TALKS_DATA } from '../../data/schedule';
 import SectionTitle from '../ui/SectionTitle';
 
 const TalksView = () => {
@@ -22,7 +20,7 @@ const TalksView = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 animate-fade-in">
         <div className="text-center mb-8">
              <SectionTitle>Talks & Abstracts</SectionTitle>
-             <p className="text-slate-600 dark:text-slate-300 mt-[-1rem]">Select a day and search to filter scheduled talks.</p>
+             <p className="text-slate-600 mt-[-1rem]">Select a day and search to filter scheduled talks.</p>
         </div>
 
         <div className="flex justify-center flex-wrap gap-2 mb-6">
@@ -62,14 +60,14 @@ const TalksView = () => {
                     >
                       <div className="flex-grow">
                         <div className="flex flex-col md:flex-row md:items-center gap-2 mb-1">
-                           <span className="text-xs font-mono font-bold text-indigo-600 bg-indigo-50 dark:bg-indigo-900/30 dark:text-indigo-400 px-2 py-0.5 rounded border border-indigo-100 dark:border-indigo-900/50 w-fit">
+                           <span className="text-xs font-mono font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-100 w-fit">
                               {talk.time}
                            </span>
                            <h4 className="font-bold text-lg text-slate-800 dark:text-slate-100">{talk.title}</h4>
                         </div>
-                        <p className="text-slate-600 dark:text-slate-300 font-medium">{talk.speaker} <span className="text-slate-400 dark:text-slate-500 font-normal">| {talk.affiliation}</span></p>
+                        <p className="text-slate-600 dark:text-slate-400 font-medium">{talk.speaker} <span className="text-slate-400 dark:text-slate-500 font-normal">| {talk.affiliation}</span></p>
                       </div>
-                      <div className="mt-1 text-indigo-500 dark:text-indigo-400 ml-4">
+                      <div className="mt-1 text-indigo-500 ml-4">
                         {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                       </div>
                     </div>
@@ -85,7 +83,7 @@ const TalksView = () => {
                 );
               })
             ) : (
-              <p className="text-center text-slate-500 dark:text-slate-400 italic py-10">No talks found.</p>
+              <p className="text-center text-slate-500 italic py-10">No talks found.</p>
             )}
         </div>
     </div>

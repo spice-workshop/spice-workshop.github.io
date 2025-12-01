@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { 
-  Calendar, ArrowRight, Users, Utensils, MapPin, Compass, Bus
-} from 'lucide-react';
+import { Calendar, ArrowRight, Utensils, Users, Bus, MapPin, Compass } from 'lucide-react';
 import { CONSTANTS } from '../../data/constants';
-import { SCHEDULE_DATA } from '../../data/schedule';
+import { SCHEDULE_DATA } from '../../data/scheduleData';
 import SectionTitle from '../ui/SectionTitle';
 import Card from '../ui/Card';
 import StatusIndicator from '../ui/StatusIndicator';
@@ -37,9 +35,11 @@ const ScheduleView = () => {
       </div>
 
       <Card className="border-t-4 border-t-indigo-500 min-h-[400px]">
-          <div className="border-b border-slate-100 dark:border-slate-700 pb-4 mb-6">
-              <h3 className="text-2xl font-bold text-slate-800 dark:text-white">{SCHEDULE_DATA[activeDay].day}</h3>
-              <p className="text-slate-500 dark:text-slate-400">{SCHEDULE_DATA[activeDay].date}</p>
+          <div className="flex justify-between items-center mb-6 border-b border-slate-100 dark:border-slate-700 pb-4">
+            <h3 className="text-xl font-bold text-slate-800 dark:text-white flex items-center">
+                <Calendar className="w-5 h-5 mr-2 text-indigo-500" /> {SCHEDULE_DATA[activeDay].day}
+            </h3>
+            <span className="text-sm text-slate-400">Timezone: CEST (UTC+2)</span>
           </div>
           
           <div className="space-y-4">
@@ -48,7 +48,7 @@ const ScheduleView = () => {
                       <div className="w-32 flex-shrink-0 text-sm font-mono font-bold text-slate-500 dark:text-slate-400 mb-2 md:mb-0">
                           {event.time}
                       </div>
-                      <div className="flex-grow md:border-l-2 md:border-slate-200 dark:border-slate-700 md:pl-4">
+                      <div className="flex-grow md:border-l-2 md:border-slate-200 dark:md:border-slate-700 md:pl-4">
                           <div className="flex justify-between items-start">
                             <div className="flex-grow">
                               {event.linkId ? (
@@ -64,7 +64,7 @@ const ScheduleView = () => {
                               )}
                               
                               {event.speaker && (
-                                <p className="text-slate-600 dark:text-slate-300 text-sm mt-1 flex items-center">
+                                <p className="text-slate-600 dark:text-slate-400 text-sm mt-1 flex items-center">
                                   {event.highlight ? <Utensils className="w-3 h-3 mr-1" /> : <Users className="w-3 h-3 mr-1" />} {event.speaker}
                                 </p>
                               )}
@@ -81,7 +81,7 @@ const ScheduleView = () => {
       
       {/* Special Events Section */}
       <div className="mt-20">
-        <h3 className="font-bold text-2xl mb-6 flex items-center text-slate-800 dark:text-slate-100">
+        <h3 className="font-bold text-2xl mb-6 flex items-center text-slate-800 dark:text-white">
            <Utensils className="w-6 h-6 mr-3 text-amber-500" /> Special Events
         </h3>
         
@@ -93,7 +93,7 @@ const ScheduleView = () => {
                       <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs font-bold uppercase tracking-wide mb-3">
                         Daily Lunch
                       </div>
-                        <h4 className="font-bold text-2xl text-slate-800 dark:text-slate-100 mb-2">Lunch Details</h4>
+                        <h4 className="font-bold text-2xl text-slate-800 dark:text-white mb-2">Lunch Details</h4>
                       <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
                         Lunch details will be updated soon.
                       </p>
@@ -103,7 +103,7 @@ const ScheduleView = () => {
                       <div className="flex items-start p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-100 dark:border-slate-700">
                          <Calendar className="w-6 h-6 text-indigo-600 dark:text-indigo-400 mt-1 mr-4 flex-shrink-0" />
                          <div>
-                            <h5 className="font-bold text-slate-800 dark:text-white">Schedule</h5>
+                            <h5 className="font-bold text-slate-800 dark:text-slate-200">Schedule</h5>
                             <p className="text-slate-600 dark:text-slate-400 text-sm">To be updated</p>
                          </div>
                       </div>
@@ -111,7 +111,7 @@ const ScheduleView = () => {
                       <div className="flex items-start p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-100 dark:border-slate-700">
                          <MapPin className="w-6 h-6 text-indigo-600 dark:text-indigo-400 mt-1 mr-4 flex-shrink-0" />
                          <div>
-                            <h5 className="font-bold text-slate-800 dark:text-white">Address</h5>
+                            <h5 className="font-bold text-slate-800 dark:text-slate-200">Address</h5>
                             <p className="text-slate-600 dark:text-slate-400 text-sm">To be updated</p>
                          </div>
                       </div>
@@ -162,7 +162,7 @@ const ScheduleView = () => {
                       <div className="flex items-start p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-100 dark:border-slate-700">
                          <Calendar className="w-6 h-6 text-indigo-600 dark:text-indigo-400 mt-1 mr-4 flex-shrink-0" />
                          <div>
-                            <h5 className="font-bold text-slate-800 dark:text-white">Date & Time</h5>
+                            <h5 className="font-bold text-slate-800 dark:text-slate-200">Date & Time</h5>
                             <p className="text-slate-600 dark:text-slate-400 text-sm">To be updated</p>
                          </div>
                       </div>
@@ -170,7 +170,7 @@ const ScheduleView = () => {
                       <div className="flex items-start p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-100 dark:border-slate-700">
                          <Bus className="w-6 h-6 text-indigo-600 dark:text-indigo-400 mt-1 mr-4 flex-shrink-0" />
                          <div>
-                            <h5 className="font-bold text-slate-800 dark:text-white">Transport</h5>
+                            <h5 className="font-bold text-slate-800 dark:text-slate-200">Transport</h5>
                             <p className="text-slate-600 dark:text-slate-400 text-sm mb-1">
                                Information coming soon.
                             </p>
@@ -180,7 +180,7 @@ const ScheduleView = () => {
                       <div className="flex items-start p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-100 dark:border-slate-700">
                          <MapPin className="w-6 h-6 text-indigo-600 dark:text-indigo-400 mt-1 mr-4 flex-shrink-0" />
                          <div>
-                            <h5 className="font-bold text-slate-800 dark:text-white">Address</h5>
+                            <h5 className="font-bold text-slate-800 dark:text-slate-200">Address</h5>
                             <p className="text-slate-600 dark:text-slate-400 text-sm">To be updated</p>
                          </div>
                       </div>

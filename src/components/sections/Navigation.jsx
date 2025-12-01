@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
-  Menu, X, Calendar, MapPin, Users, FileText, 
-  Camera, Home, Globe, Moon, Sun, Monitor
+  Home, Calendar, FileText, Users, MapPin, Camera, 
+  Globe, Sun, Moon, Monitor, Menu, X 
 } from 'lucide-react';
 
 const Navigation = ({ activePage, setActivePage, isMenuOpen, setIsMenuOpen, isDark, toggleTheme }) => {

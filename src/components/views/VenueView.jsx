@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { 
-  Plane, Train, Bus, MapPin, Moon, ArrowRight, Info, Compass
-} from 'lucide-react';
+import { Plane, Train, Bus, MapPin, Moon, ArrowRight, Compass, Map } from 'lucide-react';
 import { CONSTANTS } from '../../data/constants';
 import SectionTitle from '../ui/SectionTitle';
 import Card from '../ui/Card';
-import mapENS from '../../assets/Fig_ENS_de_Lyon_Map.jpg';
 
 const VenueView = () => {
   const [activeTravelTab, setActiveTravelTab] = useState("flight");
@@ -41,7 +38,7 @@ const VenueView = () => {
                                     <li>Connect to <strong>Metro line B</strong> towards Saint-Genis-Laval Hôpital Lyon Sud.</li>
                                     <li>Get off at <strong>Debourg</strong>.</li>
                                 </ul>
-                                <a href={CONSTANTS.links.rhonexpress} target="_blank" rel="noreferrer" className="text-indigo-600 dark:text-indigo-400 font-bold hover:underline flex items-center mt-2">Book Rhônexpress <ArrowRight className="w-4 h-4 ml-1" /></a>
+                                <a href={CONSTANTS.links.rhonexpress} target="_blank" rel="noreferrer" className="text-indigo-600 font-bold hover:underline flex items-center mt-2">Book Rhônexpress <ArrowRight className="w-4 h-4 ml-1" /></a>
                             </div>
                             <div className="space-y-2 pt-4 border-t border-slate-200 dark:border-slate-700">
                                 <p className="text-slate-700 dark:text-slate-300 font-bold">From Paris Charles de Gaulle Airport (CDG):</p>
@@ -50,7 +47,7 @@ const VenueView = () => {
                                     <li>Journey time is approximately 2 hours.</li>
                                     <li>Then follow instructions from Part-Dieu.</li>
                                 </ul>
-                                <a href={CONSTANTS.links.sncf} target="_blank" rel="noreferrer" className="text-indigo-600 dark:text-indigo-400 font-bold hover:underline flex items-center mt-2">Book TGV on SNCF <ArrowRight className="w-4 h-4 ml-1" /></a>
+                                <a href={CONSTANTS.links.sncf} target="_blank" rel="noreferrer" className="text-indigo-600 font-bold hover:underline flex items-center mt-2">Book TGV on SNCF <ArrowRight className="w-4 h-4 ml-1" /></a>
                             </div>
                         </div>
                      )}
@@ -70,66 +67,65 @@ const VenueView = () => {
                                         <li>Get off at <strong>ENS Lyon</strong> (for Monod) or <strong>Debourg</strong>.</li>
                                     </ul>
                                 </div>
-                                <a href={CONSTANTS.links.sncf} target="_blank" rel="noreferrer" className="text-indigo-600 dark:text-indigo-400 font-bold hover:underline flex items-center mt-2">Book on SNCF <ArrowRight className="w-4 h-4 ml-1" /></a>
+                                <a href={CONSTANTS.links.sncf} target="_blank" rel="noreferrer" className="text-indigo-600 font-bold hover:underline flex items-center mt-2">Book on SNCF <ArrowRight className="w-4 h-4 ml-1" /></a>
                             </div>
                          )}
                          {activeTravelTab === "local" && (
-                            <div className="space-y-4">
-                                <p className="text-slate-600 dark:text-slate-400">Lyon has an excellent public transport network (TCL) including metro, tram, and bus lines.</p>
-                                <ul className="list-disc pl-5 text-slate-600 dark:text-slate-400 space-y-1">
-                                    <li><strong>Metro line B</strong>: Debourg Stop.</li>
-                                    <li><strong>Tramway line T1 or T6</strong>: Debourg Stop for Descartes Campus, ENS Lyon Stop for Monod Campus.</li>
-                                    <li><strong>Bus lines 34, 60 and 64</strong>: Debourg Stop for Descartes Campus, ENS Lyon Stop for Monod Campus.</li>
-                                    <li><strong>Vélo'v</strong>: parking on the Descartes plaza and Place de l'École (Monod Campus).</li>
-                                </ul>
-                                <a href={CONSTANTS.links.tcl} target="_blank" rel="noreferrer" className="text-indigo-600 dark:text-indigo-400 font-bold hover:underline flex items-center mt-2">TCL Website <ArrowRight className="w-4 h-4 ml-1" /></a>
-                            </div>
-                         )}
-                         {activeTravelTab === "car" && (
-                            <div className="space-y-4">
-                                <p className="text-slate-600 dark:text-slate-400 font-bold mb-2">By Car</p>
-                                <ul className="list-disc pl-5 text-slate-600 dark:text-slate-400 space-y-1">
-                                    <li><strong>Arriving from the East</strong> (Grenoble, Geneva, Lyon Saint-Exupéry Airport, …): Southern Beltway, take the Gerland exit</li>
-                                    <li><strong>Arriving from A6</strong> (North or South): take the Pont Pasteur Exit</li>
-                                </ul>
-                            </div>
-                         )}
-                         {activeTravelTab === "hotel" && (
-                            <div className="space-y-4">
-                                <p className="text-slate-600 dark:text-slate-400">To be updated.</p>
-                                <div className="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-100 dark:border-indigo-900/30">
-                                    <p className="text-indigo-800 dark:text-indigo-300 font-bold flex items-center"><Info className="w-4 h-4 mr-2" /> Note</p>
-                                    <p className="text-indigo-700 dark:text-indigo-300 text-sm mt-1">To be updated.</p>
+                            <div className="space-y-3">
+                                <div>
+                                    <p className="text-slate-700 dark:text-slate-300 font-bold">Metro & Tramway:</p>
+                                    <ul className="list-disc pl-5 text-slate-600 dark:text-slate-400 space-y-1">
+                                        <li><strong>Metro Line B:</strong> Debourg Stop.</li>
+                                        <li><strong>Tramway T1 or T6:</strong> Debourg Stop (Descartes) or ENS Lyon Stop (Monod).</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p className="text-slate-700 dark:text-slate-300 font-bold">Bus & Bike:</p>
+                                    <ul className="list-disc pl-5 text-slate-600 dark:text-slate-400 space-y-1">
+                                        <li><strong>Bus 34, 60, 64:</strong> Debourg Stop.</li>
+                                        <li><strong>Vélo'v:</strong> Stations at Descartes plaza and Place de l'École.</li>
+                                    </ul>
+                                </div>
+                                <div className="flex gap-4 mt-2">
+                                    <a href={CONSTANTS.links.tcl} target="_blank" rel="noreferrer" className="text-indigo-600 font-bold hover:underline flex items-center">TCL Website <ArrowRight className="w-4 h-4 ml-1" /></a>
+                                    <a href={CONSTANTS.links.velov} target="_blank" rel="noreferrer" className="text-indigo-600 font-bold hover:underline flex items-center">Vélo'v Website <ArrowRight className="w-4 h-4 ml-1" /></a>
                                 </div>
                             </div>
                          )}
+                         {activeTravelTab === "car" && (
+                            <div className="space-y-2">
+                                <p className="text-slate-700 dark:text-slate-300 font-bold">Driving Instructions:</p>
+                                <ul className="list-disc pl-5 text-slate-600 dark:text-slate-400 space-y-1">
+                                    <li><strong>From the East</strong> (Grenoble, Geneva, Airport): Take Southern Beltway, exit at <strong>Gerland</strong>.</li>
+                                    <li><strong>From A6</strong> (North or South): Take the <strong>Pont Pasteur</strong> exit.</li>
+                                </ul>
+                            </div>
+                         )}
+                         {activeTravelTab === "hotel" && <p className="text-slate-700 dark:text-slate-300 italic">Coming soon</p>}
                       </Card>
                 </div>
-                
-                {/* Section 2: Venue Map & Info */}
-                <div>
-                    <div className="h-full min-h-[400px] bg-slate-100 dark:bg-slate-700 rounded-xl overflow-hidden shadow-inner border border-slate-300 dark:border-slate-600 relative">
-                         <iframe 
-                            src={CONSTANTS.links.mapEmbed}
-                            width="100%" 
-                            height="100%" 
-                            style={{ border: 0, minHeight: '100%' }} 
-                            allowFullScreen="" 
-                            loading="lazy" 
-                            title="ENS de Lyon Map"
-                            className="absolute inset-0"
-                         ></iframe>
-                         <div className="absolute bottom-6 right-6">
-                            <a 
-                                href={CONSTANTS.links.mapDirections} 
-                                target="_blank" 
-                                rel="noreferrer"
-                                className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full shadow-lg flex items-center transition-transform transform hover:scale-105"
-                            >
-                                <Compass className="w-5 h-5 mr-2" /> Get Directions
-                            </a>
-                         </div>
-                    </div>
+                <div className="h-full min-h-[400px] bg-slate-200 dark:bg-slate-700 rounded-xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-700 relative group">
+                     <iframe 
+                        src={CONSTANTS.links.mapEmbed} 
+                        width="100%" 
+                        height="100%" 
+                        style={{ border: 0, minHeight: '400px' }} 
+                        allowFullScreen="" 
+                        loading="lazy" 
+                        title="Conference Location"
+                     ></iframe>
+                     
+                     {/* Get Directions Overlay */}
+                     <div className="absolute bottom-6 right-6">
+                        <a 
+                            href={CONSTANTS.links.mapDirections} 
+                            target="_blank" 
+                            rel="noreferrer"
+                            className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full shadow-lg flex items-center transition-transform transform hover:scale-105"
+                        >
+                            <Compass className="w-5 h-5 mr-2" /> Get Directions
+                        </a>
+                     </div>
                 </div>
             </div>
         </div>
@@ -148,27 +144,27 @@ const VenueView = () => {
                         <div className="space-y-6 mt-4 border-t border-slate-100 dark:border-slate-700 pt-4">
                             <div>
                                 <h5 className="font-bold text-indigo-700 dark:text-indigo-400 mb-1">Monod Campus</h5>
-                                <p className="font-bold text-slate-700 dark:text-slate-200 text-sm">Welcome Desk (MGN1)</p>
+                                <p className="font-bold text-slate-700 dark:text-slate-300 text-sm">Welcome Desk (MGN1)</p>
                                 <p className="text-slate-600 dark:text-slate-400 text-xs">46 allée d’Italie (halfway between Place de l'École and Halle Tony Garnier)</p>
                             </div>
                             <div>
                                 <h5 className="font-bold text-indigo-700 dark:text-indigo-400 mb-1">Descartes Campus</h5>
-                                <p className="font-bold text-slate-700 dark:text-slate-200 text-sm">Welcome Desk (D1)</p>
+                                <p className="font-bold text-slate-700 dark:text-slate-300 text-sm">Welcome Desk (D1)</p>
                                 <p className="text-slate-600 dark:text-slate-400 text-xs">15 parvis René Descartes, plaza at the corner of avenue Jean Jaurès and avenue Debourg</p>
                             </div>
                         </div>
                      </div>
                 </div>
                 <div className="h-full min-h-[400px] bg-slate-200 dark:bg-slate-700 rounded-xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-700 relative group">
-                     <a href={mapENS} target="_blank" rel="noreferrer" className="block h-full w-full cursor-zoom-in relative">
+                     <a href={CONSTANTS.assets.mapENS} target="_blank" rel="noreferrer" className="block h-full w-full cursor-zoom-in relative">
                          <img 
-                            src={mapENS} 
+                            src={CONSTANTS.assets.mapENS} 
                             alt="ENS de Lyon Map" 
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                          />
                          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-opacity duration-300 flex items-center justify-center">
-                            <span className="bg-white/90 dark:bg-slate-800/90 text-slate-800 dark:text-white px-4 py-2 rounded-full text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg flex items-center">
-                                <MapPin className="w-4 h-4 mr-2" /> View Full Map
+                            <span className="bg-white/90 text-slate-800 px-4 py-2 rounded-full text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg flex items-center">
+                                <Map className="w-4 h-4 mr-2" /> View Full Map
                             </span>
                          </div>
                      </a>

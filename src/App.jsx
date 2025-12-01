@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { CONSTANTS } from './data/constants';
-
-// Layout Components
-import Navigation from './components/layout/Navigation';
-import Footer from './components/layout/Footer';
-
-// UI Components
+import Navigation from './components/sections/Navigation';
+import Footer from './components/sections/Footer';
 import Modal from './components/ui/Modal';
 import ScrollToTop from './components/ui/ScrollToTop';
-
-// View Components
 import HomeView from './components/views/HomeView';
 import ScheduleView from './components/views/ScheduleView';
 import TalksView from './components/views/TalksView';
@@ -95,7 +89,7 @@ export default function SpiceConferenceWebsite() {
       <Footer />
 
       <Modal isOpen={isCoCOpen} onClose={() => setIsCoCOpen(false)} title="Code of Conduct">
-          <div className="prose prose-slate dark:prose-invert"><p>{CONSTANTS.details.cocText}</p></div>
+          <div className="prose prose-slate"><p>{CONSTANTS.details.cocText}</p></div>
       </Modal>
 
       <ScrollToTop />
