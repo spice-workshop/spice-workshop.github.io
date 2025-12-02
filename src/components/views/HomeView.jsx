@@ -43,7 +43,7 @@ const HomeView = () => (
       {/* About Section */}
       <div className="mb-16">
           <SectionTitle>Rationale</SectionTitle>
-          <div className="prose prose-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl whitespace-pre-wrap">
+          <div className="text-justify prose prose-lg text-slate-600 dark:text-slate-300 leading-relaxed md:max-w-7xl whitespace-pre-wrap">
               {CONSTANTS.details.description}
           </div>
           <div className="mt-8 flex flex-wrap gap-4">
