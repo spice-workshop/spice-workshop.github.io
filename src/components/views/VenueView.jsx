@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plane, Train, Bus, MapPin, Moon, ArrowRight, Compass, Map, Lightbulb } from 'lucide-react';
+import { Plane, Train, Bus, MapPin, Moon, ArrowRight, Compass, Map, Lightbulb, Globe, CreditCard, Zap, Phone, Clock, Shield } from 'lucide-react';
 import { CONSTANTS } from '../../data/constants';
 import SectionTitle from '../ui/SectionTitle';
 import Card from '../ui/Card';
@@ -10,7 +10,107 @@ const VenueView = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 animate-fade-in">
         
-        {/* Section 1: Travel Information */}
+
+        {/* Section 1: Practical Information */}
+        <div className="mb-20">
+            <SectionTitle>Practical Information</SectionTitle>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <Card className="p-6 bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700">
+                    <div className="flex items-center gap-3 mb-3">
+                        <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
+                            <Globe className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                        </div>
+                        <h4 className="font-bold text-slate-800 dark:text-white">Visa Requirements</h4>
+                    </div>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm mb-3">
+                        France is part of the Schengen Area. Please check if you require a visa to enter France.
+                    </p>
+                    <a 
+                        href={CONSTANTS.links.franceVisas} 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="text-indigo-600 dark:text-indigo-400 text-sm font-bold hover:underline flex items-center"
+                    >
+                        Official Visa Website <ArrowRight className="w-3 h-3 ml-1" />
+                    </a>
+                </Card>
+
+                <Card className="p-6 bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700">
+                    <div className="flex items-center gap-3 mb-3">
+                        <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
+                            <Shield className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                        </div>
+                        <h4 className="font-bold text-slate-800 dark:text-white">EES & ETIAS</h4>
+                    </div>
+                    <div className="text-slate-600 dark:text-slate-400 text-sm space-y-2">
+                        <p>
+                            <strong>EES (Entry/Exit System):</strong> Active. Biometric data (photo/fingerprints) will be collected at the border.
+                        </p>
+                        <p>
+                            <strong>ETIAS:</strong> Not expected to be required until late 2026.
+                        </p>
+                    </div>
+                    <div className="flex gap-4 mt-3">
+                         <a href={CONSTANTS.links.ees} target="_blank" rel="noreferrer" className="text-indigo-600 dark:text-indigo-400 text-sm font-bold hover:underline">
+                            EES Info
+                        </a>
+                        <a href={CONSTANTS.links.etias} target="_blank" rel="noreferrer" className="text-indigo-600 dark:text-indigo-400 text-sm font-bold hover:underline">
+                            ETIAS Info
+                        </a>
+                    </div>
+                </Card>
+
+                <Card className="p-6 bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700">
+                    <div className="flex items-center gap-3 mb-3">
+                        <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
+                            <CreditCard className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                        </div>
+                        <h4 className="font-bold text-slate-800 dark:text-white">Currency</h4>
+                    </div>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm">
+                        The currency is the <strong>Euro (€)</strong>. Credit cards (Visa, Mastercard) are widely accepted even for small amounts.
+                    </p>
+                </Card>
+
+                <Card className="p-6 bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700">
+                    <div className="flex items-center gap-3 mb-3">
+                        <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
+                            <Zap className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                        </div>
+                        <h4 className="font-bold text-slate-800 dark:text-white">Electricity</h4>
+                    </div>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm">
+                        Voltage is <strong>230V, 50Hz</strong>. Plugs are <strong>Type E</strong> (compatible with Type C). You may need an adapter.
+                    </p>
+                </Card>
+
+                <Card className="p-6 bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700">
+                    <div className="flex items-center gap-3 mb-3">
+                        <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
+                            <Phone className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                        </div>
+                        <h4 className="font-bold text-slate-800 dark:text-white">Emergency</h4>
+                    </div>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm">
+                        Dial <strong>112</strong> for all emergencies (police, fire, ambulance). It works from any phone and is free.
+                    </p>
+                </Card>
+
+                <Card className="p-6 bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700">
+                    <div className="flex items-center gap-3 mb-3">
+                        <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
+                            <Clock className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                        </div>
+                        <h4 className="font-bold text-slate-800 dark:text-white">Time Zone</h4>
+                    </div>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm">
+                        France uses <strong>CET (UTC+1)</strong> during winter and CEST (UTC+2) in summer (starts last Sunday of March).
+                    </p>
+                </Card>
+            </div>
+        </div>
+
+        {/* Section 2: Travel Information */}
         <div className="mb-20">
             <SectionTitle>Travel Information</SectionTitle>
             <div className="grid md:grid-cols-2 gap-12">
@@ -172,6 +272,8 @@ const VenueView = () => {
                 </div>
             </div>
         </div>
+
+
     </div>
   );
 };

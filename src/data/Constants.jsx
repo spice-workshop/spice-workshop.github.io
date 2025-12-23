@@ -43,6 +43,9 @@ export const CONSTANTS = {
     tcl: "https://www.tcl.fr/en",
     rhonexpress: "https://www.rhonexpress.fr",
     velov: "https://velov.grandlyon.com",
+    franceVisas: "https://france-visas.gouv.fr/",
+    ees: "https://travel-europe.europa.eu/ees_en",
+    etias: "https://travel-europe.europa.eu/etias_en",
     // Venue Map: ENS de Lyon Monod
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2784.805728854067!2d4.832265315566373!3d45.73491497910515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea3b1d7d0d0d%3A0x1a2b3c4d5e6f7g8h!2sENS+de+Lyon!5e0!3m2!1sen!2sfr!4v1620000000000!5m2!1sen!2sfr",
     // Directions Link
