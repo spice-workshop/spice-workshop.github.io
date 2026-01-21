@@ -103,7 +103,7 @@ const HomeView = () => {
           </div>
           <div className="mt-8 flex flex-wrap gap-4">
               <a href={CONSTANTS.links.discord} target="_blank" rel="noreferrer" className="flex items-center bg-[#5865F2] text-white px-4 py-2 rounded-md hover:bg-[#4752C4] transition-colors"><MessageCircle className="w-5 h-5 mr-2" /> Join Discord</a>
-              <a href={CONSTANTS.links.slack} target="_blank" rel="noreferrer" className="flex items-center bg-[#4A154B] text-white px-4 py-2 rounded-md hover:bg-[#3b113c] transition-colors"><Users className="w-5 h-5 mr-2" /> Join Slack</a>
+              {/* <a href={CONSTANTS.links.slack} target="_blank" rel="noreferrer" className="flex items-center bg-[#4A154B] text-white px-4 py-2 rounded-md hover:bg-[#3b113c] transition-colors"><Users className="w-5 h-5 mr-2" /> Join Slack</a> */}
           </div>
       </div>
 
