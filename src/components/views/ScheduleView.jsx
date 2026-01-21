@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Calendar, ArrowRight, Utensils, Users, Bus, MapPin, Compass } from 'lucide-react';
-import { CONSTANTS } from '../../data/constants';
+import { CONSTANTS } from '../../data/Constants';
 import { SCHEDULE_DATA } from '../../data/scheduleData';
 import SectionTitle from '../ui/SectionTitle';
 import Card from '../ui/Card';
@@ -95,7 +95,7 @@ const ScheduleView = () => {
                       </div>
                         <h4 className="font-bold text-2xl text-slate-800 dark:text-white mb-2">Lunch Details</h4>
                       <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                        Lunch details will be updated soon.
+                        We don't have a restaurant reservation, but we can provide you with a list of recommended restaurants in the area.
                       </p>
                     </div>
 
@@ -142,19 +142,19 @@ const ScheduleView = () => {
             </div>
         </div>
 
-        {/* Gala Dinner Block */}
-        <div id="gala-dinner" className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden scroll-mt-32">
+        {/* Dinner Block */}
+        <div id="dinner" className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden scroll-mt-32">
             <div className="grid md:grid-cols-2">
                 {/* Info Side */}
                 <div className="p-8 flex flex-col h-full">
                     <div className="mb-6">
                       <div className="inline-block px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-xs font-bold uppercase tracking-wide mb-3">
-                        Conference Dinner
+                        Workshop Dinner
                       </div>
 
-                      <h4 className="font-bold text-2xl text-slate-800 dark:text-white mb-2">Conference Dinner</h4>
+                      <h4 className="font-bold text-2xl text-slate-800 dark:text-white mb-2">Workshop Dinner</h4>
                       <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                        Details for the Conference Dinner will be announced soon.
+                        Details for the Workshop Dinner will be announced soon.
                       </p>
                     </div>
 

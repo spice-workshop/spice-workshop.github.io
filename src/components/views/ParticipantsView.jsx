@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Search, Globe } from 'lucide-react';
-import { PARTICIPANTS_DATA } from '../../data/participantsData';
+import { PARTICIPANTS_DATA } from '../../data/ParticipantsData';
 import SectionTitle from '../ui/SectionTitle';
 
 const ParticipantsView = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ExternalLink, Mail } from 'lucide-react';
-import { CONSTANTS } from '../../data/constants';
+import { CONSTANTS } from '../../data/Constants';
 
 const Footer = () => (
   <footer className="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
@@ -11,7 +11,7 @@ const Footer = () => (
         </div>
         <div className="flex space-x-6 mb-4 md:mb-0">
             <a href={CONSTANTS.links.spice1} target="_blank" rel="noreferrer" className="hover:text-white transition-colors flex items-center text-sm"><ExternalLink className="w-4 h-4 mr-2" /> SPiCE 1 Website</a>
-            <a href="mailto:contact@example.com" className="hover:text-white transition-colors flex items-center text-sm"><Mail className="w-4 h-4 mr-2" /> Contact Us</a>
+            <a href="mailto:spice2.workshop@gmail.com" className="hover:text-white transition-colors flex items-center text-sm"><Mail className="w-4 h-4 mr-2" /> Contact Us</a>
         </div>
         <div className="text-sm">© 2025 SPiCE Conference.</div>
     </div>

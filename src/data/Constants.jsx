@@ -1,5 +1,7 @@
 import mapENS from '../assets/Fig_ENS_de_Lyon_Map.jpg';
-import heroBgWide from '../assets/hero_background_wide.png';
+import figBgWide from '../assets/Fig_BG_Wide.png';
+import figBg from '../assets/Fig_BG.png';
+import figCR from '../assets/Fig_CR.png';
 
 export const CONSTANTS = {
   details: {
@@ -60,7 +62,8 @@ export const CONSTANTS = {
     crousDirections: "https://www.google.com/maps/dir/?api=1&destination=ENS+de+Lyon+Monod+Campus,+Lyon,+France"
   },
   assets: {
-    heroImage: heroBgWide,
+    heroImage: figBgWide,
+    heroImages: [figCR, figBgWide, figBg],
     mapENS: mapENS,
   },
   social: {

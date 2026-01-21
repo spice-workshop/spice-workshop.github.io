@@ -1,17 +1,72 @@
-import React from 'react';
-import { Calendar, MapPin, MessageCircle, Users, Camera } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Calendar, MapPin, MessageCircle, Users, Camera, ChevronLeft, ChevronRight } from 'lucide-react';
 import { CONSTANTS } from '../../data/Constants';
 import { SOC_LIST, LOC_LIST } from '../../data/CommitteeData';
 import { PARTNERS_LIST } from '../../data/PartnerData';
 import SectionTitle from '../ui/SectionTitle';
 
-const HomeView = () => (
-  <>
-    {/* Hero */}
-    <header className="relative bg-slate-50 dark:bg-slate-900 pt-16 pb-20 md:pt-24 md:pb-32 overflow-hidden">
-      <div className="absolute inset-0 z-0 opacity-90 dark:opacity-90">
-          <img src={CONSTANTS.assets.heroImage} alt="Background" className="w-full h-full object-cover" />
-      </div>
+const HomeView = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const images = CONSTANTS.assets.heroImages;
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  return (
+    <>
+      {/* Hero */}
+      <header className="relative bg-slate-50 dark:bg-slate-900 pt-16 pb-20 md:pt-24 md:pb-32 overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-90 dark:opacity-90">
+            {/* Carousel Images */}
+            {images.map((img, index) => (
+              <img 
+                key={index}
+                src={img} 
+                alt={`Background ${index + 1}`} 
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+                  index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                }`} 
+              />
+            ))}
+            
+            {/* Overlay Gradient */}
+            <div className="absolute inset-0 bg-slate-900/40" />
+        </div>
+        
+        {/* Navigation Buttons */}
+        <button 
+          onClick={prevImage}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white transition-colors"
+          aria-label="Previous image"
+        >
+          <ChevronLeft className="w-8 h-8" />
+        </button>
+        <button 
+          onClick={nextImage}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white transition-colors"
+          aria-label="Next image"
+        >
+          <ChevronRight className="w-8 h-8" />
+        </button>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center">
@@ -117,5 +172,6 @@ const HomeView = () => (
       </div>
   </>
 );
+};
 
 export default HomeView;

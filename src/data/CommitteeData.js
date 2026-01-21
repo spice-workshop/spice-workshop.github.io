@@ -14,4 +14,5 @@ export const LOC_LIST = [
   { name: "Nai-Chieh Daniel Lin", affiliation: "CRAL - ENS de Lyon", role: "" },
   { name: "Adnan Ali-Ahmad", affiliation: "CRAL - ENS de Lyon", role: "" },
   { name: "Antonin Borderies", affiliation: "CRAL - ENS de Lyon", role: "" },
+  { name: "Louca Romain", affiliation: "CRAL - ENS de Lyon", role: "" },
 ];

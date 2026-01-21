@@ -2,6 +2,7 @@ export const PARTICIPANTS_DATA = [
   { name: "Adnan Ali-Ahmad", affiliation: "CRAL - ENS de Lyon", country: "France" },
   { name: "Antonin Borderies", affiliation: "CRAL - ENS de Lyon", country: "France" },
   { name: "Benoit Commerçon", affiliation: "CRAL - ENS de Lyon", country: "France" },
+  { name: "Louca Romain", affiliation: "CRAL - ENS de Lyon", country: "France" },
   { name: "Joanna Drazkowska", affiliation: "Max Planck Institute", country: "Germany" },
   { name: "Kaitlin Kratter", affiliation: "University of Arizona", country: "USA" },
   { name: "Kengo Tomida", affiliation: "Tohoku University", country: "Japan" },

@@ -10,7 +10,7 @@ const Navigation = ({ activePage, setActivePage, isMenuOpen, setIsMenuOpen, isDa
     { id: 'schedule', label: 'Schedule', icon: <Calendar className="w-4 h-4 mr-1" /> },
     { id: 'talks', label: 'Talks', icon: <FileText className="w-4 h-4 mr-1" /> },
     { id: 'participants', label: 'Participants', icon: <Users className="w-4 h-4 mr-1" /> },
-    { id: 'venue', label: 'Venue & Travel', icon: <MapPin className="w-4 h-4 mr-1" /> },
+    { id: 'logistics', label: 'Logistics', icon: <MapPin className="w-4 h-4 mr-1" /> },
     { id: 'sightseeing', label: 'Sightseeing', icon: <Camera className="w-4 h-4 mr-1" /> },
   ];
 

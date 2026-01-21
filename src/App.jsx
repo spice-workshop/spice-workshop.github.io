@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CONSTANTS } from './data/constants';
+import { CONSTANTS } from './data/Constants';
 import Navigation from './components/sections/Navigation';
 import Footer from './components/sections/Footer';
 import Modal from './components/ui/Modal';
@@ -8,7 +8,7 @@ import HomeView from './components/views/HomeView';
 import ScheduleView from './components/views/ScheduleView';
 import TalksView from './components/views/TalksView';
 import ParticipantsView from './components/views/ParticipantsView';
-import VenueView from './components/views/VenueView';
+import LogisticsView from './components/views/LogisticsView';
 import SightseeingView from './components/views/SightseeingView';
 
 export default function SpiceConferenceWebsite() {
@@ -82,7 +82,7 @@ export default function SpiceConferenceWebsite() {
         {activePage === 'schedule' && <ScheduleView />}
         {activePage === 'talks' && <TalksView />}
         {activePage === 'participants' && <ParticipantsView />}
-        {activePage === 'venue' && <VenueView />}
+        {activePage === 'logistics' && <LogisticsView />}
         {activePage === 'sightseeing' && <SightseeingView />}
       </main>
 
