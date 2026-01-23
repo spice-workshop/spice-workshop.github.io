@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Search, ChevronDown, ChevronUp, FileText } from 'lucide-react';
-import { TALKS_DATA } from '../../data/scheduleData';
-import { CONSTANTS } from '../../data/Constants';
-import SectionTitle from '../ui/SectionTitle';
+import { TALKS_DATA } from '../data/scheduleData';
+import { CONSTANTS } from '../data/Constants';
+import SectionTitle from '../components/ui/SectionTitle';
 
 const TalksView = () => {
   const [activeTalkDay, setActiveTalkDay] = useState("Day 1");

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { CONSTANTS } from './data/Constants';
-import Navigation from './components/sections/Navigation';
-import Footer from './components/sections/Footer';
+import Navigation from './components/layout/Navigation';
+import Footer from './components/layout/Footer';
 import Modal from './components/ui/Modal';
 import ScrollToTop from './components/ui/ScrollToTop';
-import HomeView from './components/views/HomeView';
-import ScheduleView from './components/views/ScheduleView';
-import TalksView from './components/views/TalksView';
-import ParticipantsView from './components/views/ParticipantsView';
-import LogisticsView from './components/views/LogisticsView';
-import SightseeingView from './components/views/SightseeingView';
+import HomeView from './pages/Home';
+import ScheduleView from './pages/Schedule';
+import TalksView from './pages/Talks';
+import ParticipantsView from './pages/Participants';
+import LogisticsView from './pages/Logistics';
+import SightseeingView from './pages/Sightseeing';
 
 export default function SpiceConferenceWebsite() {
   const [activePage, setActivePage] = useState('home');

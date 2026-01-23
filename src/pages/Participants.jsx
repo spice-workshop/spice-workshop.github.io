@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Globe } from 'lucide-react';
-import { PARTICIPANTS_DATA } from '../../data/ParticipantsData';
-import SectionTitle from '../ui/SectionTitle';
+import { PARTICIPANTS_DATA } from '../data/ParticipantsData';
+import SectionTitle from '../components/ui/SectionTitle';
 
 const ParticipantsView = () => {
   const [participantSearch, setParticipantSearch] = useState("");

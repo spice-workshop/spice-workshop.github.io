@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Plane, Train, Bus, MapPin, Moon, ArrowRight, Compass, Map, Lightbulb, Globe, CreditCard, Zap, Phone, Clock, Shield } from 'lucide-react';
-import { CONSTANTS } from '../../data/Constants';
-import SectionTitle from '../ui/SectionTitle';
-import Card from '../ui/Card';
+import { CONSTANTS } from '../data/Constants';
+import SectionTitle from '../components/ui/SectionTitle';
+import Card from '../components/ui/Card';
 
 const LogisticsView = () => {
   const [activeTravelTab, setActiveTravelTab] = useState("flight");

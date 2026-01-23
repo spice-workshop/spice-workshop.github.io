@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, MapPin, MessageCircle, Users, Camera, ChevronLeft, ChevronRight } from 'lucide-react';
-import { CONSTANTS } from '../../data/Constants';
-import { SOC_LIST, LOC_LIST } from '../../data/CommitteeData';
-import { PARTNERS_LIST } from '../../data/PartnerData';
-import SectionTitle from '../ui/SectionTitle';
+import { CONSTANTS } from '../data/Constants';
+import { SOC_LIST, LOC_LIST } from '../data/CommitteeData';
+import { PARTNERS_LIST } from '../data/PartnerData';
+import SectionTitle from '../components/ui/SectionTitle';
 
 const HomeView = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

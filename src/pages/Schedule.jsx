@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Calendar, ArrowRight, Utensils, Users, Bus, MapPin, Compass } from 'lucide-react';
-import { CONSTANTS } from '../../data/Constants';
-import { SCHEDULE_DATA } from '../../data/scheduleData';
-import SectionTitle from '../ui/SectionTitle';
-import Card from '../ui/Card';
-import StatusIndicator from '../ui/StatusIndicator';
+import { CONSTANTS } from '../data/Constants';
+import { SCHEDULE_DATA } from '../data/scheduleData';
+import SectionTitle from '../components/ui/SectionTitle';
+import Card from '../components/ui/Card';
+import StatusIndicator from '../components/ui/StatusIndicator';
 
 const ScheduleView = () => {
   const [activeDay, setActiveDay] = useState(0);

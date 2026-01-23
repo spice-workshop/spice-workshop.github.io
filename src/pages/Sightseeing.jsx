@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Compass } from 'lucide-react';
-import { SIGHTSEEING_SPOTS } from '../../data/SightseeingData';
-import SectionTitle from '../ui/SectionTitle';
+import { SIGHTSEEING_SPOTS } from '../data/SightseeingData';
+import SectionTitle from '../components/ui/SectionTitle';
 
 const SightseeingView = () => {
   const [activeSpot, setActiveSpot] = useState(SIGHTSEEING_SPOTS[0]);
