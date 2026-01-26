@@ -3,6 +3,7 @@ import HeaderImage from '../assets/HeaderImage.png';
 import figCR from '../assets/Fig_CR.png';
 import fig3Ddisk from '../assets/threeDdisk.png';
 import diskform from '../assets/diskFormation.png';
+import BD from '../assets/BD.png';
 
 export const CONSTANTS = {
   details: {
@@ -64,7 +65,7 @@ export const CONSTANTS = {
   },
   assets: {
     heroImage: HeaderImage,
-    heroImages: [figCR, HeaderImage, fig3Ddisk, diskform],
+    heroImages: [HeaderImage, BD, diskform, figCR],
     mapENS: mapENS,
   },
   social: {
