@@ -1,4 +1,16 @@
-export const SCHEDULE_DATA = [
+export interface ScheduleEvent {
+  time: string;
+  title: string;
+  status: 'upcoming' | 'completed' | 'active'; // Inferred from usage, or just string
+}
+
+export interface ScheduleDay {
+  day: string;
+  label: string;
+  events: ScheduleEvent[];
+}
+
+export const SCHEDULE_DATA: ScheduleDay[] = [
   {
     day: "Day 1 (Mar 16)",
     label: "Mon",
@@ -36,7 +48,22 @@ export const SCHEDULE_DATA = [
   }
 ];
 
-export const TALKS_DATA = {
+export interface Talk {
+  id: number;
+  time: string;
+  title: string;
+  speaker: string;
+  affiliation: string;
+  abstract: string;
+  slidesLink: string;
+  recordingLink: string;
+}
+
+export interface TalksData {
+  [key: string]: Talk[];
+}
+
+export const TALKS_DATA: TalksData = {
   "Day 1": [
     { id: 101, time: "TBD", title: "Talks to be announced", speaker: "Coming soon", affiliation: "", abstract: "Abstract coming soon...", slidesLink: "#", recordingLink: "#" },
   ],

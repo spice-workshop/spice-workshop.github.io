@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Search, ChevronDown, ChevronUp, FileText } from 'lucide-react';
-import { TALKS_DATA } from '../data/scheduleData';
+import { TALKS_DATA, Talk } from '../data/ScheduleData';
 import { CONSTANTS } from '../data/Constants';
 import SectionTitle from '../components/ui/SectionTitle';
 
-const TalksView = () => {
+const TalksView: React.FC = () => {
   const [activeTalkDay, setActiveTalkDay] = useState("Day 1");
   const [talkSearch, setTalkSearch] = useState("");
-  const [openTalkId, setOpenTalkId] = useState(null);
+  const [openTalkId, setOpenTalkId] = useState<number | null>(null);
   
   const currentDayTalks = TALKS_DATA[activeTalkDay] || [];
   const filteredTalks = currentDayTalks.filter(t => 
@@ -50,7 +50,7 @@ const TalksView = () => {
         
         <div className="space-y-3 min-h-[300px]">
             {filteredTalks.length > 0 ? (
-              filteredTalks.map((talk) => {
+              filteredTalks.map((talk: Talk) => {
                 const isOpen = openTalkId === talk.id;
                 return (
                   <div key={talk.id} className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden bg-white dark:bg-slate-800 shadow-sm hover:shadow-md transition-shadow">

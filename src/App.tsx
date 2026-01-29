@@ -11,15 +11,18 @@ import ParticipantsView from './pages/Participants';
 import LogisticsView from './pages/Logistics';
 import SightseeingView from './pages/Sightseeing';
 
+// Define theme type
+type Theme = 'light' | 'dark' | 'system';
+
 export default function SpiceConferenceWebsite() {
   const [activePage, setActivePage] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCoCOpen, setIsCoCOpen] = useState(false);
   
   // Theme State: 'light' | 'dark' | 'system'
-  const [isDark, setIsDark] = useState(() => {
+  const [isDark, setIsDark] = useState<Theme>(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('theme') || 'system';
+      return (localStorage.getItem('theme') as Theme) || 'system';
     }
     return 'system';
   });

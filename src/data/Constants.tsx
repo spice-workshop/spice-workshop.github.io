@@ -1,11 +1,35 @@
+import React from 'react';
 import mapENS from '../assets/Fig_ENS_de_Lyon_Map.jpg';
 import HeaderImage from '../assets/HeaderImage.png';
 import figCR from '../assets/Fig_CR.png';
-import fig3Ddisk from '../assets/threeDdisk.png';
 import diskform from '../assets/diskFormation.png';
 import BD from '../assets/BD.png';
 
-export const CONSTANTS = {
+interface ConstantsType {
+  details: {
+    title: string;
+    subtitle: string;
+    date: string;
+    location: string;
+    description: React.ReactNode;
+    cocText: string;
+  };
+  links: {
+    [key: string]: string;
+  };
+  assets: {
+    heroImage: string;
+    heroImages: string[];
+    mapENS: string;
+  };
+  social: {
+    ens: string;
+    cnrs: string;
+    cral: string;
+  };
+}
+
+export const CONSTANTS: ConstantsType = {
   details: {
     title: "SPiCE 2",
     subtitle: "Simulating Physics in Celestial Ecosystems",
@@ -74,4 +98,3 @@ export const CONSTANTS = {
     cral: "https://cral.univ-lyon1.fr/?lang=en"
   }
 };
-

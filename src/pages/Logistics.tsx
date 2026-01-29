@@ -4,7 +4,7 @@ import { CONSTANTS } from '../data/Constants';
 import SectionTitle from '../components/ui/SectionTitle';
 import Card from '../components/ui/Card';
 
-const LogisticsView = () => {
+const LogisticsView: React.FC = () => {
   const [activeTravelTab, setActiveTravelTab] = useState("flight");
 
   return (
@@ -216,7 +216,7 @@ const LogisticsView = () => {
                         width="100%" 
                         height="100%" 
                         style={{ border: 0, minHeight: '400px' }} 
-                        allowFullScreen="" 
+                        allowFullScreen={undefined}
                         loading="lazy" 
                         title="Conference Location"
                      ></iframe>

@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Calendar, ArrowRight, Utensils, Users, Bus, MapPin, Compass } from 'lucide-react';
 import { CONSTANTS } from '../data/Constants';
-import { SCHEDULE_DATA } from '../data/scheduleData';
+import { SCHEDULE_DATA } from '../data/ScheduleData';
 import SectionTitle from '../components/ui/SectionTitle';
 import Card from '../components/ui/Card';
 import StatusIndicator from '../components/ui/StatusIndicator';
 
-const ScheduleView = () => {
+const AttractionsMap = React.lazy(() => import('../components/ui/AttractionsMap'));
+const ScheduleView: React.FC = () => {
   const [activeDay, setActiveDay] = useState(0);
+  const [showMap, setShowMap] = useState(false);
   
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 animate-fade-in">
@@ -18,7 +20,7 @@ const ScheduleView = () => {
           </a>
       </div>
 
-      <div className="flex overflow-x-auto pb-4 mb-6 gap-2 hide-scrollbar">
+      <div className="flex overflow-x-auto py-4 px-2 mb-6 gap-2 hide-scrollbar">
         {SCHEDULE_DATA.map((data, index) => (
           <button
             key={index}
@@ -39,11 +41,11 @@ const ScheduleView = () => {
             <h3 className="text-xl font-bold text-slate-800 dark:text-white flex items-center">
                 <Calendar className="w-5 h-5 mr-2 text-indigo-500" /> {SCHEDULE_DATA[activeDay].day}
             </h3>
-            <span className="text-sm text-slate-400">Timezone: CEST (UTC+2)</span>
+            <span className="text-sm text-slate-400">Timezone: CET (UTC+1)</span>
           </div>
           
           <div className="space-y-4">
-              {SCHEDULE_DATA[activeDay].events.map((event, idx) => (
+              {SCHEDULE_DATA[activeDay].events.map((event: any, idx: number) => (
                   <div key={idx} className={`flex flex-col md:flex-row md:items-center p-4 rounded-lg transition-colors border border-transparent hover:border-slate-100 dark:hover:border-slate-700 group ${event.highlight ? 'bg-amber-50 dark:bg-amber-900/20 border-amber-100 dark:border-amber-900/30 hover:border-amber-200' : 'hover:bg-slate-50 dark:hover:bg-slate-700/50'}`}>
                       <div className="w-32 flex-shrink-0 text-sm font-mono font-bold text-slate-500 dark:text-slate-400 mb-2 md:mb-0">
                           {event.time}
@@ -123,7 +125,7 @@ const ScheduleView = () => {
                       width="100%" 
                       height="100%" 
                       style={{ border: 0, minHeight: '100%' }} 
-                      allowFullScreen="" 
+                      allowFullScreen={undefined}
                       loading="lazy" 
                       title="CROUS Location"
                       className="absolute inset-0"
@@ -194,7 +196,7 @@ const ScheduleView = () => {
                       width="100%" 
                       height="100%" 
                       style={{ border: 0, minHeight: '100%' }} 
-                      allowFullScreen="" 
+                      allowFullScreen={undefined}
                       loading="lazy" 
                       title="Restaurant Location"
                       className="absolute inset-0"
@@ -211,6 +213,28 @@ const ScheduleView = () => {
                    </div>
                 </div>
             </div>
+        </div>
+        {/* Attractions Map Section */}
+        <div className="mt-20">
+             <div className="flex items-center justify-between mb-6">
+                <h3 className="font-bold text-2xl flex items-center text-slate-800 dark:text-white">
+                   <Compass className="w-6 h-6 mr-3 text-indigo-500" /> Explore Lyon
+                </h3>
+                <button
+                   onClick={() => setShowMap(!showMap)}
+                   className="flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-sm text-sm font-medium"
+                >
+                   {showMap ? 'Hide Map' : 'Show Attractions Map'}
+                </button>
+             </div>
+
+             {showMap && (
+               <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden mb-12 p-1">
+                 <React.Suspense fallback={<div className="h-[500px] flex items-center justify-center">Loading Map...</div>}>
+                   <AttractionsMap />
+                 </React.Suspense>
+               </div>
+             )}
         </div>
       </div>
     </div>

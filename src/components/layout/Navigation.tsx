@@ -1,10 +1,19 @@
 import React from 'react';
 import { 
   Home, Calendar, FileText, Users, MapPin, Camera, 
-  Globe, Sun, Moon, Monitor, Menu, X 
+  Globe, Sun, Moon, Monitor, Menu, X
 } from 'lucide-react';
 
-const Navigation = ({ activePage, setActivePage, isMenuOpen, setIsMenuOpen, isDark, toggleTheme }) => {
+interface NavigationProps {
+  activePage: string;
+  setActivePage: (page: string) => void;
+  isMenuOpen: boolean;
+  setIsMenuOpen: (isOpen: boolean) => void;
+  isDark: 'light' | 'dark' | 'system';
+  toggleTheme: () => void;
+}
+
+const Navigation: React.FC<NavigationProps> = ({ activePage, setActivePage, isMenuOpen, setIsMenuOpen, isDark, toggleTheme }) => {
   const navItems = [
     { id: 'home', label: 'Home', icon: <Home className="w-4 h-4 mr-1" /> },
     { id: 'schedule', label: 'Schedule', icon: <Calendar className="w-4 h-4 mr-1" /> },

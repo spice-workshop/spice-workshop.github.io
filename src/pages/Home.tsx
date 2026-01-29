@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, MapPin, MessageCircle, Users, Camera, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Calendar, MapPin, MessageCircle, Camera, ChevronLeft, ChevronRight } from 'lucide-react';
 import { CONSTANTS } from '../data/Constants';
-import { SOC_LIST, LOC_LIST } from '../data/CommitteeData';
 import { PARTNERS_LIST } from '../data/PartnerData';
 import SectionTitle from '../components/ui/SectionTitle';
+import { useParticipants } from '../utils/csvLoader';
 
-const HomeView = () => {
+const HomeView: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = CONSTANTS.assets.heroImages;
 
@@ -30,6 +30,11 @@ const HomeView = () => {
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
+
+  const { data: participants, loading: loadingParticipants } = useParticipants();
+
+  const socList = participants.filter(p => p.roles.includes('SOC'));
+  const locList = participants.filter(p => p.roles.includes('LOC'));
 
   return (
     <>
@@ -103,7 +108,7 @@ const HomeView = () => {
           </div>
           <div className="mt-8 flex flex-wrap gap-4">
               <a href={CONSTANTS.links.discord} target="_blank" rel="noreferrer" className="flex items-center bg-[#5865F2] text-white px-4 py-2 rounded-md hover:bg-[#4752C4] transition-colors"><MessageCircle className="w-5 h-5 mr-2" /> Join Discord</a>
-              {/* <a href={CONSTANTS.links.slack} target="_blank" rel="noreferrer" className="flex items-center bg-[#4A154B] text-white px-4 py-2 rounded-md hover:bg-[#3b113c] transition-colors"><Users className="w-5 h-5 mr-2" /> Join Slack</a> */}
+              {/* <a href={CONSTANTS.links.slack} target="_blank" rel="noreferrer" className="flex items-center bg-[#4A154B] text-white px-4 py-2 rounded-md hover:bg-[#3b113c] transition-colors"><users className="w-5 h-5 mr-2" /> Join Slack</a> */}
           </div>
       </div>
 
@@ -121,10 +126,13 @@ const HomeView = () => {
       {/* Committees */}
       <div className="mb-24 border-t border-slate-100 pt-12">
           <SectionTitle>Organizing Committees</SectionTitle>
+          {loadingParticipants ? (
+             <p className="text-center text-slate-500">Loading committees...</p>
+          ) : (
           <div className="grid md:grid-cols-2 gap-8">
               {[
-                { title: "Scientific Organizing Committee (SOC)", color: "bg-indigo-500", list: SOC_LIST },
-                { title: "Local Organizing Committee (LOC)", color: "bg-green-500", list: LOC_LIST }
+                { title: "Scientific Organizing Committee (SOC)", color: "bg-indigo-500", list: socList },
+                { title: "Local Organizing Committee (LOC)", color: "bg-green-500", list: locList }
               ].map((comm, idx) => (
                 <div key={idx}>
                   <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100 mb-4 flex items-center"><span className={`w-8 h-1 ${comm.color} mr-3 rounded-full`}></span>{comm.title}</h3>
@@ -133,9 +141,9 @@ const HomeView = () => {
                           <li key={mIdx} className="p-4 flex flex-col sm:flex-row justify-between sm:items-center">
                               <div>
                                 <span className="font-medium text-slate-800 dark:text-slate-200">{member.name}</span>
-                                {member.role && (
+                                {member.roles.includes('Chair') && (
                                   <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200">
-                                    {member.role}
+                                    Chair
                                   </span>
                                 )}
                               </div>
@@ -146,6 +154,7 @@ const HomeView = () => {
                 </div>
               ))}
           </div>
+          )}
       </div>
 
       </div>
