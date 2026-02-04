@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Compass, ChevronLeft, ChevronRight } from 'lucide-react';
 import { SIGHTSEEING_SPOTS, SightseeingSpot } from '../data/SightseeingData';
 import SectionTitle from '../components/ui/SectionTitle';
+import SEO from '../components/layout/SEO';
 
 const SightseeingView: React.FC = () => {
   const [activeSpot, setActiveSpot] = useState<SightseeingSpot>(SIGHTSEEING_SPOTS[0]);
@@ -17,25 +17,11 @@ const SightseeingView: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 animate-fade-in">
-        <Helmet>
-          <title>Sightseeing | SPiCE 2 Conference</title>
-          <meta name="description" content="Discover the best sightseeing spots in Lyon. Explore local history, culture, and attractions during the conference." />
-          <link rel="canonical" href="https://spice-workshop.github.io/sightseeing" />
-
-          {/* Open Graph */}
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://spice-workshop.github.io/sightseeing" />
-          <meta property="og:title" content="Sightseeing | SPiCE 2 Conference" />
-          <meta property="og:description" content="Discover the best sightseeing spots in Lyon. Explore local history, culture, and attractions during the conference." />
-          <meta property="og:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
-
-          {/* Twitter */}
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:url" content="https://spice-workshop.github.io/sightseeing" />
-          <meta name="twitter:title" content="Sightseeing | SPiCE 2 Conference" />
-          <meta name="twitter:description" content="Discover the best sightseeing spots in Lyon. Explore local history, culture, and attractions during the conference." />
-          <meta name="twitter:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
-        </Helmet>
+        <SEO
+          title="Sightseeing | SPiCE 2 Conference"
+          description="Discover the best sightseeing spots in Lyon. Explore local history, culture, and attractions during the conference."
+          url="https://spice-workshop.github.io/sightseeing"
+        />
         <SectionTitle>Sightseeing in Lyon</SectionTitle>
         <p className="text-slate-600 dark:text-slate-300 mb-8 mt-[-1rem]">Explore the rich history and culture of Lyon during your stay.</p>
 

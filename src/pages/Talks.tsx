@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Search, ChevronDown, ChevronUp, FileText } from 'lucide-react';
 import { TALKS_DATA, Talk } from '../data/ScheduleData';
 import { CONSTANTS } from '../data/Constants';
 import SectionTitle from '../components/ui/SectionTitle';
+import SEO from '../components/layout/SEO';
 
 const TalksView: React.FC = () => {
   const [activeTalkDay, setActiveTalkDay] = useState("Day 1");
@@ -19,25 +19,11 @@ const TalksView: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 animate-fade-in">
-        <Helmet>
-          <title>Talks & Abstracts | SPiCE 2 Conference</title>
-          <meta name="description" content="Browse accepted talks and abstracts for the SPiCE 2 conference. Search by speaker, title, or topic." />
-          <link rel="canonical" href="https://spice-workshop.github.io/talks" />
-
-          {/* Open Graph */}
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://spice-workshop.github.io/talks" />
-          <meta property="og:title" content="Talks & Abstracts | SPiCE 2 Conference" />
-          <meta property="og:description" content="Browse accepted talks and abstracts for the SPiCE 2 conference. Search by speaker, title, or topic." />
-          <meta property="og:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
-
-          {/* Twitter */}
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:url" content="https://spice-workshop.github.io/talks" />
-          <meta name="twitter:title" content="Talks & Abstracts | SPiCE 2 Conference" />
-          <meta name="twitter:description" content="Browse accepted talks and abstracts for the SPiCE 2 conference. Search by speaker, title, or topic." />
-          <meta name="twitter:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
-        </Helmet>
+        <SEO
+          title="Talks & Abstracts | SPiCE 2 Conference"
+          description="Browse accepted talks and abstracts for the SPiCE 2 conference. Search by speaker, title, or topic."
+          url="https://spice-workshop.github.io/talks"
+        />
         <div className="text-center mb-8">
              <SectionTitle>Talks & Abstracts</SectionTitle>
              <p className="text-slate-600 mt-[-1rem]">Select a day and search to filter scheduled talks.</p>

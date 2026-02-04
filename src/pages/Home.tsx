@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Calendar, MapPin, MessageCircle, Camera, ChevronLeft, ChevronRight } from 'lucide-react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import { CONSTANTS } from '../data/Constants';
 import { PARTNERS_LIST } from '../data/PartnerData';
 import SectionTitle from '../components/ui/SectionTitle';
+import SEO from '../components/layout/SEO';
 import { useParticipants } from '../utils/csvLoader';
 
 const HomeView: React.FC = () => {
@@ -39,25 +41,11 @@ const HomeView: React.FC = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Home | SPiCE 2 Conference</title>
-        <meta name="description" content="Welcome to the second edition of the SPiCE conference. Join us in Lyon for discussions on star formation, planet formation, and more." />
-        <link rel="canonical" href="https://spice-workshop.github.io/" />
-
-        {/* Open Graph */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://spice-workshop.github.io/" />
-        <meta property="og:title" content="Home | SPiCE 2 Conference" />
-        <meta property="og:description" content="Welcome to the second edition of the SPiCE conference. Join us in Lyon for discussions on star formation, planet formation, and more." />
-        <meta property="og:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://spice-workshop.github.io/" />
-        <meta name="twitter:title" content="Home | SPiCE 2 Conference" />
-        <meta name="twitter:description" content="Welcome to the second edition of the SPiCE conference. Join us in Lyon for discussions on star formation, planet formation, and more." />
-        <meta name="twitter:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
-
+      <SEO
+        title="Home | SPiCE 2 Conference"
+        description="Welcome to the second edition of the SPiCE conference. Join us in Lyon for discussions on star formation, planet formation, and more."
+        url="https://spice-workshop.github.io/"
+      >
         {/* JSON-LD Structured Data */}
         <script type="application/ld+json">
           {`
@@ -92,19 +80,22 @@ const HomeView: React.FC = () => {
             }
           `}
         </script>
-      </Helmet>
+      </SEO>
       {/* Hero */}
       <header className="relative bg-slate-50 dark:bg-slate-900 pt-16 pb-20 md:pt-24 md:pb-32 overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-90 dark:opacity-90">
             {/* Carousel Images */}
             {images.map((img, index) => (
-              <img 
+              <LazyLoadImage
                 key={index}
                 src={img} 
                 alt={`Background ${index + 1}`} 
                 width="1920"
                 height="1080"
-                loading={index === 0 ? "eager" : "lazy"}
+                effect="blur"
+                wrapperProps={{
+                    style: {transitionDelay: "1s"},
+                }}
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
                   index === currentImageIndex ? 'opacity-100' : 'opacity-0'
                 }`} 
@@ -231,12 +222,12 @@ const HomeView: React.FC = () => {
                         className="transition-transform hover:scale-110"
                         title={`Visit ${partner.name}`}
                       >
-                        <img 
+                        <LazyLoadImage
                           src={partner.logo} 
                           alt={partner.name} 
                           width="200"
                           height="100"
-                          loading="lazy"
+                          effect="blur"
                           className="h-16 md:h-20 w-32 md:w-40 object-contain" 
                         />
                       </a>

@@ -1,9 +1,9 @@
 import React from 'react';
 import mapENS from '../assets/Fig_ENS_de_Lyon_Map.jpg';
-import HeaderImage from '../assets/HeaderImage.png';
-import figCR from '../assets/Fig_CR.png';
-import diskform from '../assets/diskFormation.png';
-import BD from '../assets/BD.png';
+import HeaderImage from '../assets/HeaderImage.jpeg';
+import figCR from '../assets/Fig_CR.jpeg';
+import diskform from '../assets/diskFormation.jpeg';
+import BD from '../assets/BD.jpeg';
 
 interface ConstantsType {
   details: {
