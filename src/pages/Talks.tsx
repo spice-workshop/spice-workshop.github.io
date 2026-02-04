@@ -23,6 +23,20 @@ const TalksView: React.FC = () => {
           <title>Talks & Abstracts | SPiCE 2 Conference</title>
           <meta name="description" content="Browse accepted talks and abstracts for the SPiCE 2 conference. Search by speaker, title, or topic." />
           <link rel="canonical" href="https://spice-workshop.github.io/talks" />
+
+          {/* Open Graph */}
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://spice-workshop.github.io/talks" />
+          <meta property="og:title" content="Talks & Abstracts | SPiCE 2 Conference" />
+          <meta property="og:description" content="Browse accepted talks and abstracts for the SPiCE 2 conference. Search by speaker, title, or topic." />
+          <meta property="og:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
+
+          {/* Twitter */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:url" content="https://spice-workshop.github.io/talks" />
+          <meta name="twitter:title" content="Talks & Abstracts | SPiCE 2 Conference" />
+          <meta name="twitter:description" content="Browse accepted talks and abstracts for the SPiCE 2 conference. Search by speaker, title, or topic." />
+          <meta name="twitter:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
         </Helmet>
         <div className="text-center mb-8">
              <SectionTitle>Talks & Abstracts</SectionTitle>

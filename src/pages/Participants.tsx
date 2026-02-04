@@ -35,6 +35,20 @@ const ParticipantsView: React.FC = () => {
         <title>Participants | SPiCE 2 Conference</title>
         <meta name="description" content="Meet the attendees of the SPiCE 2 conference. Search participants by name or affiliation." />
         <link rel="canonical" href="https://spice-workshop.github.io/participants" />
+
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://spice-workshop.github.io/participants" />
+        <meta property="og:title" content="Participants | SPiCE 2 Conference" />
+        <meta property="og:description" content="Meet the attendees of the SPiCE 2 conference. Search participants by name or affiliation." />
+        <meta property="og:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://spice-workshop.github.io/participants" />
+        <meta name="twitter:title" content="Participants | SPiCE 2 Conference" />
+        <meta name="twitter:description" content="Meet the attendees of the SPiCE 2 conference. Search participants by name or affiliation." />
+        <meta name="twitter:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
       </Helmet>
       <div className="flex flex-col md:flex-row justify-between items-end md:items-center mb-8 gap-4">
         <SectionTitle>Participant List ({filteredParticipants.length})</SectionTitle>

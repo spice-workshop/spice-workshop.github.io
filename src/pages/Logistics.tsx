@@ -14,6 +14,20 @@ const LogisticsView: React.FC = () => {
           <title>Logistics & Travel | SPiCE 2 Conference</title>
           <meta name="description" content="Travel information, venue details, and practical tips for attending SPiCE 2 in Lyon, France." />
           <link rel="canonical" href="https://spice-workshop.github.io/logistics" />
+
+          {/* Open Graph */}
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://spice-workshop.github.io/logistics" />
+          <meta property="og:title" content="Logistics & Travel | SPiCE 2 Conference" />
+          <meta property="og:description" content="Travel information, venue details, and practical tips for attending SPiCE 2 in Lyon, France." />
+          <meta property="og:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
+
+          {/* Twitter */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:url" content="https://spice-workshop.github.io/logistics" />
+          <meta name="twitter:title" content="Logistics & Travel | SPiCE 2 Conference" />
+          <meta name="twitter:description" content="Travel information, venue details, and practical tips for attending SPiCE 2 in Lyon, France." />
+          <meta name="twitter:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
         </Helmet>
         
 

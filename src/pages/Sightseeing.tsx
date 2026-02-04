@@ -21,6 +21,20 @@ const SightseeingView: React.FC = () => {
           <title>Sightseeing | SPiCE 2 Conference</title>
           <meta name="description" content="Discover the best sightseeing spots in Lyon. Explore local history, culture, and attractions during the conference." />
           <link rel="canonical" href="https://spice-workshop.github.io/sightseeing" />
+
+          {/* Open Graph */}
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://spice-workshop.github.io/sightseeing" />
+          <meta property="og:title" content="Sightseeing | SPiCE 2 Conference" />
+          <meta property="og:description" content="Discover the best sightseeing spots in Lyon. Explore local history, culture, and attractions during the conference." />
+          <meta property="og:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
+
+          {/* Twitter */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:url" content="https://spice-workshop.github.io/sightseeing" />
+          <meta name="twitter:title" content="Sightseeing | SPiCE 2 Conference" />
+          <meta name="twitter:description" content="Discover the best sightseeing spots in Lyon. Explore local history, culture, and attractions during the conference." />
+          <meta name="twitter:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
         </Helmet>
         <SectionTitle>Sightseeing in Lyon</SectionTitle>
         <p className="text-slate-600 dark:text-slate-300 mb-8 mt-[-1rem]">Explore the rich history and culture of Lyon during your stay.</p>

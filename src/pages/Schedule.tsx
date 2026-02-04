@@ -18,6 +18,20 @@ const ScheduleView: React.FC = () => {
         <title>Schedule | SPiCE 2 Conference</title>
         <meta name="description" content="View the full workshop schedule for SPiCE 2, including talks, special events, and social activities." />
         <link rel="canonical" href="https://spice-workshop.github.io/schedule" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://spice-workshop.github.io/schedule" />
+        <meta property="og:title" content="Schedule | SPiCE 2 Conference" />
+        <meta property="og:description" content="View the full workshop schedule for SPiCE 2, including talks, special events, and social activities." />
+        <meta property="og:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://spice-workshop.github.io/schedule" />
+        <meta name="twitter:title" content="Schedule | SPiCE 2 Conference" />
+        <meta name="twitter:description" content="View the full workshop schedule for SPiCE 2, including talks, special events, and social activities." />
+        <meta name="twitter:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
       </Helmet>
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-8">
           <SectionTitle>Workshop Schedule</SectionTitle>
