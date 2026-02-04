@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Compass, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { SIGHTSEEING_SPOTS, SightseeingSpot } from '../data/SightseeingData';
 import SectionTitle from '../components/ui/SectionTitle';
+import Button from '../components/ui/Button';
 import SEO from '../components/layout/SEO';
 
 const SightseeingView: React.FC = () => {
@@ -52,33 +53,27 @@ const SightseeingView: React.FC = () => {
                 {/* Pagination Controls */}
                 {totalPages > 1 && (
                     <div className="flex justify-between items-center bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                        <button
+                        <Button
                             onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                             disabled={currentPage === 1}
-                            className={`flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                                currentPage === 1 
-                                    ? 'text-slate-400 cursor-not-allowed' 
-                                    : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'
-                            }`}
+                            variant="ghost"
+                            className={currentPage === 1 ? 'cursor-not-allowed opacity-50' : ''}
                         >
                             <ChevronLeft className="w-4 h-4 mr-2" /> Previous
-                        </button>
+                        </Button>
                         
                         <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
                             Page {currentPage} of {totalPages}
                         </span>
 
-                        <button
+                        <Button
                             onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                             disabled={currentPage === totalPages}
-                            className={`flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                                currentPage === totalPages 
-                                    ? 'text-slate-400 cursor-not-allowed' 
-                                    : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'
-                            }`}
+                            variant="ghost"
+                            className={currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''}
                         >
                             Next <ChevronRight className="w-4 h-4 ml-2" />
-                        </button>
+                        </Button>
                     </div>
                 )}
             </div>

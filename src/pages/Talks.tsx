@@ -3,6 +3,7 @@ import { Search, ChevronDown, ChevronUp, FileText } from 'lucide-react';
 import { TALKS_DATA, Talk } from '../data/ScheduleData';
 import { CONSTANTS } from '../data/Constants';
 import SectionTitle from '../components/ui/SectionTitle';
+import Button from '../components/ui/Button';
 import SEO from '../components/layout/SEO';
 
 const TalksView: React.FC = () => {
@@ -31,15 +32,14 @@ const TalksView: React.FC = () => {
 
         <div className="flex justify-center flex-wrap gap-2 mb-6">
           {Object.keys(TALKS_DATA).map((day) => (
-            <button
+            <Button
               key={day}
               onClick={() => setActiveTalkDay(day)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                activeTalkDay === day ? 'bg-indigo-600 text-white' : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 border border-slate-200 dark:border-slate-700'
-              }`}
+              variant={activeTalkDay === day ? 'primary' : 'outline'}
+              className="transition-colors"
             >
               {day}
-            </button>
+            </Button>
           ))}
         </div>
 

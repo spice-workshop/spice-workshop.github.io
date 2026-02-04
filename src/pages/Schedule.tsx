@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Calendar, ArrowRight, Utensils, Users, Bus, MapPin, Compass } from 'lucide-react';
 import { CONSTANTS } from '../data/Constants';
-import { SCHEDULE_DATA } from '../data/ScheduleData';
+import { SCHEDULE_DATA, ScheduleEvent } from '../data/ScheduleData';
 import SectionTitle from '../components/ui/SectionTitle';
+import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import StatusIndicator from '../components/ui/StatusIndicator';
 
-const AttractionsMap = React.lazy(() => import('../components/ui/AttractionsMap'));
 const ScheduleView: React.FC = () => {
   const [activeDay, setActiveDay] = useState(0);
-  const [showMap, setShowMap] = useState(false);
   
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 animate-fade-in">
@@ -42,17 +41,14 @@ const ScheduleView: React.FC = () => {
 
       <div className="flex overflow-x-auto py-4 px-2 mb-6 gap-2 hide-scrollbar">
         {SCHEDULE_DATA.map((data, index) => (
-          <button
+          <Button
             key={index}
             onClick={() => setActiveDay(index)}
-            className={`flex-shrink-0 px-6 py-3 rounded-full text-sm font-bold transition-all whitespace-nowrap ${
-              activeDay === index 
-                ? 'bg-indigo-600 text-white shadow-md transform scale-105' 
-                : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
-            }`}
+            variant={activeDay === index ? 'primary' : 'outline'}
+            className="rounded-full flex-shrink-0 whitespace-nowrap"
           >
             {data.day}
-          </button>
+          </Button>
         ))}
       </div>
 
@@ -65,7 +61,7 @@ const ScheduleView: React.FC = () => {
           </div>
           
           <div className="space-y-4">
-              {SCHEDULE_DATA[activeDay].events.map((event: any, idx: number) => (
+              {SCHEDULE_DATA[activeDay].events.map((event: ScheduleEvent, idx: number) => (
                   <div key={idx} className={`flex flex-col md:flex-row md:items-center p-4 rounded-lg transition-colors border border-transparent hover:border-slate-100 dark:hover:border-slate-700 group ${event.highlight ? 'bg-amber-50 dark:bg-amber-900/20 border-amber-100 dark:border-amber-900/30 hover:border-amber-200' : 'hover:bg-slate-50 dark:hover:bg-slate-700/50'}`}>
                       <div className="w-32 flex-shrink-0 text-sm font-mono font-bold text-slate-500 dark:text-slate-400 mb-2 md:mb-0">
                           {event.time}

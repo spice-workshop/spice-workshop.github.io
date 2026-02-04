@@ -1,7 +1,10 @@
 export interface ScheduleEvent {
   time: string;
   title: string;
-  status: 'upcoming' | 'completed' | 'active'; // Inferred from usage, or just string
+  status: 'upcoming' | 'completed' | 'active' | string;
+  highlight?: boolean;
+  linkId?: string;
+  speaker?: string;
 }
 
 export interface ScheduleDay {
