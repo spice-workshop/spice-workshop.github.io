@@ -81,8 +81,7 @@ const HomeView: React.FC = () => {
           `}
         </script>
       </SEO>
-      {/* Hero */}
-      <header className="relative bg-slate-50 dark:bg-slate-900 pt-16 pb-20 md:pt-24 md:pb-32 overflow-hidden">
+      <header className="relative bg-slate-50 dark:bg-slate-900 pt-16 pb-20 md:pt-24 md:pb-32 overflow-hidden min-h-[70vh] flex flex-col justify-center">
         <div className="absolute inset-0 z-0 opacity-90 dark:opacity-90">
             {/* Carousel Images */}
             {images.map((img, index) => (
@@ -94,11 +93,12 @@ const HomeView: React.FC = () => {
                 height="1080"
                 effect="blur"
                 wrapperProps={{
-                    style: {transitionDelay: "1s"},
+                    style: {transitionDelay: "2s"},
                 }}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-                  index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-                }`} 
+                wrapperClassName={`absolute inset-0 w-full h-full gradient-mask-b transition-opacity duration-1000 ease-in-out ${
+                    index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                }`}
+                className="w-full h-full object-contain" 
               />
             ))}
             
