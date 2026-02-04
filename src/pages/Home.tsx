@@ -104,6 +104,7 @@ const HomeView: React.FC = () => {
                 alt={`Background ${index + 1}`} 
                 width="1920"
                 height="1080"
+                loading={index === 0 ? "eager" : "lazy"}
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
                   index === currentImageIndex ? 'opacity-100' : 'opacity-0'
                 }`} 
@@ -235,6 +236,7 @@ const HomeView: React.FC = () => {
                           alt={partner.name} 
                           width="200"
                           height="100"
+                          loading="lazy"
                           className="h-16 md:h-20 w-32 md:w-40 object-contain" 
                         />
                       </a>
