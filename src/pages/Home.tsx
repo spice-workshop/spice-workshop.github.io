@@ -43,6 +43,55 @@ const HomeView: React.FC = () => {
         <title>Home | SPiCE 2 Conference</title>
         <meta name="description" content="Welcome to the second edition of the SPiCE conference. Join us in Lyon for discussions on star formation, planet formation, and more." />
         <link rel="canonical" href="https://spice-workshop.github.io/" />
+
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://spice-workshop.github.io/" />
+        <meta property="og:title" content="Home | SPiCE 2 Conference" />
+        <meta property="og:description" content="Welcome to the second edition of the SPiCE conference. Join us in Lyon for discussions on star formation, planet formation, and more." />
+        <meta property="og:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://spice-workshop.github.io/" />
+        <meta name="twitter:title" content="Home | SPiCE 2 Conference" />
+        <meta name="twitter:description" content="Welcome to the second edition of the SPiCE conference. Join us in Lyon for discussions on star formation, planet formation, and more." />
+        <meta name="twitter:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
+
+        {/* JSON-LD Structured Data */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Event",
+              "name": "SPiCE 2 Conference",
+              "startDate": "2026-03-16",
+              "endDate": "2026-03-20",
+              "eventStatus": "https://schema.org/EventScheduled",
+              "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+              "location": {
+                "@type": "Place",
+                "name": "ENS de Lyon (Monod Site)",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "1 Place de l'École",
+                  "addressLocality": "Lyon",
+                  "postalCode": "69007",
+                  "addressCountry": "FR"
+                }
+              },
+              "image": [
+                "https://spice-workshop.github.io/assets/HeaderImage.png"
+              ],
+              "description": "Simulating Physics in Celestial Ecosystems II. A workshop focusing on computational simulations linking star, disk, and planet formation.",
+              "organizer": {
+                "@type": "Organization",
+                "name": "CRAL / ENS de Lyon",
+                "url": "https://cral.univ-lyon1.fr/?lang=en"
+              }
+            }
+          `}
+        </script>
       </Helmet>
       {/* Hero */}
       <header className="relative bg-slate-50 dark:bg-slate-900 pt-16 pb-20 md:pt-24 md:pb-32 overflow-hidden">
@@ -53,6 +102,8 @@ const HomeView: React.FC = () => {
                 key={index}
                 src={img} 
                 alt={`Background ${index + 1}`} 
+                width="1920"
+                height="1080"
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
                   index === currentImageIndex ? 'opacity-100' : 'opacity-0'
                 }`} 
@@ -179,7 +230,13 @@ const HomeView: React.FC = () => {
                         className="transition-transform hover:scale-110"
                         title={`Visit ${partner.name}`}
                       >
-                        <img src={partner.logo} alt={partner.name} className="h-16 md:h-20 w-auto object-contain" />
+                        <img 
+                          src={partner.logo} 
+                          alt={partner.name} 
+                          width="200"
+                          height="100"
+                          className="h-16 md:h-20 w-32 md:w-40 object-contain" 
+                        />
                       </a>
                   ))}
               </div>
