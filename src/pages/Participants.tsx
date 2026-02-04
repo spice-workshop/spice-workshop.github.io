@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Search, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
 import SectionTitle from '../components/ui/SectionTitle';
 import { useParticipants } from '../utils/csvLoader';
@@ -30,6 +31,11 @@ const ParticipantsView: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 animate-fade-in">
+      <Helmet>
+        <title>Participants | SPiCE 2 Conference</title>
+        <meta name="description" content="Meet the attendees of the SPiCE 2 conference. Search participants by name or affiliation." />
+        <link rel="canonical" href="https://spice-workshop.github.io/participants" />
+      </Helmet>
       <div className="flex flex-col md:flex-row justify-between items-end md:items-center mb-8 gap-4">
         <SectionTitle>Participant List ({filteredParticipants.length})</SectionTitle>
         <div className="relative">

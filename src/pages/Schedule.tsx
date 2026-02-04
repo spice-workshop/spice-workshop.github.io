@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Calendar, ArrowRight, Utensils, Users, Bus, MapPin, Compass } from 'lucide-react';
 import { CONSTANTS } from '../data/Constants';
 import { SCHEDULE_DATA } from '../data/ScheduleData';
@@ -13,6 +14,11 @@ const ScheduleView: React.FC = () => {
   
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 animate-fade-in">
+      <Helmet>
+        <title>Schedule | SPiCE 2 Conference</title>
+        <meta name="description" content="View the full workshop schedule for SPiCE 2, including talks, special events, and social activities." />
+        <link rel="canonical" href="https://spice-workshop.github.io/schedule" />
+      </Helmet>
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-8">
           <SectionTitle>Workshop Schedule</SectionTitle>
           <a href={CONSTANTS.links.googleCalendar} target="_blank" rel="noreferrer" className="flex items-center text-indigo-600 font-medium hover:underline px-4 py-2">
@@ -215,7 +221,7 @@ const ScheduleView: React.FC = () => {
             </div>
         </div>
         {/* Attractions Map Section */}
-        <div className="mt-20">
+        {/* <div className="mt-20">
              <div className="flex items-center justify-between mb-6">
                 <h3 className="font-bold text-2xl flex items-center text-slate-800 dark:text-white">
                    <Compass className="w-6 h-6 mr-3 text-indigo-500" /> Explore Lyon
@@ -235,7 +241,7 @@ const ScheduleView: React.FC = () => {
                  </React.Suspense>
                </div>
              )}
-        </div>
+        </div> */}
       </div>
     </div>
   );

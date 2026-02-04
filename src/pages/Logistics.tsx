@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Plane, Train, Bus, MapPin, Moon, ArrowRight, Compass, Map, Lightbulb, Globe, CreditCard, Zap, Phone, Clock, Shield } from 'lucide-react';
 import { CONSTANTS } from '../data/Constants';
 import SectionTitle from '../components/ui/SectionTitle';
@@ -9,6 +10,11 @@ const LogisticsView: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 animate-fade-in">
+        <Helmet>
+          <title>Logistics & Travel | SPiCE 2 Conference</title>
+          <meta name="description" content="Travel information, venue details, and practical tips for attending SPiCE 2 in Lyon, France." />
+          <link rel="canonical" href="https://spice-workshop.github.io/logistics" />
+        </Helmet>
         
 
         {/* Section 1: Practical Information */}

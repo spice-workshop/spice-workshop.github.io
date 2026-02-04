@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { CONSTANTS } from './data/Constants';
 import Navigation from './components/layout/Navigation';
 import Footer from './components/layout/Footer';
@@ -15,7 +16,7 @@ import SightseeingView from './pages/Sightseeing';
 type Theme = 'light' | 'dark' | 'system';
 
 export default function SpiceConferenceWebsite() {
-  const [activePage, setActivePage] = useState('home');
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCoCOpen, setIsCoCOpen] = useState(false);
   
@@ -67,26 +68,33 @@ export default function SpiceConferenceWebsite() {
     });
   };
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMenuOpen(false);
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <div className={`min-h-screen bg-slate-50 dark:bg-slate-900 font-sans text-slate-900 dark:text-slate-100 selection:bg-indigo-200 flex flex-col transition-colors duration-300`}>
       
       <Navigation 
-        activePage={activePage} 
-        setActivePage={setActivePage} 
+        activePage={location.pathname} 
         isMenuOpen={isMenuOpen} 
         setIsMenuOpen={setIsMenuOpen}
         isDark={isDark}
         toggleTheme={toggleTheme}
       />
       
-      {/* Main Content Area: Swaps components based on activePage state */}
+      {/* Main Content Area: Swaps components based on Route */}
       <main className="flex-grow">
-        {activePage === 'home' && <HomeView />}
-        {activePage === 'schedule' && <ScheduleView />}
-        {activePage === 'talks' && <TalksView />}
-        {activePage === 'participants' && <ParticipantsView />}
-        {activePage === 'logistics' && <LogisticsView />}
-        {activePage === 'sightseeing' && <SightseeingView />}
+        <Routes>
+          <Route path="/" element={<HomeView />} />
+          <Route path="/schedule" element={<ScheduleView />} />
+          <Route path="/talks" element={<TalksView />} />
+          <Route path="/participants" element={<ParticipantsView />} />
+          <Route path="/logistics" element={<LogisticsView />} />
+          <Route path="/sightseeing" element={<SightseeingView />} />
+        </Routes>
       </main>
 
       <Footer />

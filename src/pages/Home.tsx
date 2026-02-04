@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Calendar, MapPin, MessageCircle, Camera, ChevronLeft, ChevronRight } from 'lucide-react';
 import { CONSTANTS } from '../data/Constants';
 import { PARTNERS_LIST } from '../data/PartnerData';
@@ -38,6 +39,11 @@ const HomeView: React.FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Home | SPiCE 2 Conference</title>
+        <meta name="description" content="Welcome to the second edition of the SPiCE conference. Join us in Lyon for discussions on star formation, planet formation, and more." />
+        <link rel="canonical" href="https://spice-workshop.github.io/" />
+      </Helmet>
       {/* Hero */}
       <header className="relative bg-slate-50 dark:bg-slate-900 pt-16 pb-20 md:pt-24 md:pb-32 overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-90 dark:opacity-90">

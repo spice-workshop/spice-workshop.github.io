@@ -1,55 +1,61 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { 
   Home, Calendar, FileText, Users, MapPin, Camera, 
   Globe, Sun, Moon, Monitor, Menu, X
 } from 'lucide-react';
 
 interface NavigationProps {
-  activePage: string;
-  setActivePage: (page: string) => void;
+  activePage: string; // Not strictly used for navigation anymore, but passed for prop compatibility if needed (can be removed)
   isMenuOpen: boolean;
   setIsMenuOpen: (isOpen: boolean) => void;
   isDark: 'light' | 'dark' | 'system';
   toggleTheme: () => void;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ activePage, setActivePage, isMenuOpen, setIsMenuOpen, isDark, toggleTheme }) => {
+const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, isDark, toggleTheme }) => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   const navItems = [
-    { id: 'home', label: 'Home', icon: <Home className="w-4 h-4 mr-1" /> },
-    { id: 'schedule', label: 'Schedule', icon: <Calendar className="w-4 h-4 mr-1" /> },
-    { id: 'talks', label: 'Talks', icon: <FileText className="w-4 h-4 mr-1" /> },
-    { id: 'participants', label: 'Participants', icon: <Users className="w-4 h-4 mr-1" /> },
-    { id: 'logistics', label: 'Logistics', icon: <MapPin className="w-4 h-4 mr-1" /> },
-    { id: 'sightseeing', label: 'Sightseeing', icon: <Camera className="w-4 h-4 mr-1" /> },
+    { id: 'home', label: 'Home', path: '/', icon: <Home className="w-4 h-4 mr-1" /> },
+    { id: 'schedule', label: 'Schedule', path: '/schedule', icon: <Calendar className="w-4 h-4 mr-1" /> },
+    { id: 'talks', label: 'Talks', path: '/talks', icon: <FileText className="w-4 h-4 mr-1" /> },
+    { id: 'participants', label: 'Participants', path: '/participants', icon: <Users className="w-4 h-4 mr-1" /> },
+    { id: 'logistics', label: 'Logistics', path: '/logistics', icon: <MapPin className="w-4 h-4 mr-1" /> },
+    { id: 'sightseeing', label: 'Sightseeing', path: '/sightseeing', icon: <Camera className="w-4 h-4 mr-1" /> },
   ];
+
+  const isActive = (path: string) => {
+    if (path === '/' && currentPath === '/') return true;
+    if (path !== '/' && currentPath.startsWith(path)) return true;
+    return false;
+  };
 
   return (
     <nav className="fixed w-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md z-50 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
-          <div className="flex items-center cursor-pointer" onClick={() => setActivePage('home')}>
+          <Link to="/" className="flex items-center cursor-pointer">
             <div className="bg-indigo-600 p-1.5 rounded-lg mr-2">
                <Globe className="w-5 h-5 text-white" />
             </div>
             <span className="font-bold text-xl text-slate-900 dark:text-white">SPiCE 2</span>
-          </div>
+          </Link>
           
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
-              <button
+              <Link
                 key={item.id}
-                onClick={() => {
-                  setActivePage(item.id);
-                  window.scrollTo(0, 0);
-                }}
+                to={item.path}
                 className={`flex items-center px-3 py-2 font-medium transition-colors rounded-md ${
-                  activePage === item.id 
+                  isActive(item.path)
                     ? 'text-indigo-600 bg-indigo-50 dark:bg-indigo-900/30 dark:text-indigo-400' 
                     : 'text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-800'
                 }`}
               >
                 {item.label}
-              </button>
+              </Link>
             ))}
             
             {/* Dark Mode Toggle */}
@@ -85,22 +91,18 @@ const Navigation: React.FC<NavigationProps> = ({ activePage, setActivePage, isMe
         <div className="md:hidden bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 py-2 px-4 shadow-lg">
           <div className="flex flex-col space-y-2">
             {navItems.map((item) => (
-              <button
+              <Link
                 key={item.id}
-                onClick={() => {
-                  setActivePage(item.id);
-                  setIsMenuOpen(false);
-                  window.scrollTo(0, 0);
-                }}
+                to={item.path}
                 className={`flex items-center px-3 py-2 font-medium transition-colors rounded-md ${
-                  activePage === item.id 
+                  isActive(item.path)
                     ? 'text-indigo-600 bg-indigo-50 dark:bg-indigo-900/30 dark:text-indigo-400' 
                     : 'text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400'
                 }`}
               >
                 {item.icon}
                 {item.label}
-              </button>
+              </Link>
             ))}
           </div>
         </div>
