@@ -18,6 +18,9 @@ const SEO: React.FC<SEOProps> = ({
   type = "website",
   children 
 }) => {
+  const siteName = "SPiCE 2 Conference";
+  const twitterHandle = "@CRAL_Lyon"; // Assuming this handle based on affiliation, can be updated.
+
   return (
     <Helmet>
       <title>{title}</title>
@@ -25,6 +28,7 @@ const SEO: React.FC<SEOProps> = ({
       <link rel="canonical" href={url} />
 
       {/* Open Graph */}
+      <meta property="og:site_name" content={siteName} />
       <meta property="og:type" content={type} />
       <meta property="og:url" content={url} />
       <meta property="og:title" content={title} />
@@ -33,6 +37,7 @@ const SEO: React.FC<SEOProps> = ({
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content={twitterHandle} />
       <meta name="twitter:url" content={url} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />

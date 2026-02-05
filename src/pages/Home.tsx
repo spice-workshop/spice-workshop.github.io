@@ -42,7 +42,7 @@ const HomeView: React.FC = () => {
   return (
     <>
       <SEO
-        title="Home | SPiCE 2 Conference"
+        title="SPiCE 2 Conference"
         description="Welcome to the second edition of the SPiCE conference. Join us in Lyon for discussions on star formation, planet formation, and more."
         url="https://spice-workshop.github.io/"
       >
@@ -69,7 +69,7 @@ const HomeView: React.FC = () => {
                 }
               },
               "image": [
-                "https://spice-workshop.github.io/assets/HeaderImage.png"
+                "https://spice-workshop.github.io/assets/HeaderImage.jpeg"
               ],
               "description": "Simulating Physics in Celestial Ecosystems II. A workshop focusing on computational simulations linking star, disk, and planet formation.",
               "organizer": {

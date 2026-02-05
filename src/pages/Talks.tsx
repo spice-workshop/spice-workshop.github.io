@@ -24,7 +24,35 @@ const TalksView: React.FC = () => {
           title="Talks & Abstracts | SPiCE 2 Conference"
           description="Browse accepted talks and abstracts for the SPiCE 2 conference. Search by speaker, title, or topic."
           url="https://spice-workshop.github.io/talks"
-        />
+        >
+          <script type="application/ld+json">
+            {`
+              {
+                "@context": "https://schema.org",
+                "@type": "ItemList",
+                "itemListElement": [
+                  ${Object.values(TALKS_DATA).flat().map((talk, index) => `
+                    {
+                      "@type": "ListItem",
+                      "position": ${index + 1},
+                      "item": {
+                        "@type": "EducationalOccupationalCredential",
+                        "name": "${talk.title.replace(/"/g, '\\"')}",
+                        "description": "${talk.abstract.replace(/"/g, '\\"').replace(/\n/g, ' ')}",
+                        "credentialCategory": "Conference Talk",
+                        "educationalLevel": "Professional",
+                        "recognizedBy": {
+                          "@type": "Organization",
+                          "name": "SPiCE 2 Conference"
+                        }
+                      }
+                    }
+                  `).join(',')}
+                ]
+              }
+            `}
+          </script>
+        </SEO>
         <div className="text-center mb-8">
              <SectionTitle>Talks & Abstracts</SectionTitle>
              <p className="text-slate-600 mt-[-1rem]">Select a day and search to filter scheduled talks.</p>

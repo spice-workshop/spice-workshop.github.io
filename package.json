@@ -9,7 +9,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "npm run build",
+    "prebuild": "node scripts/generate-sitemap.cjs",
     "deploy": "gh-pages -d dist -b main"
   },
   "dependencies": {
