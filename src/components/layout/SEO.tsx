@@ -7,6 +7,7 @@ interface SEOProps {
   url: string;
   image?: string;
   type?: string;
+  keywords?: string;
   children?: React.ReactNode;
 }
 
@@ -16,6 +17,7 @@ const SEO: React.FC<SEOProps> = ({
   url, 
   image = "https://spice-workshop.github.io/assets/HeaderImage.jpeg", 
   type = "website",
+  keywords = "SPiCE, Star formation, Planet formation, Astrophysics, Conference, Workshop, Lyon, CRAL, ENS de Lyon, Simulations",
   children 
 }) => {
   const siteName = "SPiCE 2 Conference";
@@ -25,6 +27,7 @@ const SEO: React.FC<SEOProps> = ({
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
+      <meta name="keywords" content={keywords} />
       <link rel="canonical" href={url} />
 
       {/* Open Graph */}
