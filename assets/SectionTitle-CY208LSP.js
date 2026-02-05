@@ -1,0 +1,1 @@
+import{j as e}from"./index-BVQuYBoD.js";const s=({children:t})=>e.jsx("h2",{className:"text-3xl font-bold text-slate-800 dark:text-slate-100 border-b-4 border-indigo-600 inline-block mb-8 pb-1",children:t});export{s as S};
