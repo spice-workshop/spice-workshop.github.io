@@ -63,7 +63,7 @@ export const CONSTANTS: ConstantsType = {
   },
   links: {
     spice1: "https://www.astr.tohoku.ac.jp/~tomida/spice/",
-    discord: "https://discord.gg/BJmtdWzr",
+    discord: "mailto:spice2.workshop@gmail.com",
     slack: "https://slack.com/example",
     cloudDrive: "#",
     googleCalendar: "https://calendar.google.com/calendar/embed?src=example",
