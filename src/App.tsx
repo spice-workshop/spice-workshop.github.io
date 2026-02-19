@@ -1,100 +1,44 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import { lazy, useState, useEffect, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { CONSTANTS } from './data/Constants';
+import { useTheme } from './utils/useTheme';
 import Navigation from './components/layout/Navigation';
 import Footer from './components/layout/Footer';
-import Modal from './components/ui/Modal';
 import ScrollToTop from './components/ui/ScrollToTop';
 import Loading from './components/ui/Loading';
 
 // Lazy load page components
-const HomeView = React.lazy(() => import('./pages/Home'));
-const ScheduleView = React.lazy(() => import('./pages/Schedule'));
-const TalksView = React.lazy(() => import('./pages/Talks'));
-const ParticipantsView = React.lazy(() => import('./pages/Participants'));
-const LogisticsView = React.lazy(() => import('./pages/Logistics'));
-const SightseeingView = React.lazy(() => import('./pages/Sightseeing'));
-
-// Define theme type
-type Theme = 'light' | 'dark' | 'system';
+const HomeView = lazy(() => import('./pages/Home'));
+const ScheduleView = lazy(() => import('./pages/Schedule'));
+const ParticipantsView = lazy(() => import('./pages/Participants'));
+const LogisticsView = lazy(() => import('./pages/Logistics'));
+const SightseeingView = lazy(() => import('./pages/Sightseeing'));
 
 export default function SpiceConferenceWebsite() {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isCoCOpen, setIsCoCOpen] = useState(false);
-  
-  // Theme State: 'light' | 'dark' | 'system'
-  const [isDark, setIsDark] = useState<Theme>(() => {
-    if (typeof window !== 'undefined') {
-      return (localStorage.getItem('theme') as Theme) || 'system';
-    }
-    return 'system';
-  });
+  const { theme, toggleTheme } = useTheme();
 
-  useEffect(() => {
-    const root = document.documentElement;
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
-    const applyTheme = () => {
-      if (isDark === 'dark') {
-        root.classList.add('dark');
-      } else if (isDark === 'light') {
-        root.classList.remove('dark');
-      } else {
-        // System mode
-        if (mediaQuery.matches) {
-          root.classList.add('dark');
-        } else {
-          root.classList.remove('dark');
-        }
-      }
-    };
-
-    applyTheme();
-    localStorage.setItem('theme', isDark);
-
-    // Listen for system changes only in system mode
-    if (isDark === 'system') {
-      mediaQuery.addEventListener('change', applyTheme);
-    }
-
-    return () => {
-      mediaQuery.removeEventListener('change', applyTheme);
-    };
-  }, [isDark]);
-
-  const toggleTheme = () => {
-    setIsDark(prev => {
-      if (prev === 'light') return 'dark';
-      if (prev === 'dark') return 'system';
-      return 'light';
-    });
-  };
-
-  // Close mobile menu on route change
+  // Close mobile menu and scroll to top on route change
   useEffect(() => {
     setIsMenuOpen(false);
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
   return (
-    <div className={`min-h-screen bg-slate-50 dark:bg-slate-900 font-sans text-slate-900 dark:text-slate-100 selection:bg-indigo-200 flex flex-col transition-colors duration-300`}>
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 font-sans text-slate-900 dark:text-slate-100 selection:bg-indigo-200 flex flex-col transition-colors duration-300">
       
       <Navigation 
-        activePage={location.pathname} 
         isMenuOpen={isMenuOpen} 
         setIsMenuOpen={setIsMenuOpen}
-        isDark={isDark}
+        theme={theme}
         toggleTheme={toggleTheme}
       />
       
-      {/* Main Content Area: Swaps components based on Route */}
       <main className="flex-grow">
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path="/" element={<HomeView />} />
             <Route path="/schedule" element={<ScheduleView />} />
-            <Route path="/talks" element={<TalksView />} />
             <Route path="/participants" element={<ParticipantsView />} />
             <Route path="/logistics" element={<LogisticsView />} />
             <Route path="/sightseeing" element={<SightseeingView />} />
@@ -103,13 +47,7 @@ export default function SpiceConferenceWebsite() {
       </main>
 
       <Footer />
-
-      <Modal isOpen={isCoCOpen} onClose={() => setIsCoCOpen(false)} title="Code of Conduct">
-          <div className="prose prose-slate"><p>{CONSTANTS.details.cocText}</p></div>
-      </Modal>
-
       <ScrollToTop />
-
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import mapENS from '../assets/Fig_ENS_de_Lyon_Map.jpg';
 import HeaderImage from '../assets/HeaderImage.jpeg';
 import figCR from '../assets/Fig_CR.jpeg';
@@ -11,11 +11,28 @@ interface ConstantsType {
     subtitle: string;
     date: string;
     location: string;
-    description: React.ReactNode;
+    description: ReactNode;
     cocText: string;
   };
   links: {
-    [key: string]: string;
+    spice1: string;
+    discord: string;
+    slack: string;
+    cloudDrive: string;
+    googleCalendar: string;
+    sncf: string;
+    tcl: string;
+    rhonexpress: string;
+    velov: string;
+    franceVisas: string;
+    ees: string;
+    etias: string;
+    mapEmbed: string;
+    mapDirections: string;
+    restaurantMap: string;
+    restaurantDirections: string;
+    crousMap: string;
+    crousDirections: string;
   };
   assets: {
     heroImage: string;

@@ -1,12 +1,28 @@
-
 import { useState, useEffect } from 'react';
 import { useParticipants } from './csvLoader';
-import { FIXED_SCHEDULE, CONFERENCE_DAYS } from '../data/FixedSchedule';
-import { ScheduleEvent } from '../data/ScheduleData';
+
+const CONFERENCE_DAYS = [
+    { date: "2026-03-16", label: "Day 1", fullLabel: "Day 1 (Mar 16)" },
+    { date: "2026-03-17", label: "Day 2", fullLabel: "Day 2 (Mar 17)" },
+    { date: "2026-03-18", label: "Day 3", fullLabel: "Day 3 (Mar 18)" },
+    { date: "2026-03-19", label: "Day 4", fullLabel: "Day 4 (Mar 19)" },
+    { date: "2026-03-20", label: "Day 5", fullLabel: "Day 5 (Mar 20)" },
+];
+
+export interface ScheduleEvent {
+    time: string;
+    title: string;
+    status: 'upcoming' | 'completed' | 'active' | 'ended';
+    speaker?: string;
+    highlight?: boolean;
+    linkId?: string;
+    description?: string;
+}
 
 export interface EnrichedScheduleEvent extends ScheduleEvent {
     type?: 'talk' | 'fixed';
     sortTime?: string; // "HH:mm" for sorting
+    abstract?: string;
 }
 
 export interface DaySchedule {
@@ -31,41 +47,42 @@ export const useSchedule = () => {
             daysMap.set(dayInfo.date, []);
         });
 
-        // Add Fixed Events
-        FIXED_SCHEDULE.forEach(event => {
-            if (daysMap.has(event.day)) {
-                daysMap.get(event.day)?.push({
-                    time: event.time,
-                    title: event.title,
-                    status: event.status,
-                    highlight: event.highlight,
-                    type: 'fixed',
-                    speaker: event.speaker,
-                    sortTime: event.time
-                });
-            }
-        });
-
-        // Process Participants (Talks)
+        // Process all entries (talks + fixed events from CSV)
         participants.forEach(p => {
             if (p.sessionDate && p.timeRange) {
                 // Normalize date (ensure it matches YYYY-MM-DD)
-                // Assuming sessionDate in CSV is YYYY-MM-DD
                 const date = p.sessionDate.trim();
                 
                 if (daysMap.has(date)) {
-                    // Extract start time from timeRange (e.g. "14:00 - 14:30" -> "14:00")
+                    // Extract start time for sorting (e.g. "14:00 - 14:30" -> "14:00")
                     const startTime = p.timeRange.split('-')[0].trim();
                     
+                    // Infer type: if no name, it's a fixed event
+                    const isFixed = !p.name || p.name.trim() === '';
+                    
+                    // Determine highlight
+                    const highlight = isFixed && (p.talkTitle === 'Opening' || p.talkTitle === 'Discussion' || p.talkTitle.includes('Workshop Dinner'));
+                    
+                    // Generate ID
+                    let linkId = '';
+                    if (isFixed) {
+                         // fixed-2026-03-16-1000-lunch
+                         linkId = `fixed-${date}-${startTime.replace(':','')}-${p.talkTitle.replace(/\s+/g, '-').toLowerCase()}`;
+                    } else {
+                         // talk-lastname-1000
+                         linkId = `talk-${p.lastName.toLowerCase()}-${startTime.replace(':','')}`;
+                    }
+
                     daysMap.get(date)?.push({
                         time: p.timeRange,
                         title: p.talkTitle,
                         status: 'upcoming', // Default status
-                        speaker: p.name, // Use full name
-                        highlight: false,
-                        type: 'talk',
+                        speaker: p.name, 
+                        highlight: highlight,
+                        type: isFixed ? 'fixed' : 'talk',
                         sortTime: startTime,
-                        linkId: `talk-${p.lastName}` // Anchor link
+                        linkId: linkId, 
+                        abstract: p.abstract
                     });
                 }
             }
