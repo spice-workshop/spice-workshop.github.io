@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Calendar, ArrowRight, Utensils, Users, Bus, MapPin, Compass } from 'lucide-react';
+import { Calendar, Utensils, Users, Bus, MapPin, Compass } from 'lucide-react';
 import { CONSTANTS } from '../data/Constants';
 import { useSchedule, EnrichedScheduleEvent } from '../utils/useSchedule';
+import SectionTitle from '../components/ui/SectionTitle';
+import Button from '../components/ui/Button';
+import Card from '../components/ui/Card';
+import StatusIndicator from '../components/ui/StatusIndicator';
 
 const ScheduleView: React.FC = () => {
   const [activeDay, setActiveDay] = useState(0);

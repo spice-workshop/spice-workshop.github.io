@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParticipants } from './csvLoader';
-import { FIXED_SCHEDULE, FixedEvent, CONFERENCE_DAYS } from '../data/FixedSchedule';
+import { FIXED_SCHEDULE, CONFERENCE_DAYS } from '../data/FixedSchedule';
 import { ScheduleEvent } from '../data/ScheduleData';
 
 export interface EnrichedScheduleEvent extends ScheduleEvent {
