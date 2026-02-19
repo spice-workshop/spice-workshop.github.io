@@ -1,33 +1,34 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Search, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, Globe } from 'lucide-react';
 import SectionTitle from '../components/ui/SectionTitle';
 import { useParticipants } from '../utils/csvLoader';
 
 const ParticipantsView: React.FC = () => {
   const [participantSearch, setParticipantSearch] = useState("");
   const { data, loading, error } = useParticipants();
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const [selectedLetter, setSelectedLetter] = useState<string>('All');
   
-  // Reset page when search changes to avoid empty views
+  // Reset letter filter when search changes
   React.useEffect(() => {
-    setCurrentPage(1);
+    if (participantSearch) {
+        setSelectedLetter('All');
+    }
   }, [participantSearch]);
   
   if (loading) return <div className="text-center py-10">Loading participants...</div>;
   if (error) return <div className="text-center py-10 text-red-500">Error: {error}</div>;
 
-  const filteredParticipants = data.filter(p => 
-    p.roles.includes('Participant') && 
-    p.name.toLowerCase().includes(participantSearch.toLowerCase())
-  );
+  const filteredParticipants = data.filter(p => {
+    const isParticipant = p.roles.includes('Participant');
+    const matchesSearch = p.name.toLowerCase().includes(participantSearch.toLowerCase()) || 
+                          p.affiliation.toLowerCase().includes(participantSearch.toLowerCase());
+    const matchesLetter = selectedLetter === 'All' || p.lastName.toUpperCase().startsWith(selectedLetter);
+    
+    return isParticipant && matchesSearch && matchesLetter;
+  });
 
-  const totalPages = Math.ceil(filteredParticipants.length / itemsPerPage);
-  const displayedParticipants = filteredParticipants.slice(
-      (currentPage - 1) * itemsPerPage,
-      currentPage * itemsPerPage
-  );
+  const alphabet = ['All', ...Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i))];
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 animate-fade-in">
@@ -51,11 +52,35 @@ const ParticipantsView: React.FC = () => {
         <meta name="twitter:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
       </Helmet>
       <div className="flex flex-col md:flex-row justify-between items-end md:items-center mb-8 gap-4">
-        <SectionTitle>Participant List ({filteredParticipants.length})</SectionTitle>
+        <SectionTitle>Participant List</SectionTitle>
         <div className="relative">
           <input type="text" placeholder="Search..." className="pl-10 pr-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full md:w-64 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400" value={participantSearch} onChange={(e) => setParticipantSearch(e.target.value)} />
           <Search className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
         </div>
+      </div>
+
+      {/* Alphabet Filter */}
+      <div className="flex flex-wrap gap-2 mb-6 justify-center md:justify-start">
+        {alphabet.map((letter) => (
+            <button
+                key={letter}
+                onClick={() => {
+                    setSelectedLetter(letter);
+                    setParticipantSearch(""); // Optional: clear search on letter click? UX choice. Let's clear it for clarity.
+                }}
+                className={`px-3 py-1 text-sm font-medium rounded-md transition-colors ${
+                    selectedLetter === letter
+                        ? 'bg-indigo-600 text-white'
+                        : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
+                }`}
+            >
+                {letter}
+            </button>
+        ))}
+      </div>
+
+      <div className="mb-4 text-sm text-slate-600 dark:text-slate-400 font-medium">
+          Number of registers : {filteredParticipants.length}
       </div>
 
       <div className="overflow-x-auto bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
@@ -68,55 +93,30 @@ const ParticipantsView: React.FC = () => {
                   </tr>
               </thead>
               <tbody className="bg-white dark:bg-slate-800 divide-y divide-slate-200 dark:divide-slate-700">
-                  {displayedParticipants.map((person, idx) => (
-                      <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900 dark:text-slate-200">{person.name}</td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-400">{person.affiliation}</td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-400 flex items-center">
-                              {person.country && (
-                                <>
-                                  <Globe className="w-4 h-4 mr-2 text-slate-400" /> {person.country}
-                                </>
-                              )}
+                  {filteredParticipants.length > 0 ? (
+                      filteredParticipants.map((person, idx) => (
+                          <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900 dark:text-slate-200">{person.name}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-400">{person.affiliation}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-400 flex items-center">
+                                  {person.country && (
+                                    <>
+                                      <Globe className="w-4 h-4 mr-2 text-slate-400" /> {person.country}
+                                    </>
+                                  )}
+                              </td>
+                          </tr>
+                      ))
+                  ) : (
+                      <tr>
+                          <td colSpan={3} className="px-6 py-10 text-center text-slate-500 dark:text-slate-400">
+                              No participants found starting with "{selectedLetter !== 'All' ? selectedLetter : ''}" {participantSearch ? `matching "${participantSearch}"` : ''}
                           </td>
                       </tr>
-                  ))}
+                  )}
               </tbody>
           </table>
       </div>
-
-      {/* Pagination Controls */}
-      {totalPages > 1 && (
-          <div className="flex justify-between items-center mt-6 bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
-              <button
-                  onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                  disabled={currentPage === 1}
-                  className={`flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                      currentPage === 1 
-                          ? 'text-slate-400 cursor-not-allowed' 
-                          : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'
-                  }`}
-              >
-                  <ChevronLeft className="w-4 h-4 mr-2" /> Previous
-              </button>
-              
-              <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
-                  Page {currentPage} of {totalPages}
-              </span>
-
-              <button
-                  onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                  disabled={currentPage === totalPages}
-                  className={`flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                      currentPage === totalPages 
-                          ? 'text-slate-400 cursor-not-allowed' 
-                          : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'
-                  }`}
-              >
-                  Next <ChevronRight className="w-4 h-4 ml-2" />
-              </button>
-          </div>
-      )}
     </div>
   );
 };
