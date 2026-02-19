@@ -10,6 +10,7 @@ export interface Participant {
   Title: string;
   SessionDate: string;
   TimeRange: string;
+  Abstract: string;
 }
 
 export type ParticipantRole = 'Participant' | 'LOC' | 'SOC' | 'Chair';
@@ -22,5 +23,6 @@ export interface ParsedParticipant {
   talkTitle: string;
   sessionDate: string;
   timeRange: string;
+  abstract: string;
   roles: ParticipantRole[];
 }

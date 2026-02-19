@@ -41,6 +41,7 @@ export const useParticipants = () => {
                     talkTitle: item.Title,
                     sessionDate: item.SessionDate,
                     timeRange: item.TimeRange,
+                    abstract: item.Abstract,
                     roles: roles,
                 };
             });
