@@ -1,34 +1,22 @@
-import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import { useState } from 'react';
+import type { FC } from 'react';
 import { Plane, Train, Bus, MapPin, Moon, ArrowRight, Compass, Map, Lightbulb, Globe, CreditCard, Zap, Phone, Clock, Shield } from 'lucide-react';
 import { CONSTANTS } from '../data/Constants';
+import SEO from '../components/layout/SEO';
 import SectionTitle from '../components/ui/SectionTitle';
 import Card from '../components/ui/Card';
 
-const LogisticsView: React.FC = () => {
+const LogisticsView: FC = () => {
   const [activeTravelTab, setActiveTravelTab] = useState("flight");
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 animate-fade-in">
-        <Helmet>
-          <title>Logistics & Travel | SPiCE 2 Conference</title>
-          <meta name="description" content="Travel information, venue details, and practical tips for attending SPiCE 2 in Lyon, France." />
-          <link rel="canonical" href="https://spice-workshop.github.io/logistics" />
-
-          {/* Open Graph */}
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://spice-workshop.github.io/logistics" />
-          <meta property="og:title" content="Logistics & Travel | SPiCE 2 Conference" />
-          <meta property="og:description" content="Travel information, venue details, and practical tips for attending SPiCE 2 in Lyon, France." />
-          <meta property="og:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
-
-          {/* Twitter */}
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:url" content="https://spice-workshop.github.io/logistics" />
-          <meta name="twitter:title" content="Logistics & Travel | SPiCE 2 Conference" />
-          <meta name="twitter:description" content="Travel information, venue details, and practical tips for attending SPiCE 2 in Lyon, France." />
-          <meta name="twitter:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
-        </Helmet>
+        <SEO
+          title="Logistics & Travel | SPiCE 2 Conference"
+          description="Travel information, venue details, and practical tips for attending SPiCE 2 in Lyon, France."
+          url="https://spice-workshop.github.io/logistics"
+          keywords="Lyon travel, ENS de Lyon venue, conference logistics, visa France, hotel Lyon, TGV Lyon, Rhônexpress"
+        />
         
 
         {/* Section 1: Practical Information */}
@@ -233,9 +221,9 @@ const LogisticsView: React.FC = () => {
                 <div className="h-full min-h-[400px] bg-slate-200 dark:bg-slate-700 rounded-xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-700 relative group">
                      <iframe 
                         src={CONSTANTS.links.mapEmbed} 
-                        width="100%" 
-                        height="100%" 
-                        style={{ border: 0, minHeight: '400px' }} 
+                        width="600" 
+                        height="400" 
+                        style={{ border: 0, width: '100%', height: '100%', minHeight: '400px' }} 
                         allowFullScreen={undefined}
                         loading="lazy" 
                         title="Conference Location"
@@ -281,6 +269,8 @@ const LogisticsView: React.FC = () => {
                          <img 
                             src={CONSTANTS.assets.mapENS} 
                             alt="ENS de Lyon Map" 
+                            width="800"
+                            height="400"
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                          />
                          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-opacity duration-300 flex items-center justify-center">
