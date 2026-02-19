@@ -22,22 +22,27 @@ export const useParticipants = () => {
           transformHeader: (h) => h.trim(),
           transform: (v) => v.trim(),
           complete: (results) => {
-            const parsedData: ParsedParticipant[] = results.data.map((item) => {
+            const parsedData: ParsedParticipant[] = results.data
+              .sort((a, b) => (a.Lastname || '').localeCompare(b.Lastname || ''))
+              .map((item) => {
                 const roles: ParticipantRole[] = [];
                 if (item.Participant?.toLowerCase() === 'true') roles.push('Participant');
                 if (item.LOC?.toLowerCase() === 'true') roles.push('LOC');
                 if (item.SOC?.toLowerCase() === 'true') roles.push('SOC');
                 if (item.Chairs?.toLowerCase() === 'true') roles.push('Chair');
 
+                const fullName = [item.Firstname, item.Lastname].filter(Boolean).join(' ');
+
                 return {
-                    name: item.Name,
+                    name: fullName,
+                    lastName: item.Lastname || '',
                     affiliation: item.Organisation,
                     country: item.Country,
                     talkTitle: item.Title,
                     talkTime: item.talkTime,
                     roles: roles,
                 };
-            }).sort((a, b) => a.name.localeCompare(b.name));
+            });
             setData(parsedData);
             setLoading(false);
           },
