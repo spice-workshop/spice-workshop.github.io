@@ -2,15 +2,19 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Calendar, ArrowRight, Utensils, Users, Bus, MapPin, Compass } from 'lucide-react';
 import { CONSTANTS } from '../data/Constants';
-import { SCHEDULE_DATA, ScheduleEvent } from '../data/ScheduleData';
-import SectionTitle from '../components/ui/SectionTitle';
-import Button from '../components/ui/Button';
-import Card from '../components/ui/Card';
-import StatusIndicator from '../components/ui/StatusIndicator';
+import { useSchedule, EnrichedScheduleEvent } from '../utils/useSchedule';
 
 const ScheduleView: React.FC = () => {
   const [activeDay, setActiveDay] = useState(0);
+  const { schedule, loading: loadingSchedule, error: scheduleError } = useSchedule();
   
+  // Handl loading state
+  if (loadingSchedule) return <div className="text-center py-20 text-slate-500">Loading schedule...</div>;
+  if (scheduleError) return <div className="text-center py-20 text-red-500">Error loading schedule: {scheduleError}</div>;
+  
+  // Fallback if schedule is empty
+  const currentDayData = schedule[activeDay] || { day: "TBD", date: "", label: "TBD", events: [] };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 animate-fade-in">
       <Helmet>
@@ -40,14 +44,14 @@ const ScheduleView: React.FC = () => {
       </div>
 
       <div className="flex overflow-x-auto py-4 px-2 mb-6 gap-2 hide-scrollbar">
-        {SCHEDULE_DATA.map((data, index) => (
+        {schedule.map((data, index) => (
           <Button
             key={index}
             onClick={() => setActiveDay(index)}
             variant={activeDay === index ? 'primary' : 'outline'}
             className="rounded-full flex-shrink-0 whitespace-nowrap"
           >
-            {data.day}
+            {data.label} ({data.date.slice(5)})
           </Button>
         ))}
       </div>
@@ -55,45 +59,49 @@ const ScheduleView: React.FC = () => {
       <Card className="border-t-4 border-t-indigo-500 min-h-[400px]">
           <div className="flex justify-between items-center mb-6 border-b border-slate-100 dark:border-slate-700 pb-4">
             <h3 className="text-xl font-bold text-slate-800 dark:text-white flex items-center">
-                <Calendar className="w-5 h-5 mr-2 text-indigo-500" /> {SCHEDULE_DATA[activeDay].day}
+                <Calendar className="w-5 h-5 mr-2 text-indigo-500" /> {currentDayData.day}
             </h3>
             <span className="text-sm text-slate-400">Timezone: CET (UTC+1)</span>
           </div>
           
           <div className="space-y-4">
-              {SCHEDULE_DATA[activeDay].events.map((event: ScheduleEvent, idx: number) => (
-                  <div key={idx} className={`flex flex-col md:flex-row md:items-center p-4 rounded-lg transition-colors border border-transparent hover:border-slate-100 dark:hover:border-slate-700 group ${event.highlight ? 'bg-amber-50 dark:bg-amber-900/20 border-amber-100 dark:border-amber-900/30 hover:border-amber-200' : 'hover:bg-slate-50 dark:hover:bg-slate-700/50'}`}>
-                      <div className="w-32 flex-shrink-0 text-sm font-mono font-bold text-slate-500 dark:text-slate-400 mb-2 md:mb-0">
-                          {event.time}
-                      </div>
-                      <div className="flex-grow md:border-l-2 md:border-slate-200 dark:md:border-slate-700 md:pl-4">
-                          <div className="flex justify-between items-start">
-                            <div className="flex-grow">
-                              {event.linkId ? (
-                                <a 
-                                  href={`#${event.linkId}`} 
-                                  className={`font-bold text-lg hover:underline flex items-center ${event.highlight ? 'text-amber-900 dark:text-amber-400' : 'text-slate-800 dark:text-slate-100'}`}
-                                >
-                                  {event.title}
-                                  <ArrowRight className="w-4 h-4 ml-2 opacity-70" />
-                                </a>
-                              ) : (
-                                <h4 className={`font-bold text-lg ${event.highlight ? 'text-amber-900 dark:text-amber-400' : 'text-slate-800 dark:text-slate-100'}`}>{event.title}</h4>
-                              )}
-                              
-                              {event.speaker && (
-                                <p className="text-slate-600 dark:text-slate-400 text-sm mt-1 flex items-center">
-                                  {event.highlight ? <Utensils className="w-3 h-3 mr-1" /> : <Users className="w-3 h-3 mr-1" />} {event.speaker}
-                                </p>
-                              )}
-                            </div>
-                            <div className="ml-4 flex-shrink-0">
-                              <StatusIndicator status={event.status} />
-                            </div>
+              {currentDayData.events.length > 0 ? (
+                  currentDayData.events.map((event: EnrichedScheduleEvent, idx: number) => (
+                      <div key={idx} className={`flex flex-col md:flex-row md:items-center p-4 rounded-lg transition-colors border border-transparent hover:border-slate-100 dark:hover:border-slate-700 group ${event.highlight ? 'bg-amber-50 dark:bg-amber-900/20 border-amber-100 dark:border-amber-900/30 hover:border-amber-200' : 'hover:bg-slate-50 dark:hover:bg-slate-700/50'}`}>
+                          <div className="w-32 flex-shrink-0 text-sm font-mono font-bold text-slate-500 dark:text-slate-400 mb-2 md:mb-0">
+                              {event.time}
+                          </div>
+                          <div className="flex-grow md:border-l-2 md:border-slate-200 dark:md:border-slate-700 md:pl-4">
+                              <div className="flex justify-between items-start">
+                                <div className="flex-grow">
+                                  {event.linkId && event.type === 'talk' ? (
+                                    <a 
+                                      href={`#${event.linkId}`} 
+                                      className={`font-bold text-lg hover:underline flex items-center ${event.highlight ? 'text-amber-900 dark:text-amber-400' : 'text-slate-800 dark:text-slate-100'}`}
+                                    >
+                                      {event.title}
+                                      {/* <ArrowRight className="w-4 h-4 ml-2 opacity-70" /> */}
+                                    </a>
+                                  ) : (
+                                    <h4 className={`font-bold text-lg ${event.highlight ? 'text-amber-900 dark:text-amber-400' : 'text-slate-800 dark:text-slate-100'}`}>{event.title}</h4>
+                                  )}
+                                  
+                                  {event.speaker && (
+                                    <p className="text-slate-600 dark:text-slate-400 text-sm mt-1 flex items-center">
+                                      {event.type === 'fixed' ? <Utensils className="w-3 h-3 mr-1" /> : <Users className="w-3 h-3 mr-1" />} {event.speaker}
+                                    </p>
+                                  )}
+                                </div>
+                                <div className="ml-4 flex-shrink-0">
+                                  <StatusIndicator status={event.status} />
+                                </div>
+                              </div>
                           </div>
                       </div>
-                  </div>
-              ))}
+                  ))
+              ) : (
+                  <p className="text-center text-slate-500 py-10">No events scheduled for this day yet.</p>
+              )}
           </div>
       </Card>
       
@@ -230,28 +238,6 @@ const ScheduleView: React.FC = () => {
                 </div>
             </div>
         </div>
-        {/* Attractions Map Section */}
-        {/* <div className="mt-20">
-             <div className="flex items-center justify-between mb-6">
-                <h3 className="font-bold text-2xl flex items-center text-slate-800 dark:text-white">
-                   <Compass className="w-6 h-6 mr-3 text-indigo-500" /> Explore Lyon
-                </h3>
-                <button
-                   onClick={() => setShowMap(!showMap)}
-                   className="flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-sm text-sm font-medium"
-                >
-                   {showMap ? 'Hide Map' : 'Show Attractions Map'}
-                </button>
-             </div>
-
-             {showMap && (
-               <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden mb-12 p-1">
-                 <React.Suspense fallback={<div className="h-[500px] flex items-center justify-center">Loading Map...</div>}>
-                   <AttractionsMap />
-                 </React.Suspense>
-               </div>
-             )}
-        </div> */}
       </div>
     </div>
   );

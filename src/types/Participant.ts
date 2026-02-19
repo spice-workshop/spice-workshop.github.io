@@ -8,7 +8,8 @@ export interface Participant {
   Organisation: string;
   Country: string;
   Title: string;
-  talkTime: string;
+  SessionDate: string;
+  TimeRange: string;
 }
 
 export type ParticipantRole = 'Participant' | 'LOC' | 'SOC' | 'Chair';
@@ -19,6 +20,7 @@ export interface ParsedParticipant {
   affiliation: string;
   country: string;
   talkTitle: string;
-  talkTime: string;
+  sessionDate: string;
+  timeRange: string;
   roles: ParticipantRole[];
 }

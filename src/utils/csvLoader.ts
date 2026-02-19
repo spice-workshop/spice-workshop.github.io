@@ -39,7 +39,8 @@ export const useParticipants = () => {
                     affiliation: item.Organisation,
                     country: item.Country,
                     talkTitle: item.Title,
-                    talkTime: item.talkTime,
+                    sessionDate: item.SessionDate,
+                    timeRange: item.TimeRange,
                     roles: roles,
                 };
             });
