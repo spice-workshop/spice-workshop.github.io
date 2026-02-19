@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import type { FC } from 'react';
 import { Calendar, MapPin, MessageCircle, Camera, ChevronLeft, ChevronRight } from 'lucide-react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -8,7 +9,7 @@ import SectionTitle from '../components/ui/SectionTitle';
 import SEO from '../components/layout/SEO';
 import { useParticipants } from '../utils/csvLoader';
 
-const HomeView: React.FC = () => {
+const HomeView: FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = CONSTANTS.assets.heroImages;
 
@@ -42,9 +43,10 @@ const HomeView: React.FC = () => {
   return (
     <>
       <SEO
-        title="SPiCE 2 Conference"
+        title="SPiCE 2 Conference — Lyon, March 2026"
         description="Welcome to the second edition of the SPiCE conference. Join us in Lyon for discussions on star formation, planet formation, and more."
         url="https://spice-workshop.github.io/"
+        keywords="SPiCE 2, star formation conference, protoplanetary disks, planet formation workshop, computational astrophysics, Lyon 2026, ENS de Lyon"
       >
         {/* JSON-LD Structured Data */}
         <script type="application/ld+json">

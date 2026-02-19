@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import type { FC } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { SIGHTSEEING_SPOTS, SightseeingSpot } from '../data/SightseeingData';
 import SectionTitle from '../components/ui/SectionTitle';
 import Button from '../components/ui/Button';
 import SEO from '../components/layout/SEO';
 
-const SightseeingView: React.FC = () => {
+const SightseeingView: FC = () => {
   const [activeSpot, setActiveSpot] = useState<SightseeingSpot>(SIGHTSEEING_SPOTS[0]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
@@ -22,6 +23,7 @@ const SightseeingView: React.FC = () => {
           title="Sightseeing | SPiCE 2 Conference"
           description="Discover the best sightseeing spots in Lyon. Explore local history, culture, and attractions during the conference."
           url="https://spice-workshop.github.io/sightseeing"
+          keywords="Lyon sightseeing, Vieux Lyon, Fourvière, Parc Tête d'Or, Lyon tourism, things to do Lyon"
         />
         <SectionTitle>Sightseeing in Lyon</SectionTitle>
         <p className="text-slate-600 dark:text-slate-300 mb-8 mt-[-1rem]">Explore the rich history and culture of Lyon during your stay.</p>
@@ -81,11 +83,11 @@ const SightseeingView: React.FC = () => {
             {/* Interactive Map Display */}
             <div className="h-full min-h-[500px] bg-slate-100 dark:bg-slate-700 rounded-xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-700 sticky top-24 relative">
                  <iframe 
-                    key={activeSpot.id} // Forces iframe reload on change
+                    key={activeSpot.id}
                     src={activeSpot.mapEmbed} 
-                    width="100%" 
-                    height="100%" 
-                    style={{ border: 0, minHeight: '500px' }} 
+                    width="600" 
+                    height="500" 
+                    style={{ border: 0, width: '100%', height: '100%', minHeight: '500px' }} 
                     allowFullScreen={undefined}
                     loading="lazy" 
                     title={`Map of ${activeSpot.name}`}

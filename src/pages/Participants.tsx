@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import { useState, useEffect } from 'react';
+import type { FC } from 'react';
 import { Search, Globe } from 'lucide-react';
 import SectionTitle from '../components/ui/SectionTitle';
+import SEO from '../components/layout/SEO';
 import { useParticipants } from '../utils/csvLoader';
 
-const ParticipantsView: React.FC = () => {
+const ParticipantsView: FC = () => {
   const [participantSearch, setParticipantSearch] = useState("");
   const { data, loading, error } = useParticipants();
   const [selectedLetter, setSelectedLetter] = useState<string>('All');
   
   // Reset letter filter when search changes
-  React.useEffect(() => {
+  useEffect(() => {
     if (participantSearch) {
         setSelectedLetter('All');
     }
@@ -32,25 +33,12 @@ const ParticipantsView: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 animate-fade-in">
-      <Helmet>
-        <title>Participants | SPiCE 2 Conference</title>
-        <meta name="description" content="Meet the attendees of the SPiCE 2 conference. Search participants by name or affiliation." />
-        <link rel="canonical" href="https://spice-workshop.github.io/participants" />
-
-        {/* Open Graph */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://spice-workshop.github.io/participants" />
-        <meta property="og:title" content="Participants | SPiCE 2 Conference" />
-        <meta property="og:description" content="Meet the attendees of the SPiCE 2 conference. Search participants by name or affiliation." />
-        <meta property="og:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://spice-workshop.github.io/participants" />
-        <meta name="twitter:title" content="Participants | SPiCE 2 Conference" />
-        <meta name="twitter:description" content="Meet the attendees of the SPiCE 2 conference. Search participants by name or affiliation." />
-        <meta name="twitter:image" content="https://spice-workshop.github.io/assets/HeaderImage.png" />
-      </Helmet>
+      <SEO
+        title="Participants | SPiCE 2 Conference"
+        description="Meet the attendees of the SPiCE 2 conference. Search participants by name or affiliation."
+        url="https://spice-workshop.github.io/participants"
+        keywords="SPiCE participants, conference attendees, astrophysics researchers, star formation scientists, workshop speakers"
+      />
       <div className="flex flex-col md:flex-row justify-between items-end md:items-center mb-8 gap-4">
         <SectionTitle>Participant List</SectionTitle>
         <div className="relative">
@@ -66,7 +54,7 @@ const ParticipantsView: React.FC = () => {
                 key={letter}
                 onClick={() => {
                     setSelectedLetter(letter);
-                    setParticipantSearch(""); // Optional: clear search on letter click? UX choice. Let's clear it for clarity.
+                    setParticipantSearch(""); // Clear search when filtering by letter
                 }}
                 className={`px-3 py-1 text-sm font-medium rounded-md transition-colors ${
                     selectedLetter === letter
@@ -80,7 +68,7 @@ const ParticipantsView: React.FC = () => {
       </div>
 
       <div className="mb-4 text-sm text-slate-600 dark:text-slate-400 font-medium">
-          Number of registers : {filteredParticipants.length}
+          Number of registrants: {filteredParticipants.length}
       </div>
 
       <div className="overflow-x-auto bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
