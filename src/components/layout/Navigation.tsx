@@ -1,26 +1,25 @@
-import React from 'react';
+import type { FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
-  Home, Calendar, FileText, Users, MapPin, Camera, 
+  Home, Calendar, Users, MapPin, Camera, 
   Globe, Sun, Moon, Monitor, Menu, X
 } from 'lucide-react';
 
 interface NavigationProps {
-  activePage: string; // Not strictly used for navigation anymore, but passed for prop compatibility if needed (can be removed)
   isMenuOpen: boolean;
   setIsMenuOpen: (isOpen: boolean) => void;
-  isDark: 'light' | 'dark' | 'system';
+  theme: 'light' | 'dark' | 'system';
   toggleTheme: () => void;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, isDark, toggleTheme }) => {
+const Navigation: FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, theme, toggleTheme }) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
   const navItems = [
     { id: 'home', label: 'Home', path: '/', icon: <Home className="w-4 h-4 mr-1" /> },
     { id: 'schedule', label: 'Schedule', path: '/schedule', icon: <Calendar className="w-4 h-4 mr-1" /> },
-    { id: 'talks', label: 'Talks', path: '/talks', icon: <FileText className="w-4 h-4 mr-1" /> },
+
     { id: 'participants', label: 'Participants', path: '/participants', icon: <Users className="w-4 h-4 mr-1" /> },
     { id: 'logistics', label: 'Logistics', path: '/logistics', icon: <MapPin className="w-4 h-4 mr-1" /> },
     { id: 'sightseeing', label: 'Sightseeing', path: '/sightseeing', icon: <Camera className="w-4 h-4 mr-1" /> },
@@ -63,11 +62,11 @@ const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, isDa
                 onClick={toggleTheme} 
                 className="ml-2 p-2 rounded-full text-slate-500 hover:text-indigo-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-indigo-400 dark:hover:bg-slate-800 transition-colors"
                 aria-label="Toggle Theme"
-                title={`Current theme: ${isDark}`}
+                title={`Current theme: ${theme}`}
             >
-                {isDark === 'light' && <Sun className="w-5 h-5" />}
-                {isDark === 'dark' && <Moon className="w-5 h-5" />}
-                {isDark === 'system' && <Monitor className="w-5 h-5" />}
+                {theme === 'light' && <Sun className="w-5 h-5" />}
+                {theme === 'dark' && <Moon className="w-5 h-5" />}
+                {theme === 'system' && <Monitor className="w-5 h-5" />}
             </button>
           </div>
 
@@ -75,12 +74,13 @@ const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, isDa
             <button 
                 onClick={toggleTheme} 
                 className="mr-4 p-2 rounded-full text-slate-500 hover:text-indigo-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-indigo-400 dark:hover:bg-slate-800 transition-colors"
+                aria-label="Toggle Theme"
             >
-                {isDark === 'light' && <Sun className="w-5 h-5" />}
-                {isDark === 'dark' && <Moon className="w-5 h-5" />}
-                {isDark === 'system' && <Monitor className="w-5 h-5" />}
+                {theme === 'light' && <Sun className="w-5 h-5" />}
+                {theme === 'dark' && <Moon className="w-5 h-5" />}
+                {theme === 'system' && <Monitor className="w-5 h-5" />}
             </button>
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-2">
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-2" aria-label={isMenuOpen ? "Close menu" : "Open menu"}>
               {isMenuOpen ? <X /> : <Menu />}
             </button>
           </div>

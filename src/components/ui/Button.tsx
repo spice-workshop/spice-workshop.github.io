@@ -1,13 +1,13 @@
-import React from 'react';
+import type { FC, ButtonHTMLAttributes, ReactNode } from 'react';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({ 
+const Button: FC<ButtonProps> = ({ 
   variant = 'primary', 
   size = 'md', 
   fullWidth = false, 

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import type { FC } from 'react';
 import { ArrowUp } from 'lucide-react';
 
-const ScrollToTop: React.FC = () => {
+const ScrollToTop: FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
