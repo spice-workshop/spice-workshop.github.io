@@ -83,7 +83,7 @@ export const CONSTANTS: ConstantsType = {
     discord: "mailto:spice2.workshop@gmail.com?subject=Join%20the%20SPiCE%20discord%20server",
     slack: "https://slack.com/example",
     cloudDrive: "#",
-    googleCalendar: "https://calendar.google.com/calendar/embed?src=example",
+    googleCalendar: "/spice2-conference.ics",
     sncf: "https://www.sncf-connect.com/",
     tcl: "https://www.tcl.fr/en",
     rhonexpress: "https://www.rhonexpress.fr",

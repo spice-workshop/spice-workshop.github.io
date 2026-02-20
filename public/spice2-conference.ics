@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//SPiCE 2 Conference//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:SPiCE 2 Conference
+X-WR-TIMEZONE:Europe/Paris
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260316
+DTEND;VALUE=DATE:20260321
+SUMMARY:SPiCE 2 Conference
+DESCRIPTION:Simulating Physics in Celestial Ecosystems II\n\nA workshop focusing on computational simulations linking star\, disk\, and planet formation.\n\nWebsite: https://spice-workshop.github.io/\nContact: spice2.workshop@gmail.com
+LOCATION:ENS de Lyon (Monod Site)\, 46 Allée d'Italie\, 69007 Lyon\, France
+URL:https://spice-workshop.github.io/
+ORGANIZER;CN=SPiCE 2 Organizing Committee:mailto:spice2.workshop@gmail.com
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+UID:spice2-conference-2026@spice-workshop.github.io
+END:VEVENT
+END:VCALENDAR
