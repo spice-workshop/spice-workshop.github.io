@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import type { FC } from 'react';
-import { Calendar, Utensils, Users, Bus, MapPin, Compass, Search, ChevronDown, ChevronUp, FileText } from 'lucide-react';
+import { Calendar, Utensils, Users, Bus, MapPin, Compass, Search, ChevronDown, ChevronUp, FileText, Download } from 'lucide-react';
 import { CONSTANTS } from '../data/Constants';
 import { useSchedule, EnrichedScheduleEvent } from '../utils/useSchedule';
+import { generateSchedulePDF } from '../utils/generateSchedulePDF';
 import SEO from '../components/layout/SEO';
 import SectionTitle from '../components/ui/SectionTitle';
 import Button from '../components/ui/Button';
@@ -78,9 +79,18 @@ const ScheduleView: FC = () => {
       </SEO>
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-8">
           <SectionTitle>Workshop Schedule</SectionTitle>
-          <a href={CONSTANTS.links.googleCalendar} target="_blank" rel="noreferrer" className="flex items-center text-indigo-600 font-medium hover:underline px-4 py-2">
-              <Calendar className="w-4 h-4 mr-2" /> Add to Calendar
-          </a>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => generateSchedulePDF(schedule)}
+              className="flex items-center text-indigo-600 font-medium hover:underline px-4 py-2 transition-colors"
+              aria-label="Download schedule as PDF"
+            >
+              <Download className="w-4 h-4 mr-2" /> Download PDF
+            </button>
+            <a href={CONSTANTS.links.googleCalendar} download="SPiCE2_Conference.ics" className="flex items-center text-indigo-600 font-medium hover:underline px-4 py-2">
+                <Calendar className="w-4 h-4 mr-2" /> Add to Calendar
+            </a>
+          </div>
       </div>
 
       {!isSearching && (
