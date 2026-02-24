@@ -7,7 +7,7 @@ import ScrollToTop from './components/ui/ScrollToTop';
 import Loading from './components/ui/Loading';
 
 // Lazy load page components
-const HomeView = lazy(() => import('./pages/Home'));
+import HomeView from './pages/Home';
 const ScheduleView = lazy(() => import('./pages/Schedule'));
 const ParticipantsView = lazy(() => import('./pages/Participants'));
 const LogisticsView = lazy(() => import('./pages/Logistics'));

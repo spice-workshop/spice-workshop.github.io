@@ -86,23 +86,33 @@ const HomeView: FC = () => {
       <header className="relative bg-slate-50 dark:bg-slate-900 pt-16 pb-20 md:pt-24 md:pb-32 overflow-hidden min-h-[70vh] flex flex-col justify-center">
         <div className="absolute inset-0 z-0 opacity-90 dark:opacity-90">
             {/* Carousel Images */}
-            {images.map((img, index) => (
-              <LazyLoadImage
-                key={index}
-                src={img} 
-                alt={`Background ${index + 1}`} 
-                width="1920"
-                height="1080"
-                effect="blur"
-                wrapperProps={{
-                    style: {transitionDelay: "2s"},
-                }}
-                wrapperClassName={`absolute inset-0 w-full h-full gradient-mask-b transition-opacity duration-1000 ease-in-out ${
-                    index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-                }`}
-                className="w-full h-full object-contain" 
-              />
-            ))}
+            {images.map((img, index) => {
+              const isFirst = index === 0;
+              const isVisible = index === currentImageIndex;
+                  
+              return (
+                <div 
+                  key={index} 
+                  className={`absolute inset-0 w-full h-full gradient-mask-b transition-opacity duration-1000 ease-in-out ${
+                    isVisible ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  style={{ transitionDelay: "2s" }}
+                >
+                  {(isFirst || currentImageIndex > 0 || index === 1) ? (
+                    <img
+                      src={img} 
+                      alt={`Background ${index + 1}`} 
+                      width="1920"
+                      height="1080"
+                      className="w-full h-full object-contain"
+                      fetchPriority={isFirst ? "high" : "low"}
+                      loading={isFirst ? "eager" : "lazy"}
+                      decoding={isFirst ? "sync" : "async"}
+                    />
+                  ) : null}
+                </div>
+              );
+            })}
             
             {/* Overlay Gradient */}
             <div className="absolute inset-0 bg-slate-900/40" />
