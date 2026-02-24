@@ -7,8 +7,7 @@ const OUTPUT_FILE = path.resolve(__dirname, '../public/sitemap.xml');
 const pages = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
   { path: '/schedule', priority: '0.9', changefreq: 'weekly' },
-  { path: '/talks', priority: '0.8', changefreq: 'weekly' },
-  { path: '/participants', priority: '0.7', changefreq: 'weekly' },
+  { path: '/participants', priority: '0.8', changefreq: 'weekly' },
   { path: '/logistics', priority: '0.6', changefreq: 'monthly' },
   { path: '/sightseeing', priority: '0.5', changefreq: 'monthly' }
 ];

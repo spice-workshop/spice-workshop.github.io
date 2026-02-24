@@ -1,4 +1,4 @@
-import { lazy, useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, Suspense, lazy } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useTheme } from './utils/useTheme';
 import Navigation from './components/layout/Navigation';

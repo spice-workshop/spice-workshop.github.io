@@ -57,7 +57,7 @@ export const CONSTANTS: ConstantsType = {
         In April 2024, we organised the workshop <a href="https://www.astr.tohoku.ac.jp/~tomida/spice/" target="_blank" rel="noreferrer" className="text-indigo-600 dark:text-indigo-400 hover:underline">"Simulating Physics In Celestial Ecosystem (SPiCE): Star, Disk, and Planet Formation"</a> at Tohoku University in Sendai, Japan. 
         The idea of the workshop emerged during the Protostars and Planets VII in 2023, where major progress and insights in the fields of star formation, protoplanetary disks, and planet formation were extensively presented and discussed. 
         However, it has also become evident that connections between these fields are lacking, which preclude the establishment of a coherent scenario from star to planet formation. 
-        The follow-up workshop, SPiCE-2, will be held at Ecole Nomale Supérieure de Lyon in France from March 16th to 20th, 2026. 
+        The follow-up workshop, SPiCE-2, will be held at École Normale Supérieure de Lyon in France from March 16th to 20th, 2026. 
         The workshop will again focus on computational simulations linking star, disk, and planet formation, with the goal of bridging the gaps between these fields and fostering cross-disciplinary collaborations.
         <br /><br />
         <div className="mb-2">The topics we want to cover include but not limited to:</div>
@@ -110,7 +110,7 @@ export const CONSTANTS: ConstantsType = {
     mapENS: mapENS,
   },
   social: {
-    ens: "http://www.ens-lyon.fr/en/",
+    ens: "https://www.ens-lyon.fr/en/",
     cnrs: "https://www.cnrs.fr/en",
     cral: "https://cral.univ-lyon1.fr/?lang=en"
   }

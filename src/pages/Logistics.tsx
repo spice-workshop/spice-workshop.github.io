@@ -251,7 +251,7 @@ const LogisticsView: FC = () => {
                 <div>
                      <div className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
                         <h4 className="font-bold text-slate-800 dark:text-white mb-1">Salle Condorcet - ENS de Lyon (Monod Site)</h4>
-                        <p className="text-slate-600 dark:text-slate-400 text-s mb-2">1 Pl. de l'École, 69007 Lyon</p>
+                        <p className="text-slate-600 dark:text-slate-400 text-sm mb-2">1 Pl. de l'École, 69007 Lyon</p>
                         
                         <div className="bg-amber-400 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mb-4 flex items-start gap-3">
                             <Lightbulb className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
