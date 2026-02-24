@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "prebuild": "node scripts/generate-sitemap.cjs",
-    "predeploy": "npm run build && cp dist/index.html dist/404.html && for dir in schedule participants logistics sightseeing; do mkdir -p dist/$dir && cp dist/index.html dist/$dir/index.html; done",
+    "predeploy": "npm run build && for dir in schedule participants logistics sightseeing; do mkdir -p dist/$dir && cp dist/index.html dist/$dir/index.html; done",
     "deploy": "gh-pages -d dist -b main"
   },
   "dependencies": {
