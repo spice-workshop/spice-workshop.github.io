@@ -1,1 +1,0 @@
-import{j as a}from"./index-Dzaq-knY.js";const d=({children:r,className:s=""})=>a.jsx("div",{className:`bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 ${s}`,children:r});export{d as C};
