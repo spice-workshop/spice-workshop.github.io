@@ -224,7 +224,7 @@ const LogisticsView: FC = () => {
                         width="600" 
                         height="400" 
                         style={{ border: 0, width: '100%', height: '100%', minHeight: '400px' }} 
-                        allowFullScreen={undefined}
+                        allowFullScreen
                         loading="lazy" 
                         title="Conference Location"
                      ></iframe>

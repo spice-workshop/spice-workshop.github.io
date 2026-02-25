@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import { Calendar, Utensils, Users, Bus, MapPin, Compass, Search, ChevronDown, ChevronUp, FileText, Download } from 'lucide-react';
 import { CONSTANTS } from '../data/Constants';
 import { useSchedule, EnrichedScheduleEvent } from '../utils/useSchedule';
-import { generateSchedulePDF } from '../utils/generateSchedulePDF';
+
 import SEO from '../components/layout/SEO';
 import SectionTitle from '../components/ui/SectionTitle';
 import Button from '../components/ui/Button';
@@ -81,7 +81,10 @@ const ScheduleView: FC = () => {
           <SectionTitle>Workshop Schedule</SectionTitle>
           <div className="flex items-center gap-4">
             <button
-              onClick={() => generateSchedulePDF(schedule)}
+              onClick={async () => {
+                const { generateSchedulePDF } = await import('../utils/generateSchedulePDF');
+                generateSchedulePDF(schedule);
+              }}
               className="flex items-center text-indigo-600 font-medium hover:underline px-4 py-2 transition-colors"
               aria-label="Download schedule as PDF"
             >

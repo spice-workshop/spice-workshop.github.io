@@ -88,26 +88,12 @@ const SightseeingView: FC = () => {
                     width="600" 
                     height="500" 
                     style={{ border: 0, width: '100%', height: '100%', minHeight: '500px' }} 
-                    allowFullScreen={undefined}
+                    allowFullScreen
                     loading="lazy" 
                     title={`Map of ${activeSpot.name}`}
                  ></iframe>
                  
-                 {/* <div className="absolute top-4 left-4 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700">
-                    <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Showing Map For</p>
-                    <p className="font-bold text-indigo-700 dark:text-indigo-400">{activeSpot.name}</p>
-                 </div> */}
-
-                 {/* <div className="absolute bottom-6 right-6">
-                    <a 
-                        href={activeSpot.directions} 
-                        target="_blank" 
-                        rel="noreferrer"
-                        className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full shadow-lg flex items-center transition-transform transform hover:scale-105"
-                    >
-                        <Compass className="w-5 h-5 mr-2" /> Get Directions
-                    </a>
-                 </div> */}
+                 
             </div>
         </div>
     </div>

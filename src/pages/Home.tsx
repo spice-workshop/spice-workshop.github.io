@@ -1,8 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import type { FC } from 'react';
 import { Calendar, MapPin, MessageCircle, Camera, ChevronLeft, ChevronRight } from 'lucide-react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
+
 import { CONSTANTS } from '../data/Constants';
 import { PARTNERS_LIST } from '../data/PartnerData';
 import SectionTitle from '../components/ui/SectionTitle';
@@ -240,12 +239,12 @@ const HomeView: FC = () => {
                         className="transition-transform hover:scale-110"
                         title={`Visit ${partner.name}`}
                       >
-                        <LazyLoadImage
+                        <img
                           src={partner.logo} 
                           alt={partner.name} 
                           width="200"
                           height="100"
-                          effect="blur"
+                          loading="lazy"
                           className="h-16 md:h-20 w-32 md:w-40 object-contain" 
                         />
                       </a>

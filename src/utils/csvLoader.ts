@@ -1,7 +1,20 @@
 import { useState, useEffect } from 'react';
-import Papa from 'papaparse';
-import { Participant, ParsedParticipant, ParticipantRole } from '../types/Participant';
-import participantsCsv from '../data/participants.csv?raw';
+import type { ParsedParticipant, ParticipantRole } from '../types/Participant';
+import participantsData from '../data/participants.json';
+
+interface SanitizedParticipant {
+  firstName: string;
+  lastName: string;
+  sessionDate: string;
+  timeRange: string;
+  isParticipant: boolean;
+  isLOC: boolean;
+  isSOC: boolean;
+  isChair: boolean;
+  organisation: string;
+  country: string;
+  title: string;
+}
 
 export const useParticipants = () => {
   const [data, setData] = useState<ParsedParticipant[]>([]);
@@ -10,43 +23,29 @@ export const useParticipants = () => {
 
   useEffect(() => {
     try {
-      Papa.parse<Participant>(participantsCsv, {
-        header: true,
-        skipEmptyLines: 'greedy',
-        transformHeader: (h) => h.trim(),
-        transform: (v) => v.trim(),
-        complete: (results) => {
-          const parsedData: ParsedParticipant[] = results.data
-            .sort((a, b) => (a.Lastname || '').localeCompare(b.Lastname || ''))
-            .map((item) => {
-              const roles: ParticipantRole[] = [];
-              if (item.Participant?.toLowerCase() === 'true') roles.push('Participant');
-              if (item.LOC?.toLowerCase() === 'true') roles.push('LOC');
-              if (item.SOC?.toLowerCase() === 'true') roles.push('SOC');
-              if (item.Chairs?.toLowerCase() === 'true') roles.push('Chair');
+      const parsed: ParsedParticipant[] = (participantsData as SanitizedParticipant[])
+        .map((item) => {
+          const roles: ParticipantRole[] = [];
+          if (item.isParticipant) roles.push('Participant');
+          if (item.isLOC) roles.push('LOC');
+          if (item.isSOC) roles.push('SOC');
+          if (item.isChair) roles.push('Chair');
 
-              const fullName = [item.Firstname, item.Lastname].filter(Boolean).join(' ');
+          return {
+            name: [item.firstName, item.lastName].filter(Boolean).join(' '),
+            lastName: item.lastName,
+            affiliation: item.organisation,
+            country: item.country,
+            talkTitle: item.title,
+            sessionDate: item.sessionDate,
+            timeRange: item.timeRange,
+            abstract: '',
+            roles,
+          };
+        });
 
-              return {
-                  name: fullName,
-                  lastName: item.Lastname || '',
-                  affiliation: item.Organisation,
-                  country: item.Country,
-                  talkTitle: item.Title,
-                  sessionDate: item.SessionDate,
-                  timeRange: item.TimeRange,
-                  abstract: item.Abstract,
-                  roles: roles,
-              };
-          });
-          setData(parsedData);
-          setLoading(false);
-        },
-        error: (err: Error) => {
-          setError(err.message);
-          setLoading(false);
-        },
-      });
+      setData(parsed);
+      setLoading(false);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
       setLoading(false);
