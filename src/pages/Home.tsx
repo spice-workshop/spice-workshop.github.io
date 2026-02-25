@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import type { FC } from 'react';
 import { Calendar, MapPin, MessageCircle, Camera, ChevronLeft, ChevronRight } from 'lucide-react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -12,27 +12,36 @@ import { useParticipants } from '../utils/csvLoader';
 const HomeView: FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = CONSTANTS.assets.heroImages;
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
+  const resetTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
       setCurrentImageIndex((prevIndex) => 
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
     }, 3000);
-
-    return () => clearInterval(timer);
   }, [images.length]);
+
+  useEffect(() => {
+    resetTimer();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [resetTimer]);
 
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) => 
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
+    resetTimer();
   };
 
   const prevImage = () => {
     setCurrentImageIndex((prevIndex) => 
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
+    resetTimer();
   };
 
   const { data: participants, loading: loadingParticipants } = useParticipants();
@@ -96,20 +105,17 @@ const HomeView: FC = () => {
                   className={`absolute inset-0 w-full h-full gradient-mask-b transition-opacity duration-1000 ease-in-out ${
                     isVisible ? 'opacity-100' : 'opacity-0'
                   }`}
-                  style={{ transitionDelay: "2s" }}
                 >
-                  {(isFirst || currentImageIndex > 0 || index === 1) ? (
-                    <img
-                      src={img} 
-                      alt={`Background ${index + 1}`} 
-                      width="1920"
-                      height="1080"
-                      className="w-full h-full object-contain"
-                      fetchPriority={isFirst ? "high" : "low"}
-                      loading={isFirst ? "eager" : "lazy"}
-                      decoding={isFirst ? "sync" : "async"}
-                    />
-                  ) : null}
+                  <img
+                    src={img} 
+                    alt={`Background ${index + 1}`} 
+                    width="1920"
+                    height="1080"
+                    className="w-full h-full object-contain"
+                    fetchPriority={isFirst ? "high" : "low"}
+                    loading={isFirst ? "eager" : "lazy"}
+                    decoding={isFirst ? "sync" : "async"}
+                  />
                 </div>
               );
             })}
