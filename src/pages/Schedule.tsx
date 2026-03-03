@@ -13,6 +13,7 @@ import SpecialEventCard from '../components/schedule/SpecialEventCard';
 const ScheduleView: FC = () => {
   const [activeDay, setActiveDay] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
+  const [activeView, setActiveView] = useState<'schedule' | 'events'>('schedule');
   const { schedule, loading, error } = useSchedule();
 
   if (loading) return <div className="text-center py-20 text-slate-500">Loading schedule...</div>;
@@ -96,106 +97,141 @@ const ScheduleView: FC = () => {
         </div>
       </div>
 
-      {/* Day tabs */}
-      {!isSearching && (
-        <div className="flex overflow-x-auto py-4 px-2 mb-6 gap-2 hide-scrollbar">
-          {schedule.map((data, index) => (
-            <Button
-              key={index}
-              onClick={() => { setActiveDay(index); setSearchTerm(''); }}
-              variant={activeDay === index ? 'primary' : 'outline'}
-              className="rounded-full flex-shrink-0 whitespace-nowrap"
-            >
-              {data.label} ({data.date.slice(5)})
-            </Button>
-          ))}
+      {/* Top Level View Switcher */}
+      <div className="flex justify-center mb-10 border-b border-slate-200 dark:border-slate-700">
+        <div className="flex space-x-8">
+          <button
+            onClick={() => setActiveView('schedule')}
+            className={`pb-4 px-1 text-lg font-bold border-b-2 transition-colors flex items-center ${
+              activeView === 'schedule'
+                ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400'
+                : 'border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
+            }`}
+          >
+            <Calendar className="w-5 h-5 mr-2" /> Main Schedule
+          </button>
+          <button
+            onClick={() => setActiveView('events')}
+            className={`pb-4 px-1 text-lg font-bold border-b-2 transition-colors flex items-center ${
+              activeView === 'events'
+                ? 'border-amber-500 text-amber-600 dark:text-amber-400 dark:border-amber-500'
+                : 'border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
+            }`}
+          >
+            <Utensils className="w-5 h-5 mr-2" /> Special Events
+          </button>
+        </div>
+      </div>
+
+      {activeView === 'schedule' && (
+        <div className="animate-fade-in">
+          {/* Day tabs */}
+          {!isSearching && (
+            <div className="flex overflow-x-auto py-4 px-2 mb-6 gap-2 hide-scrollbar">
+              {schedule.map((data, index) => (
+                <Button
+                  key={index}
+                  onClick={() => { setActiveDay(index); setSearchTerm(''); }}
+                  variant={activeDay === index ? 'primary' : 'outline'}
+                  className="rounded-full flex-shrink-0 whitespace-nowrap"
+                >
+                  {data.day}
+                </Button>
+              ))}
+            </div>
+          )}
+
+          {/* Search bar */}
+          <div className="relative mb-8 max-w-lg mx-auto">
+            <input
+              type="text"
+              placeholder="Search talks or speakers"
+              className="pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full shadow-sm bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400"
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
+            />
+            <Search className="w-5 h-5 text-slate-400 absolute left-3 top-3.5" />
+          </div>
+
+          {/* Schedule cards */}
+          <div className="space-y-8">
+            {displaySchedule.length > 0 ? (
+              displaySchedule.map((dayData, dayIdx) => (
+                <ScheduleDayCard
+                  key={dayIdx}
+                  dayData={dayData}
+                  dayIdx={dayIdx}
+                  {...(!isSearching && {
+                    onPrev: () => setActiveDay(d => Math.max(0, d - 1)),
+                    onNext: () => setActiveDay(d => Math.min(schedule.length - 1, d + 1)),
+                    isFirst: activeDay === 0,
+                    isLast:  activeDay === schedule.length - 1,
+                  })}
+                />
+              ))
+            ) : (
+              <p className="text-center text-slate-500 py-10">No events found matching your search.</p>
+            )}
+          </div>
         </div>
       )}
 
-      {/* Search bar */}
-      <div className="relative mb-8 max-w-lg mx-auto">
-        <input
-          type="text"
-          placeholder="Search talks, speakers, or abstracts..."
-          className="pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full shadow-sm bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400"
-          value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
-        />
-        <Search className="w-5 h-5 text-slate-400 absolute left-3 top-3.5" />
-      </div>
+      {activeView === 'events' && (
+        <div className="animate-fade-in relative max-w-5xl mx-auto space-y-8">
+          <SpecialEventCard
+            id="lunch-info"
+            badge="Daily Lunch"
+            badgeColor="indigo"
+            title="Lunch Details"
+            description="We don't have a restaurant reservation, but we can provide you with a list of recommended restaurants in the area."
+            details={[
+              { icon: 'calendar', label: 'Schedule', value: 'To be updated' },
+              { icon: 'mappin',   label: 'Address',  value: 'To be updated' },
+            ]}
+            mapSrc={CONSTANTS.links.crousMap}
+            mapTitle="CROUS Location"
+            mapMinHeight="300px"
+            directionsHref={CONSTANTS.links.crousDirections}
+          />
 
-      {/* Schedule cards */}
-      <div className="space-y-8">
-        {displaySchedule.length > 0 ? (
-          displaySchedule.map((dayData, dayIdx) => (
-            <ScheduleDayCard key={dayIdx} dayData={dayData} dayIdx={dayIdx} />
-          ))
-        ) : (
-          <p className="text-center text-slate-500 py-10">No events found matching your search.</p>
-        )}
-      </div>
+          <SpecialEventCard
+            id="dinner"
+            badge="Workshop Dinner"
+            badgeColor="amber"
+            title="Le Bouchon des Filles"
+            description="Join us for the workshop dinner at Le Bouchon des Filles, a cosy Lyon bouchon in the heart of the city."
+            details={[
+              { icon: 'calendar', label: 'Date & Time', value: 'Wednesday, 7:00 PM' },
+              { icon: 'mappin',   label: 'Address',     value: '20, rue Sergent-Blandan, 69001 Lyon' },
+              { icon: 'utensils', label: 'Fee',         value: '44 euros per person' },
+            ]}
+            mapSrc={CONSTANTS.links.restaurantMap}
+            mapTitle="Le Bouchon des Filles Location"
+            directionsHref={CONSTANTS.links.restaurantDirections}
+            registrationHref={CONSTANTS.links.socialEventRegistration}
+            menuHref="/dinner-menu.pdf"
+          />
 
-      {/* Special Events */}
-      <div className="mt-20">
-        <h3 className="font-bold text-2xl mb-6 flex items-center text-slate-800 dark:text-white">
-          <Utensils className="w-6 h-6 mr-3 text-amber-500" /> Special Events
-        </h3>
-
-        <SpecialEventCard
-          id="lunch-info"
-          badge="Daily Lunch"
-          badgeColor="indigo"
-          title="Lunch Details"
-          description="We don't have a restaurant reservation, but we can provide you with a list of recommended restaurants in the area."
-          details={[
-            { icon: 'calendar', label: 'Schedule', value: 'To be updated' },
-            { icon: 'mappin',   label: 'Address',  value: 'To be updated' },
-          ]}
-          mapSrc={CONSTANTS.links.crousMap}
-          mapTitle="CROUS Location"
-          mapMinHeight="300px"
-          directionsHref={CONSTANTS.links.crousDirections}
-          className="mb-8"
-        />
-
-        <SpecialEventCard
-          id="dinner"
-          badge="Workshop Dinner"
-          badgeColor="amber"
-          title="Le Bouchon des Filles"
-          description="Join us for the workshop dinner at Le Bouchon des Filles, a cosy Lyon bouchon in the heart of the city."
-          details={[
-            { icon: 'calendar', label: 'Date & Time', value: 'Wednesday, 7:00 PM' },
-            { icon: 'mappin',   label: 'Address',     value: '20, rue Sergent-Blandan, 69001 Lyon' },
-            { icon: 'utensils', label: 'Fee',         value: '44 euros per person' },
-          ]}
-          mapSrc={CONSTANTS.links.restaurantMap}
-          mapTitle="Le Bouchon des Filles Location"
-          directionsHref={CONSTANTS.links.restaurantDirections}
-          registrationHref={CONSTANTS.links.socialEventRegistration}
-          menuHref="/dinner-menu.pdf"
-          className="mb-8"
-        />
-
-        <SpecialEventCard
-          id="social-event"
-          badge="Social Event"
-          badgeColor="purple"
-          title="La Commune"
-          description="Kick off the week with a social evening at La Commune — a lively venue in the 7th arrondissement, perfect for meeting fellow participants."
-          details={[
-            { icon: 'calendar', label: 'Date & Time', value: 'Monday, 7:00 PM' },
-            { icon: 'mappin',   label: 'Address',     value: '3 Rue Pré-Gaudry, 69007 Lyon' },
-            { icon: 'utensils', label: 'Fee',         value: '20 euros per person' },
-          ]}
-          mapSrc={CONSTANTS.links.socialEventMap}
-          mapTitle="La Commune Location"
-          directionsHref={CONSTANTS.links.socialEventDirections}
-          directionsColor="purple"
-          registrationHref={CONSTANTS.links.socialEventRegistration}
-          websiteHref="https://lacommune.co/lyon/"
-        />
-      </div>
+          <SpecialEventCard
+            id="social-event"
+            badge="Social Event"
+            badgeColor="purple"
+            title="La Commune"
+            description="Kick off the week with a social evening at La Commune — a lively venue in the 7th arrondissement, perfect for meeting fellow participants."
+            details={[
+              { icon: 'calendar', label: 'Date & Time', value: 'Monday, 6:30 PM' },
+              { icon: 'mappin',   label: 'Address',     value: '3 Rue Pré-Gaudry, 69007 Lyon' },
+              { icon: 'utensils', label: 'Fee',         value: '20 euros per person' },
+            ]}
+            mapSrc={CONSTANTS.links.socialEventMap}
+            mapTitle="La Commune Location"
+            directionsHref={CONSTANTS.links.socialEventDirections}
+            directionsColor="purple"
+            registrationHref={CONSTANTS.links.socialEventRegistration}
+            websiteHref="https://lacommune.co/lyon/"
+          />
+        </div>
+      )}
     </div>
   );
 };
