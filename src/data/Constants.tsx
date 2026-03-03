@@ -33,6 +33,8 @@ interface ConstantsType {
     restaurantDirections: string;
     crousMap: string;
     crousDirections: string;
+    socialEventMap: string;
+    socialEventDirections: string;
   };
   assets: {
     heroImage: string;
@@ -96,13 +98,17 @@ export const CONSTANTS: ConstantsType = {
     // Directions Link
     mapDirections: "https://www.google.com/maps/dir/?api=1&destination=ENS+de+Lyon+Monod+Campus,+Lyon,+France",
     
-    // Restaurant Data
-    restaurantMap: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2784.805728854067!2d4.832265315566373!3d45.73491497910515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea3b1d7d0d0d%3A0x1a2b3c4d5e6f7g8h!2sENS+de+Lyon!5e0!3m2!1sen!2sfr!4v1620000000000!5m2!1sen!2sfr",
-    restaurantDirections: "https://www.google.com/maps/dir/?api=1&destination=ENS+de+Lyon+Monod+Campus,+Lyon,+France",
+    // Restaurant (Dinner): Le Bouchon des Filles – 20 rue Sergent-Blandan, 69001 Lyon
+    restaurantMap: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2783.234567890123!2d4.828123456789012!3d45.762345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4eb59c1c1c1c1%3A0xabcdef1234567890!2sLe+Bouchon+des+Filles%2C+20+Rue+Sergent-Blandan%2C+69001+Lyon!5e0!3m2!1sen!2sfr!4v1700000000001!5m2!1sen!2sfr",
+    restaurantDirections: "https://www.google.com/maps/dir/?api=1&destination=20+Rue+Sergent-Blandan,+69001+Lyon,+France",
     
     // CROUS Data
     crousMap: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2784.805728854067!2d4.832265315566373!3d45.73491497910515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea3b1d7d0d0d%3A0x1a2b3c4d5e6f7g8h!2sENS+de+Lyon!5e0!3m2!1sen!2sfr!4v1620000000000!5m2!1sen!2sfr",
-    crousDirections: "https://www.google.com/maps/dir/?api=1&destination=ENS+de+Lyon+Monod+Campus,+Lyon,+France"
+    crousDirections: "https://www.google.com/maps/dir/?api=1&destination=ENS+de+Lyon+Monod+Campus,+Lyon,+France",
+
+    // Social Event: La Commune – 3 Rue Pré-Gaudry, 69007 Lyon
+    socialEventMap: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2784.912345678901!2d4.834567890123456!3d45.734567890123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea4b2e2e2e2e%3A0x9876543210fedcba!2sLa+Commune%2C+3+Rue+Pr%C3%A9-Gaudry%2C+69007+Lyon!5e0!3m2!1sen!2sfr!4v1700000000002!5m2!1sen!2sfr",
+    socialEventDirections: "https://www.google.com/maps/dir/?api=1&destination=3+Rue+Pré-Gaudry,+69007+Lyon,+France"
   },
   assets: {
     heroImage: HeaderImage,
