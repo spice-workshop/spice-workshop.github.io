@@ -11,6 +11,7 @@ interface ConstantsType {
     subtitle: string;
     date: string;
     location: string;
+    email: string;
     description: ReactNode;
     cocText: string;
   };
@@ -55,6 +56,7 @@ export const CONSTANTS: ConstantsType = {
     subtitle: "Simulating Physics in Celestial Ecosystems",
     date: "March 16-20, 2026",
     location: "Lyon, France",
+    email: "spice2.workshop@gmail.com",
     description: (
       <>
         In April 2024, we organised the workshop <a href="https://www.astr.tohoku.ac.jp/~tomida/spice/" target="_blank" rel="noreferrer" className="text-indigo-600 dark:text-indigo-400 hover:underline">"Simulating Physics In Celestial Ecosystem (SPiCE): Star, Disk, and Planet Formation"</a> at Tohoku University in Sendai, Japan. 
@@ -100,7 +102,7 @@ export const CONSTANTS: ConstantsType = {
     mapDirections: "https://www.google.com/maps/dir/?api=1&destination=ENS+de+Lyon+Monod+Campus,+Lyon,+France",
     
     // Restaurant (Dinner): Le Bouchon des Filles – 20 rue Sergent-Blandan, 69001 Lyon
-    restaurantMap: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2783.234567890123!2d4.828123456789012!3d45.762345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4eb59c1c1c1c1%3A0xabcdef1234567890!2sLe+Bouchon+des+Filles%2C+20+Rue+Sergent-Blandan%2C+69001+Lyon!5e0!3m2!1sen!2sfr!4v1700000000001!5m2!1sen!2sfr",
+    restaurantMap: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2543.308266558406!2d4.827069719719415!3d45.76866319385698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4eb01f439fe73%3A0xc28debbb730b4077!2sLe%20Bouchon%20des%20Filles!5e0!3m2!1sen!2sfr!4v1772545481328!5m2!1sen!2sfr",
     restaurantDirections: "https://www.google.com/maps/dir/?api=1&destination=20+Rue+Sergent-Blandan,+69001+Lyon,+France",
     
     // CROUS Data
@@ -108,7 +110,7 @@ export const CONSTANTS: ConstantsType = {
     crousDirections: "https://www.google.com/maps/dir/?api=1&destination=ENS+de+Lyon+Monod+Campus,+Lyon,+France",
 
     // Social Event: La Commune – 3 Rue Pré-Gaudry, 69007 Lyon
-    socialEventMap: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2784.912345678901!2d4.834567890123456!3d45.734567890123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea4b2e2e2e2e%3A0x9876543210fedcba!2sLa+Commune%2C+3+Rue+Pr%C3%A9-Gaudry%2C+69007+Lyon!5e0!3m2!1sen!2sfr!4v1700000000002!5m2!1sen!2sfr",
+    socialEventMap: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d693.7037080399427!2d4.833498452602922!3d45.742159379077506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea36fe0aae01%3A0x7ec701be035dddb!2sLa%20Commune!5e0!3m2!1sen!2sfr!4v1772545573411!5m2!1sen!2sfr",
     socialEventDirections: "https://www.google.com/maps/dir/?api=1&destination=3+Rue+Pré-Gaudry,+69007+Lyon,+France",
     socialEventRegistration: "https://forms.gle/ktSeR9Sa85DDnup97"
   },

@@ -18,6 +18,33 @@ const LogisticsView: FC = () => {
           keywords="Lyon travel, ENS de Lyon venue, conference logistics, visa France, hotel Lyon, TGV Lyon, Rhônexpress"
         />
         
+        {/* Travel Advisory Notice */}
+        <div className="mb-12">
+            <div className="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-6 rounded-r-xl shadow-sm">
+                <div className="flex items-start gap-3">
+                    <Shield className="w-6 h-6 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                        <h3 className="text-lg font-bold text-amber-800 dark:text-amber-300 mb-2">
+                            Travel Advisory Notice (Middle East Situation)
+                        </h3>
+                        <div className="text-amber-900/80 dark:text-amber-200/80 space-y-3 text-sm leading-relaxed">
+                            <p>
+                                Due to the ongoing security situation in the Middle East, airlines may adjust schedules, re-route, or cancel flights on short notice. This could affect travel plans for some workshop participants navigating through or from affected regions.
+                            </p>
+                            <p>
+                                Attendees are strongly advised to monitor updates directly from their airlines and relevant national authorities, and to make travel arrangements with this in mind (e.g., considering flexible booking options).
+                            </p>
+                            <p>
+                                If you are unable to attend the workshop as a result of flight disruptions or related travel restrictions, please notify the organizing committee as soon as possible at <a href={`mailto:${CONSTANTS.details.email}`} className="font-bold underline hover:text-amber-700 dark:hover:text-amber-100">{CONSTANTS.details.email}</a>. Please include your name and registration details in your email.
+                            </p>
+                            <p className="font-medium italic">
+                                Thank you for your understanding.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         {/* Section 1: Practical Information */}
         <div className="mb-20">
@@ -251,7 +278,8 @@ const LogisticsView: FC = () => {
                 <div>
                      <div className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
                         <h4 className="font-bold text-slate-800 dark:text-white mb-1">Salle Condorcet - ENS de Lyon (Monod Site)</h4>
-                        <p className="text-slate-600 dark:text-slate-400 text-sm mb-2">1 Pl. de l'École, 69007 Lyon</p>
+                        <p className="text-slate-600 dark:text-slate-400 text-sm mb-1">1 Pl. de l'École, 69007 Lyon</p>
+                        <p className="text-slate-600 dark:text-slate-400 text-sm mb-2">The star icon on the map show the location of the venue. Click the map to zoom in and find the venue.</p>
                         
                         <div className="bg-amber-400 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mb-4 flex items-start gap-3">
                             <Lightbulb className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
