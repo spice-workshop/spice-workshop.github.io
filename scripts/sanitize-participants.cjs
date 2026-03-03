@@ -49,7 +49,7 @@ function sanitize() {
   const records = parseCSV(csv);
 
   const sanitized = records
-    .filter(r => r.Firstname || r.Lastname) // skip empty rows
+    // .filter(r => r.Firstname || r.Lastname) // skip empty rows
     .map(r => ({
       firstName: r.Firstname || '',
       lastName: r.Lastname || '',
