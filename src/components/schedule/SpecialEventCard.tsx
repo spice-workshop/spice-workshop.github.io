@@ -15,14 +15,15 @@ interface Props {
   title: string;
   description: ReactNode;
   details: DetailItem[];
-  mapSrc: string;
-  mapTitle: string;
+  mapSrc?: string;
+  mapTitle?: string;
   mapMinHeight?: string;
-  directionsHref: string;
+  directionsHref?: string;
   directionsColor?: 'indigo' | 'purple';
   registrationHref?: string;
   menuHref?: string;
   websiteHref?: string;
+  customMapSide?: ReactNode;
   className?: string;
 }
 
@@ -64,6 +65,7 @@ const SpecialEventCard: FC<Props> = ({
   registrationHref,
   menuHref,
   websiteHref,
+  customMapSide,
   className = '',
 }) => {
   const iconColorClass = ICON_COLORS[badgeColor] ?? ICON_COLORS.indigo;
@@ -133,26 +135,33 @@ const SpecialEventCard: FC<Props> = ({
 
         {/* Map side */}
         <div className="h-full bg-slate-100 dark:bg-slate-700 border-l border-slate-200 dark:border-slate-700 relative" style={{ minHeight: mapMinHeight }}>
-          <iframe
-            src={mapSrc}
-            width="600"
-            height="400"
-            style={{ border: 0, width: '100%', height: '100%', minHeight: mapMinHeight }}
-            allowFullScreen={undefined}
-            loading="lazy"
-            title={mapTitle}
-            className="absolute inset-0"
-          />
-          <div className="absolute bottom-6 right-6">
-            <a
-              href={directionsHref}
-              target="_blank"
-              rel="noreferrer"
-              className={`${btnColorClass} text-white font-bold py-3 px-6 rounded-full shadow-lg flex items-center transition-transform transform hover:scale-105`}
-            >
-              <Compass className="w-5 h-5 mr-2" /> Get Directions
-            </a>
-          </div>
+          {customMapSide ? (
+            customMapSide
+          ) : mapSrc ? (
+            <iframe
+              src={mapSrc}
+              width="600"
+              height="400"
+              style={{ border: 0, width: '100%', height: '100%', minHeight: mapMinHeight }}
+              allowFullScreen={undefined}
+              loading="lazy"
+              title={mapTitle}
+              className="absolute inset-0"
+            />
+          ) : null}
+
+          {directionsHref && (
+            <div className="absolute bottom-6 right-6">
+              <a
+                href={directionsHref}
+                target="_blank"
+                rel="noreferrer"
+                className={`${btnColorClass} text-white font-bold py-3 px-6 rounded-full shadow-lg flex items-center transition-transform transform hover:scale-105`}
+              >
+                <Compass className="w-5 h-5 mr-2" /> Get Directions
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </div>
