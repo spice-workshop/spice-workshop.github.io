@@ -15,8 +15,8 @@
   {
     "firstName": "Adnan Ali",
     "lastName": "Ahmad",
-    "sessionDate": "2026-03-17",
-    "timeRange": "09:00 - 09:25",
+    "sessionDate": "2026-03-16",
+    "timeRange": "15:45 - 16:10",
     "isParticipant": true,
     "isLOC": true,
     "isSOC": false,
@@ -327,8 +327,8 @@
   {
     "firstName": "Leonardo",
     "lastName": "Krapp",
-    "sessionDate": "2026-03-16",
-    "timeRange": "15:45 - 16:10",
+    "sessionDate": "2026-03-17",
+    "timeRange": "09:00 - 09:25",
     "isParticipant": true,
     "isLOC": false,
     "isSOC": false,
@@ -348,7 +348,7 @@
     "isChair": false,
     "organisation": "Ens de Lyon",
     "country": "France",
-    "title": "Shamrock: unlocking the Exascale"
+    "title": "Topological discoseismology of pressure bumps and dips"
   },
   {
     "firstName": "Ugo",
