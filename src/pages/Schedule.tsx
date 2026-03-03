@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import type { FC } from 'react';
-import { Calendar, Utensils, Search, Download } from 'lucide-react';
+import { Calendar, Utensils, Search, Download, MapPin } from 'lucide-react';
 import { CONSTANTS } from '../data/Constants';
 import { useSchedule } from '../utils/useSchedule';
+import lunchPlaces from '../data/lunchPlaces.json';
 
 import SEO from '../components/layout/SEO';
 import SectionTitle from '../components/ui/SectionTitle';
@@ -179,22 +180,52 @@ const ScheduleView: FC = () => {
       {activeView === 'events' && (
         <div className="animate-fade-in relative max-w-5xl mx-auto space-y-8">
           <SpecialEventCard
-            id="lunch-info"
-            badge="Daily Lunch"
-            badgeColor="indigo"
-            title="Lunch Details"
-            description="We don't have a restaurant reservation, but we can provide you with a list of recommended restaurants in the area."
-            details={[
-              { icon: 'calendar', label: 'Schedule', value: 'To be updated' },
-              { icon: 'mappin',   label: 'Address',  value: 'To be updated' },
-            ]}
-            mapSrc={CONSTANTS.links.crousMap}
-            mapTitle="CROUS Location"
-            mapMinHeight="300px"
-            directionsHref={CONSTANTS.links.crousDirections}
-          />
-
-          <SpecialEventCard
+          id="lunch-info"
+          badge="Daily Lunch"
+          badgeColor="indigo"
+          title="Lunch Options"
+          description="We do not have a reserved conference restaurant for lunch. However, we have compiled a list of 18 highly-rated lunch spots in the Gerland district near the ENS de Lyon venue."
+          details={[
+            { icon: 'calendar', label: 'Schedule', value: 'Check daily schedule' },
+            { icon: 'mappin',   label: 'Location',  value: 'Various locations in Gerland (7th Arr.)' },
+          ]}
+          customMapSide={
+            <div className="h-full flex flex-col bg-slate-50 dark:bg-slate-800/50">
+              <div className="p-6 border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex justify-between items-center">
+                <h4 className="font-bold text-lg text-slate-800 dark:text-white">Curated Lunch Spots</h4>
+                <a
+                  href={CONSTANTS.links.lunchMapList}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 font-bold text-sm flex items-center bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1.5 rounded-full transition-colors"
+                >
+                  <MapPin className="w-4 h-4 mr-1" /> View on Map
+                </a>
+              </div>
+              <div className="overflow-y-auto flex-1 p-6 space-y-3" style={{ maxHeight: '400px' }}>
+                {lunchPlaces.map(place => (
+                  <div key={place.id} className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm flex justify-between items-center hover:border-indigo-200 dark:hover:border-indigo-800 transition-colors">
+                    <div>
+                      <h5 className="font-bold text-slate-800 dark:text-slate-100">{place.name}</h5>
+                      <div className="flex items-center text-xs text-slate-500 dark:text-slate-400 mt-1 space-x-2">
+                        <span className="bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded-full">{place.type}</span>
+                        <span>•</span>
+                        <span>{place.priceRange}</span>
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-end">
+                      <div className="flex items-center text-amber-500 font-bold text-sm">
+                        {place.rating} <span className="text-amber-400 ml-1">★</span>
+                      </div>
+                      <span className="text-[10px] text-slate-400 mt-0.5">({place.reviews})</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          }
+          className="mb-8"
+        />  <SpecialEventCard
             id="dinner"
             badge="Workshop Dinner"
             badgeColor="amber"
