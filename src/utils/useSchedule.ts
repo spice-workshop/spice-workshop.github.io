@@ -14,7 +14,7 @@ export interface ScheduleEvent {
     title: string;
     status: 'upcoming' | 'completed' | 'active' | 'ended';
     speaker?: string;
-    highlight?: boolean;
+    highlight?: 'amber' | 'emerald' | 'indigo' | 'fuchsia' | 'purple' | 'rose' | 'cyan' | 'slate' | false;
     linkId?: string;
     description?: string;
 }
@@ -61,7 +61,24 @@ export const useSchedule = () => {
                     const isFixed = !p.name || p.name.trim() === '';
                     
                     // Determine highlight
-                    const highlight = isFixed && (p.talkTitle === 'Opening' || p.talkTitle === 'Discussion' || p.talkTitle.includes('Workshop Dinner'));
+                    let highlight: 'amber' | 'emerald' | 'indigo' | 'fuchsia' | 'purple' | 'rose' | 'cyan' | 'slate' | false = false;
+                    if (isFixed) {
+                        if (p.talkTitle === 'Opening') {
+                            highlight = 'amber';
+                        } else if (p.talkTitle.includes('Workshop Dinner')) {
+                            highlight = 'rose';
+                        } else if (p.talkTitle === 'Discussion') {
+                            highlight = 'emerald';
+                        } else if (p.talkTitle.includes('Lunch')) {
+                            highlight = 'indigo';
+                        } else if (p.talkTitle.includes('Coffee Break')) {
+                            highlight = 'fuchsia';
+                        } else if (p.talkTitle.includes('Social Evening')) {
+                            highlight = 'cyan';
+                        } else if (p.talkTitle === 'End') {
+                            highlight = 'slate';
+                        }
+                    }
                     
                     // Generate ID
                     let linkId = '';

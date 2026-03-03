@@ -13,14 +13,39 @@ interface Props {
 const ScheduleEventRow: FC<Props> = ({ event, eventId, isExpanded, onToggle }) => {
   const hasAbstract = !!event.abstract;
 
+  // Map highlight colors to tailwind classes
+  const getContainerClasses = (color: typeof event.highlight) => {
+    switch (color) {
+      case 'amber':   return 'bg-amber-50 dark:bg-amber-900/20 border-amber-100 dark:border-amber-900/30 hover:border-amber-200';
+      case 'emerald': return 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-100 dark:border-emerald-900/30 hover:border-emerald-200';
+      case 'indigo':  return 'bg-indigo-50 dark:bg-indigo-900/20 border-indigo-100 dark:border-indigo-900/30 hover:border-indigo-200';
+      case 'fuchsia': return 'bg-fuchsia-50 dark:bg-fuchsia-900/20 border-fuchsia-100 dark:border-fuchsia-900/30 hover:border-fuchsia-200';
+      case 'purple':  return 'bg-purple-50 dark:bg-purple-900/20 border-purple-100 dark:border-purple-900/30 hover:border-purple-200';
+      case 'rose':    return 'bg-rose-50 dark:bg-rose-900/20 border-rose-100 dark:border-rose-900/30 hover:border-rose-200';
+      case 'cyan':    return 'bg-cyan-50 dark:bg-cyan-900/20 border-cyan-100 dark:border-cyan-900/30 hover:border-cyan-200';
+      case 'slate':   return 'bg-slate-100 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600';
+      default:        return 'bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700/50 shadow-sm';
+    }
+  };
+
+  const getTextClasses = (color: typeof event.highlight) => {
+    switch (color) {
+      case 'amber':   return 'text-amber-900 dark:text-amber-400';
+      case 'emerald': return 'text-emerald-900 dark:text-emerald-400';
+      case 'indigo':  return 'text-indigo-900 dark:text-indigo-400';
+      case 'fuchsia': return 'text-fuchsia-900 dark:text-fuchsia-400';
+      case 'purple':  return 'text-purple-900 dark:text-purple-400';
+      case 'rose':    return 'text-rose-900 dark:text-rose-400';
+      case 'cyan':    return 'text-cyan-900 dark:text-cyan-400';
+      case 'slate':   return 'text-slate-600 dark:text-slate-300';
+      default:        return 'text-slate-800 dark:text-slate-100';
+    }
+  };
+
   return (
     <div
       id={event.linkId}
-      className={`flex flex-col p-4 rounded-lg transition-colors border border-transparent hover:border-slate-100 dark:hover:border-slate-700 group ${
-        event.highlight
-          ? 'bg-amber-50 dark:bg-amber-900/20 border-amber-100 dark:border-amber-900/30 hover:border-amber-200'
-          : 'bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700/50 shadow-sm'
-      }`}
+      className={`flex flex-col p-4 rounded-lg transition-colors border border-transparent group ${getContainerClasses(event.highlight)}`}
     >
       <div
         className={`flex flex-col md:flex-row md:items-center ${hasAbstract ? 'cursor-pointer' : ''}`}
@@ -32,7 +57,7 @@ const ScheduleEventRow: FC<Props> = ({ event, eventId, isExpanded, onToggle }) =
         <div className="flex-grow md:border-l-2 md:border-slate-200 dark:md:border-slate-700 md:pl-4">
           <div className="flex justify-between items-start">
             <div className="flex-grow">
-              <h4 className={`font-bold text-lg ${event.highlight ? 'text-amber-900 dark:text-amber-400' : 'text-slate-800 dark:text-slate-100'}`}>
+              <h4 className={`font-bold text-lg ${getTextClasses(event.highlight)}`}>
                 {event.title}
               </h4>
               {event.speaker && (
