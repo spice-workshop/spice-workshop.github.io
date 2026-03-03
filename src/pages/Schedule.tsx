@@ -172,6 +172,8 @@ const ScheduleView: FC = () => {
           mapSrc={CONSTANTS.links.restaurantMap}
           mapTitle="Le Bouchon des Filles Location"
           directionsHref={CONSTANTS.links.restaurantDirections}
+          registrationHref={CONSTANTS.links.socialEventRegistration}
+          menuHref="/dinner-menu.pdf"
           className="mb-8"
         />
 
@@ -190,6 +192,8 @@ const ScheduleView: FC = () => {
           mapTitle="La Commune Location"
           directionsHref={CONSTANTS.links.socialEventDirections}
           directionsColor="purple"
+          registrationHref={CONSTANTS.links.socialEventRegistration}
+          websiteHref="https://lacommune.co/lyon/"
         />
       </div>
     </div>
