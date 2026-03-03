@@ -37,6 +37,7 @@ interface ConstantsType {
     socialEventMap: string;
     socialEventDirections: string;
     socialEventRegistration: string;
+    lunchMapList: string;
   };
   assets: {
     heroImage: string;
@@ -112,7 +113,10 @@ export const CONSTANTS: ConstantsType = {
     // Social Event: La Commune – 3 Rue Pré-Gaudry, 69007 Lyon
     socialEventMap: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d693.7037080399427!2d4.833498452602922!3d45.742159379077506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea36fe0aae01%3A0x7ec701be035dddb!2sLa%20Commune!5e0!3m2!1sen!2sfr!4v1772545573411!5m2!1sen!2sfr",
     socialEventDirections: "https://www.google.com/maps/dir/?api=1&destination=3+Rue+Pré-Gaudry,+69007+Lyon,+France",
-    socialEventRegistration: "https://forms.gle/ktSeR9Sa85DDnup97"
+    socialEventRegistration: "https://forms.gle/ktSeR9Sa85DDnup97",
+    
+    // Curated Lunch Places List
+    lunchMapList: "https://maps.app.goo.gl/a1aCZfYo9aTHeoCV6"
   },
   assets: {
     heroImage: HeaderImage,

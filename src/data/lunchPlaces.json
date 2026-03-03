@@ -1,0 +1,164 @@
+[
+  {
+    "id": 1,
+    "name": "Fratelli Trattoria",
+    "type": "Italian",
+    "rating": 3.9,
+    "reviews": 780,
+    "priceRange": "€10–20",
+    "address": "Gerland, Lyon"
+  },
+  {
+    "id": 2,
+    "name": "Momiji café",
+    "type": "Japanese",
+    "rating": 4.8,
+    "reviews": 189,
+    "priceRange": "€10–20",
+    "address": "Lyon 7 Gerland"
+  },
+  {
+    "id": 3,
+    "name": "Le Bistrot Boulanger",
+    "type": "Bakery",
+    "rating": 3.3,
+    "reviews": 258,
+    "priceRange": "€1–10",
+    "address": "Gerland, Lyon"
+  },
+  {
+    "id": 4,
+    "name": "Brasserie Debourg",
+    "type": "Brasserie",
+    "rating": 4.4,
+    "reviews": 731,
+    "priceRange": "€20–30",
+    "address": "Near Debourg Station, Gerland"
+  },
+  {
+    "id": 5,
+    "name": "Crêperie Bigoudène",
+    "type": "Crêperie",
+    "rating": 4.8,
+    "reviews": 353,
+    "priceRange": "N/A",
+    "address": "Gerland, Lyon"
+  },
+  {
+    "id": 6,
+    "name": "Pizza Cosy",
+    "type": "Pizza",
+    "rating": 4.7,
+    "reviews": 1075,
+    "priceRange": "€10–20",
+    "address": "Gerland, Lyon"
+  },
+  {
+    "id": 7,
+    "name": "Maison Achard",
+    "type": "Bakery",
+    "rating": 3.8,
+    "reviews": 284,
+    "priceRange": "€1–10",
+    "address": "Gerland, Lyon"
+  },
+  {
+    "id": 8,
+    "name": "Achard Artisan Boulanger Patissier",
+    "type": "Bakery",
+    "rating": 3.5,
+    "reviews": 143,
+    "priceRange": "€1–10",
+    "address": "Gerland, Lyon"
+  },
+  {
+    "id": 9,
+    "name": "La Table De Jp",
+    "type": "Restaurant",
+    "rating": 4.6,
+    "reviews": 120,
+    "priceRange": "€20–30",
+    "address": "Gerland, Lyon"
+  },
+  {
+    "id": 10,
+    "name": "L’Autre Monde",
+    "type": "Restaurant",
+    "rating": 3.9,
+    "reviews": 817,
+    "priceRange": "€20–30",
+    "address": "Gerland, Lyon"
+  },
+  {
+    "id": 11,
+    "name": "Zappo",
+    "type": "Italian",
+    "rating": 4.5,
+    "reviews": 2220,
+    "priceRange": "€20–30",
+    "address": "Gerland, Lyon"
+  },
+  {
+    "id": 12,
+    "name": "El bar Debourg",
+    "type": "French Restaurant",
+    "rating": 4.4,
+    "reviews": 484,
+    "priceRange": "€10–20",
+    "address": "239 Rue Marcel Mérieux, 69007 Lyon"
+  },
+  {
+    "id": 13,
+    "name": "Restaurant 4 Horizons",
+    "type": "Vietnamese",
+    "rating": 4.5,
+    "reviews": 103,
+    "priceRange": "€10–20",
+    "address": "Gerland, Lyon"
+  },
+  {
+    "id": 14,
+    "name": "Le Darele",
+    "type": "Sandwich shop",
+    "rating": 4.8,
+    "reviews": 21,
+    "priceRange": "N/A",
+    "address": "Gerland, Lyon"
+  },
+  {
+    "id": 15,
+    "name": "La Pause (Bubble tea/Goûter/Sushi)",
+    "type": "Tea house",
+    "rating": 4.0,
+    "reviews": 14,
+    "priceRange": "N/A",
+    "address": "Gerland, Lyon"
+  },
+  {
+    "id": 16,
+    "name": "Kiosque Istambul",
+    "type": "Turkish Restaurant",
+    "rating": 4.1,
+    "reviews": 101,
+    "priceRange": "€10–20",
+    "address": "Gerland, Lyon"
+  },
+  {
+    "id": 17,
+    "name": "Delizie Italiane",
+    "type": "Grocery store / Deli",
+    "rating": 5.0,
+    "reviews": 16,
+    "priceRange": "N/A",
+    "address": "Gerland, Lyon"
+  },
+  {
+    "id": 18,
+    "name": "C.R.O.U.S. Monod Restaurant",
+    "type": "University Restaurant",
+    "rating": 4.3,
+    "reviews": 53,
+    "priceRange": "€1–10",
+    "address": "ENS Lyon Monod campus, Gerland"
+  }
+]
