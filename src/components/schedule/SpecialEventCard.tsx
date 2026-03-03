@@ -1,5 +1,5 @@
 import type { FC, ReactNode } from 'react';
-import { Calendar, MapPin, Utensils, Compass } from 'lucide-react';
+import { Calendar, MapPin, Utensils, Compass, ClipboardList, BookOpen, Globe2 } from 'lucide-react';
 
 interface DetailItem {
   icon: 'calendar' | 'mappin' | 'utensils';
@@ -20,6 +20,9 @@ interface Props {
   mapMinHeight?: string;
   directionsHref: string;
   directionsColor?: 'indigo' | 'purple';
+  registrationHref?: string;
+  menuHref?: string;
+  websiteHref?: string;
   className?: string;
 }
 
@@ -58,6 +61,9 @@ const SpecialEventCard: FC<Props> = ({
   mapMinHeight = '400px',
   directionsHref,
   directionsColor = 'indigo',
+  registrationHref,
+  menuHref,
+  websiteHref,
   className = '',
 }) => {
   const iconColorClass = ICON_COLORS[badgeColor] ?? ICON_COLORS.indigo;
@@ -89,6 +95,39 @@ const SpecialEventCard: FC<Props> = ({
                 </div>
               </div>
             ))}
+
+            {registrationHref && (
+              <a
+                href={registrationHref}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-2 w-full py-3 px-6 rounded-xl font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm"
+              >
+                <ClipboardList className="w-5 h-5" /> Register Now
+              </a>
+            )}
+
+            {menuHref && (
+              <a
+                href={menuHref}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-2 w-full py-3 px-6 rounded-xl font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-900/30 dark:hover:bg-indigo-900/50 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800 transition-colors"
+              >
+                <BookOpen className="w-5 h-5" /> View Menu
+              </a>
+            )}
+
+            {websiteHref && (
+              <a
+                href={websiteHref}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-2 w-full py-3 px-6 rounded-xl font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-900/30 dark:hover:bg-indigo-900/50 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800 transition-colors"
+              >
+                <Globe2 className="w-5 h-5" /> Visit Website
+              </a>
+            )}
           </div>
         </div>
 
