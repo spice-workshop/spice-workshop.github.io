@@ -1,5 +1,5 @@
+import { useState, useEffect } from 'react';
 import type { FC } from 'react';
-import { useState } from 'react';
 import { Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
 import Card from '../ui/Card';
 import ScheduleEventRow from './ScheduleEventRow';
@@ -28,6 +28,22 @@ interface DayNavProps {
   isLast?: boolean;
 }
 
+/** Parse "HH:mm - HH:mm" and check if `now` falls within that range on `dayDate`. */
+function isCurrentEvent(event: EnrichedScheduleEvent, dayDate: string, now: Date): boolean {
+  if (!event.time || !event.time.includes('-')) return false;
+  const [startStr, endStr] = event.time.split('-').map(s => s.trim());
+  if (!startStr || !endStr) return false;
+
+  const [sh, sm] = startStr.split(':').map(Number);
+  const [eh, em] = endStr.split(':').map(Number);
+
+  // Build Date objects in CET for comparison
+  const start = new Date(`${dayDate}T${String(sh).padStart(2, '0')}:${String(sm).padStart(2, '0')}:00+01:00`);
+  const end = new Date(`${dayDate}T${String(eh).padStart(2, '0')}:${String(em).padStart(2, '0')}:00+01:00`);
+
+  return now >= start && now < end;
+}
+
 const DayNav: FC<DayNavProps> = ({ onPrev, onNext, isFirst, isLast }) => (
   <div className="flex items-center gap-2">
     <button
@@ -50,12 +66,20 @@ const DayNav: FC<DayNavProps> = ({ onPrev, onNext, isFirst, isLast }) => (
 );
 
 const ScheduleDayCard: FC<Props> = ({ dayData, dayIdx, onPrev, onNext, isFirst, isLast }) => {
-  const [expandedEventId, setExpandedEventId] = useState<string | null>(null);
+  const [now, setNow] = useState(() => new Date());
 
-  const toggleExpand = (id: string) =>
-    setExpandedEventId(expandedEventId === id ? null : id);
+  useEffect(() => {
+    const id = setInterval(() => setNow(new Date()), 60_000);
+    return () => clearInterval(id);
+  }, []);
 
   const showNav = !!onPrev && !!onNext;
+
+  // Enrich events with isCurrent
+  const eventsWithCurrent = dayData.events.map(event => ({
+    ...event,
+    isCurrent: isCurrentEvent(event, dayData.date, now),
+  }));
 
   return (
     <Card className="border-t-4 border-t-indigo-500 min-h-[400px]">
@@ -76,16 +100,14 @@ const ScheduleDayCard: FC<Props> = ({ dayData, dayIdx, onPrev, onNext, isFirst, 
 
       {/* Events */}
       <div className="space-y-4">
-        {dayData.events.length > 0 ? (
-          dayData.events.map((event: EnrichedScheduleEvent, idx: number) => {
+        {eventsWithCurrent.length > 0 ? (
+          eventsWithCurrent.map((event, idx) => {
             const eventId = event.linkId || `event-${dayIdx}-${idx}`;
             return (
               <ScheduleEventRow
                 key={eventId}
                 event={event}
                 eventId={eventId}
-                isExpanded={expandedEventId === eventId}
-                onToggle={toggleExpand}
               />
             );
           })
@@ -105,4 +127,3 @@ const ScheduleDayCard: FC<Props> = ({ dayData, dayIdx, onPrev, onNext, isFirst, 
 };
 
 export default ScheduleDayCard;
-
