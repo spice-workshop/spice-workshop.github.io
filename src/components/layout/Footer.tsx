@@ -10,7 +10,7 @@ const Footer: FC = () => (
             <p className="text-sm mt-1">Simulating Physics in Celestial Ecosystems</p>
         </div>
         <div className="flex space-x-6 mb-4 md:mb-0">
-            <a href={CONSTANTS.links.spice1} target="_blank" rel="noreferrer" className="hover:text-white transition-colors flex items-center text-sm"><ExternalLink className="w-4 h-4 mr-2" /> SPiCE 1 Website</a>
+            <a href={CONSTANTS.links.spice1} target="_blank" rel="noreferrer noopener" className="hover:text-white transition-colors flex items-center text-sm"><ExternalLink className="w-4 h-4 mr-2" /> SPiCE 1 Website</a>
             <a href="mailto:spice2.workshop@gmail.com" className="hover:text-white transition-colors flex items-center text-sm"><Mail className="w-4 h-4 mr-2" /> Contact Us</a>
         </div>
         <div className="text-sm">© 2026 SPiCE Conference.</div>
