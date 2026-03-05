@@ -13,12 +13,14 @@ const pages = [
 ];
 
 const generateSitemap = () => {
+  const lastmod = new Date().toISOString().split('T')[0];
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages
   .map(
     (page) => `  <url>
     <loc>${BASE_URL}${page.path === '/' ? '/' : page.path}</loc>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
   </url>`
