@@ -1,5 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useMemo } from 'react';
 import { useParticipants } from './csvLoader';
+import type { EnrichedScheduleEvent, DaySchedule } from '../types/Schedule';
+
+// Re-export for consumers that import from this module
+export type { ScheduleEvent, EnrichedScheduleEvent, DaySchedule } from '../types/Schedule';
 
 const CONFERENCE_DAYS = [
     { date: "2026-03-16", label: "Day 1", fullLabel: "Day 1 (Mar 16)" },
@@ -9,123 +13,67 @@ const CONFERENCE_DAYS = [
     { date: "2026-03-20", label: "Day 5", fullLabel: "Day 5 (Mar 20)" },
 ];
 
-export interface ScheduleEvent {
-    time: string;
-    title: string;
-    status: 'upcoming' | 'completed' | 'active' | 'ended';
-    speaker?: string;
-    highlight?: 'amber' | 'emerald' | 'indigo' | 'fuchsia' | 'purple' | 'rose' | 'cyan' | 'slate' | false;
-    linkId?: string;
-    description?: string;
-}
-
-export interface EnrichedScheduleEvent extends ScheduleEvent {
-    type?: 'talk' | 'fixed';
-    sortTime?: string; // "HH:mm" for sorting
-    abstract?: string;
-}
-
-export interface DaySchedule {
-    day: string; // Display label "Day 1 (Mar 16)"
-    date: string; // ISO date "2026-03-16"
-    label: string; // "Mon" or "Day 1"
-    events: EnrichedScheduleEvent[];
-}
-
 export const useSchedule = () => {
     const { data: participants, loading, error } = useParticipants();
-    const [schedule, setSchedule] = useState<DaySchedule[]>([]);
 
-    useEffect(() => {
-        if (loading || error) return;
+    const schedule = useMemo<DaySchedule[]>(() => {
+        if (loading || error) return [];
 
         // Group talks by day
         const daysMap = new Map<string, EnrichedScheduleEvent[]>();
-
-        // Initialize days
-        CONFERENCE_DAYS.forEach(dayInfo => {
-            daysMap.set(dayInfo.date, []);
-        });
+        CONFERENCE_DAYS.forEach(dayInfo => daysMap.set(dayInfo.date, []));
 
         // Process all entries (talks + fixed events from CSV)
         participants.forEach(p => {
-            if (p.sessionDate && p.timeRange) {
-                // Normalize date (ensure it matches YYYY-MM-DD)
-                const date = p.sessionDate.trim();
-                
-                if (daysMap.has(date)) {
-                    // Extract start time for sorting (e.g. "14:00 - 14:30" -> "14:00")
-                    const startTime = p.timeRange.split('-')[0].trim();
-                    
-                    // Infer type: if no name, it's a fixed event
-                    const isFixed = !p.name || p.name.trim() === '';
-                    
-                    // Determine highlight
-                    let highlight: 'amber' | 'emerald' | 'indigo' | 'fuchsia' | 'purple' | 'rose' | 'cyan' | 'slate' | false = false;
-                    if (isFixed) {
-                        if (p.talkTitle === 'Opening') {
-                            highlight = 'amber';
-                        } else if (p.talkTitle.includes('Workshop Dinner')) {
-                            highlight = 'rose';
-                        } else if (p.talkTitle === 'Discussion') {
-                            highlight = 'emerald';
-                        } else if (p.talkTitle.includes('Lunch')) {
-                            highlight = 'indigo';
-                        } else if (p.talkTitle.includes('Coffee Break')) {
-                            highlight = 'fuchsia';
-                        } else if (p.talkTitle.includes('Social Evening')) {
-                            highlight = 'cyan';
-                        } else if (p.talkTitle === 'End') {
-                            highlight = 'slate';
-                        }
-                    }
-                    
-                    // Generate ID
-                    let linkId = '';
-                    if (isFixed) {
-                         // fixed-2026-03-16-1000-lunch
-                         linkId = `fixed-${date}-${startTime.replace(':','')}-${p.talkTitle.replace(/\s+/g, '-').toLowerCase()}`;
-                    } else {
-                         // talk-lastname-1000
-                         linkId = `talk-${p.lastName.toLowerCase()}-${startTime.replace(':','')}`;
-                    }
+            if (!p.sessionDate || !p.timeRange) return;
 
-                    daysMap.get(date)?.push({
-                        time: p.timeRange,
-                        title: p.talkTitle,
-                        status: 'upcoming', // Default status
-                        speaker: p.name, 
-                        highlight: highlight,
-                        type: isFixed ? 'fixed' : 'talk',
-                        sortTime: startTime,
-                        linkId: linkId, 
-                        abstract: p.abstract
-                    });
+            const date = p.sessionDate.trim();
+            if (!daysMap.has(date)) return;
+
+            const startTime = p.timeRange.split('-')[0].trim();
+            const isFixed = !p.name || p.name.trim() === '';
+
+            let highlight: EnrichedScheduleEvent['highlight'] = false;
+            if (isFixed) {
+                if (p.talkTitle === 'Opening') {
+                    highlight = 'amber';
+                } else if (p.talkTitle.includes('Dinner')) {
+                    highlight = 'rose';
+                } else if (p.talkTitle === 'Discussion') {
+                    highlight = 'emerald';
+                } else if (p.talkTitle.includes('Lunch')) {
+                    highlight = 'indigo';
+                } else if (p.talkTitle.includes('Coffee Break')) {
+                    highlight = 'fuchsia';
+                } else if (p.talkTitle.includes('Social Evening')) {
+                    highlight = 'orange';
+                } else if (p.talkTitle === 'End') {
+                    highlight = 'slate';
                 }
             }
-        });
 
-        // Sort events within each day
-        const sortedSchedule: DaySchedule[] = CONFERENCE_DAYS.map(dayInfo => {
-            const events = daysMap.get(dayInfo.date) || [];
-            
-            // Sort by time
-            events.sort((a, b) => {
-                const timeA = a.sortTime || '00:00';
-                const timeB = b.sortTime || '00:00';
-                return timeA.localeCompare(timeB);
+            const linkId = isFixed
+                ? `fixed-${date}-${startTime.replace(':', '')}-${p.talkTitle.replace(/\s+/g, '-').toLowerCase()}`
+                : `talk-${p.lastName.toLowerCase()}-${startTime.replace(':', '')}`;
+
+            daysMap.get(date)!.push({
+                time: p.timeRange,
+                title: p.talkTitle,
+                status: 'upcoming',
+                speaker: p.name,
+                highlight,
+                type: isFixed ? 'fixed' : 'talk',
+                sortTime: startTime,
+                linkId,
             });
-
-            return {
-                day: dayInfo.fullLabel,
-                date: dayInfo.date,
-                label: dayInfo.label,
-                events: events
-            };
         });
 
-        setSchedule(sortedSchedule);
-
+        return CONFERENCE_DAYS.map(dayInfo => {
+            const events = (daysMap.get(dayInfo.date) || []).sort((a, b) =>
+                (a.sortTime || '00:00').localeCompare(b.sortTime || '00:00')
+            );
+            return { day: dayInfo.fullLabel, date: dayInfo.date, label: dayInfo.label, events };
+        });
     }, [participants, loading, error]);
 
     return { schedule, loading, error };
