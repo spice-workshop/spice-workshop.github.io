@@ -2,6 +2,7 @@ export interface SightseeingSpot {
   id: string;
   name: string;
   desc: string;
+  category: string;
   mapEmbed: string;
   directions: string;
   location: {
@@ -11,26 +12,29 @@ export interface SightseeingSpot {
 }
 
 export const SIGHTSEEING_SPOTS: SightseeingSpot[] = [
-  { 
+  {
     id: 'vieux-lyon',
-    name: "Vieux Lyon (Old Lyon)", 
-    desc: "A UNESCO World Heritage site, this charming Renaissance district is known for its narrow cobblestone streets, hidden passageways (traboules), and well-preserved historical buildings.", 
+    name: "Vieux Lyon (Old Lyon)",
+    desc: "A UNESCO World Heritage site, this charming Renaissance district is known for its narrow cobblestone streets, hidden passageways (traboules), and well-preserved historical buildings.",
+    category: "UNESCO",
     mapEmbed: "https://maps.google.com/maps?q=45.764043,4.826620&z=15&output=embed",
     directions: "https://www.google.com/maps/dir/?api=1&destination=Vieux+Lyon,+Lyon",
     location: { lat: 45.7578, lng: 4.8235 }
   },
-  { 
+  {
     id: 'fourviere',
-    name: "Basilica of Notre-Dame de Fourvière", 
-    desc: "The iconic white basilica overlooking the city. Offers the best panoramic view of Lyon and the Alps on a clear day.", 
+    name: "Basilica of Notre-Dame de Fourvière",
+    desc: "The iconic white basilica overlooking the city. Offers the best panoramic view of Lyon and the Alps on a clear day.",
+    category: "Viewpoint",
     mapEmbed: "https://maps.google.com/maps?q=45.762268,4.822692&z=15&output=embed",
     directions: "https://www.google.com/maps/dir/?api=1&destination=Basilica+of+Notre-Dame+de+Fourvière,+Lyon",
     location: { lat: 45.762268, lng: 4.822692 }
   },
-  { 
+  {
     id: 'tete-dor',
-    name: "Parc de la Tête d'Or", 
-    desc: "A massive urban park featuring a large lake, a free zoo, and a beautiful botanical garden. Perfect for a relaxing walk.", 
+    name: "Parc de la Tête d'Or",
+    desc: "A massive urban park featuring a large lake, a free zoo, and a beautiful botanical garden. Perfect for a relaxing walk.",
+    category: "Park",
     mapEmbed: "https://maps.google.com/maps?q=45.776361,4.852178&z=15&output=embed",
     directions: "https://www.google.com/maps/dir/?api=1&destination=Parc+de+la+Tête+d'Or,+Lyon",
     location: { lat: 45.776361, lng: 4.852178 }
@@ -39,6 +43,7 @@ export const SIGHTSEEING_SPOTS: SightseeingSpot[] = [
     id: 'beaux-arts',
     name: "Musée des Beaux-Arts de Lyon",
     desc: "Housed in a 17th-century abbey, this is one of France's largest art museums, showcasing an extensive collection ranging from antiquity to modern art.",
+    category: "Museum",
     mapEmbed: "https://maps.google.com/maps?q=45.7671937,4.8335660&z=15&output=embed",
     directions: "https://www.google.com/maps/dir/?api=1&destination=Musée+des+Beaux-Arts+de+Lyon",
     location: { lat: 45.7671937, lng: 4.8335660 }
@@ -47,6 +52,7 @@ export const SIGHTSEEING_SPOTS: SightseeingSpot[] = [
     id: 'bellecour',
     name: "Place Bellecour",
     desc: "One of the largest public squares in Europe, this vast, open space in the heart of the Presqu'île features an equestrian statue of Louis XIV.",
+    category: "Landmark",
     mapEmbed: "https://maps.google.com/maps?q=45.758392,4.832479&z=15&output=embed",
     directions: "https://www.google.com/maps/dir/?api=1&destination=Place+Bellecour,+Lyon",
     location: { lat: 45.758392, lng: 4.832479 }
@@ -55,6 +61,7 @@ export const SIGHTSEEING_SPOTS: SightseeingSpot[] = [
     id: 'ancient-theatre',
     name: "Ancient Theatre of Fourvière",
     desc: "A well-preserved Roman theater built around 15 BC, it once seated 10,000 spectators and is still used for performances today.",
+    category: "UNESCO",
     mapEmbed: "https://maps.google.com/maps?q=45.75975,4.81975&z=15&output=embed",
     directions: "https://www.google.com/maps/dir/?api=1&destination=Ancient+Theatre+of+Fourvière,+Lyon",
     location: { lat: 45.75975, lng: 4.81975 }
@@ -63,6 +70,7 @@ export const SIGHTSEEING_SPOTS: SightseeingSpot[] = [
     id: 'cathedrale',
     name: "Cathédrale Saint-Jean-Baptiste",
     desc: "Lyon's primate cathedral, a blend of Romanesque and Gothic architecture, known for its astronomical clock and beautiful stained-glass windows.",
+    category: "Landmark",
     mapEmbed: "https://maps.google.com/maps?q=45.7563,4.8232&z=15&output=embed",
     directions: "https://www.google.com/maps/dir/?api=1&destination=Cathédrale+Saint-Jean-Baptiste,+Lyon",
     location: { lat: 45.7563, lng: 4.8232 }
@@ -71,6 +79,7 @@ export const SIGHTSEEING_SPOTS: SightseeingSpot[] = [
     id: 'miniature-cinema',
     name: "Musée Miniature et Cinéma",
     desc: "This unique museum in Old Lyon houses an impressive collection of miniature art and original film props.",
+    category: "Museum",
     mapEmbed: "https://maps.google.com/maps?q=45.760086,4.826796&z=15&output=embed",
     directions: "https://www.google.com/maps/dir/?api=1&destination=Musée+Miniature+et+Cinéma,+Lyon",
     location: { lat: 45.760086, lng: 4.826796 }
@@ -79,6 +88,7 @@ export const SIGHTSEEING_SPOTS: SightseeingSpot[] = [
     id: 'croix-rousse',
     name: "La Croix-Rousse",
     desc: "Historically the silk workers' district, this hilly neighborhood is characterized by its 'traboules' and a bohemian atmosphere.",
+    category: "Neighborhood",
     mapEmbed: "https://maps.google.com/maps?q=45.7766,4.8288&z=15&output=embed",
     directions: "https://www.google.com/maps/dir/?api=1&destination=La+Croix-Rousse,+Lyon",
     location: { lat: 45.7766, lng: 4.8288 }
@@ -87,6 +97,7 @@ export const SIGHTSEEING_SPOTS: SightseeingSpot[] = [
     id: 'place-terreaux',
     name: "Place des Terreaux",
     desc: "A historic square featuring the Bartholdi Fountain and surrounded by important buildings like the Hôtel de Ville and the Musée des Beaux-Arts.",
+    category: "Landmark",
     mapEmbed: "https://maps.google.com/maps?q=45.7675,4.8335&z=15&output=embed",
     directions: "https://www.google.com/maps/dir/?api=1&destination=Place+des+Terreaux,+Lyon",
     location: { lat: 45.7675, lng: 4.8335 }
@@ -95,6 +106,7 @@ export const SIGHTSEEING_SPOTS: SightseeingSpot[] = [
     id: 'confluences',
     name: "Musée des Confluences",
     desc: "A striking contemporary science and anthropology museum located at the confluence of the Rhône and Saône rivers.",
+    category: "Museum",
     mapEmbed: "https://maps.google.com/maps?q=45.7329,4.8183&z=15&output=embed",
     directions: "https://www.google.com/maps/dir/?api=1&destination=Musée+des+Confluences,+Lyon",
     location: { lat: 45.7329, lng: 4.8183 }
@@ -103,6 +115,7 @@ export const SIGHTSEEING_SPOTS: SightseeingSpot[] = [
     id: 'opera',
     name: "Opéra National de Lyon",
     desc: "Lyon's opera house, an architectural blend of a neoclassical 1831 building with a striking modern glass roof.",
+    category: "Landmark",
     mapEmbed: "https://maps.google.com/maps?q=45.7679,4.8360&z=15&output=embed",
     directions: "https://www.google.com/maps/dir/?api=1&destination=Opéra+National+de+Lyon",
     location: { lat: 45.7679, lng: 4.8360 }
@@ -111,6 +124,7 @@ export const SIGHTSEEING_SPOTS: SightseeingSpot[] = [
     id: 'mur-canuts',
     name: "Mur des Canuts",
     desc: "Europe's largest fresco, this magnificent trompe l'oeil mural depicts a slice of daily life in the Croix-Rousse district.",
+    category: "Landmark",
     mapEmbed: "https://maps.google.com/maps?q=45.7828,4.8373&z=15&output=embed",
     directions: "https://www.google.com/maps/dir/?api=1&destination=Mur+des+Canuts,+Lyon",
     location: { lat: 45.7828, lng: 4.8373 }
@@ -119,6 +133,7 @@ export const SIGHTSEEING_SPOTS: SightseeingSpot[] = [
     id: 'halles-bocuse',
     name: "Les Halles Paul Bocuse",
     desc: "An indoor gourmet food market named after the famous chef Paul Bocuse, offering a wide array of local delicacies.",
+    category: "Food",
     mapEmbed: "https://maps.google.com/maps?q=45.7628,4.8569&z=15&output=embed",
     directions: "https://www.google.com/maps/dir/?api=1&destination=Les+Halles+Paul+Bocuse,+Lyon",
     location: { lat: 45.7628, lng: 4.8569 }
@@ -127,6 +142,7 @@ export const SIGHTSEEING_SPOTS: SightseeingSpot[] = [
     id: 'lugdunum',
     name: "Lugdunum Museum",
     desc: "Situated next to the Roman theaters, this museum provides an enlightening historical perspective on Lyon's Roman past.",
+    category: "Museum",
     mapEmbed: "https://maps.google.com/maps?q=45.7583,4.8233&z=15&output=embed",
     directions: "https://www.google.com/maps/dir/?api=1&destination=Lugdunum+Museum,+Lyon",
     location: { lat: 45.7583, lng: 4.8233 }
@@ -135,6 +151,7 @@ export const SIGHTSEEING_SPOTS: SightseeingSpot[] = [
     id: 'presquile',
     name: "Presqu'île",
     desc: "The peninsula between the Rhône and Saône rivers, serving as the city center with elegant 19th-century architecture and shopping streets.",
+    category: "Neighborhood",
     mapEmbed: "https://maps.google.com/maps?q=45.763420,4.834277&z=15&output=embed",
     directions: "https://www.google.com/maps/dir/?api=1&destination=Presqu'île,+Lyon",
     location: { lat: 45.763420, lng: 4.834277 }
@@ -143,6 +160,7 @@ export const SIGHTSEEING_SPOTS: SightseeingSpot[] = [
     id: 'rosa-mir',
     name: "Jardin Rosa Mir",
     desc: "A hidden gem in La Croix-Rousse, this unique walled garden is adorned with thousands of seashells.",
+    category: "Park",
     mapEmbed: "https://maps.google.com/maps?q=45.7766,4.8288&z=15&output=embed",
     directions: "https://www.google.com/maps/dir/?api=1&destination=Jardin+Rosa+Mir,+Lyon",
     location: { lat: 45.7766, lng: 4.8288 }
@@ -151,6 +169,7 @@ export const SIGHTSEEING_SPOTS: SightseeingSpot[] = [
     id: 'chrd',
     name: "CHRD (Resistance Museum)",
     desc: "Located in the former Gestapo headquarters, this museum evokes Lyon's role as the 'Capital of the Resistance' during WWII.",
+    category: "Museum",
     mapEmbed: "https://maps.google.com/maps?q=45.7483,4.8430&z=15&output=embed",
     directions: "https://www.google.com/maps/dir/?api=1&destination=CHRD,+Lyon",
     location: { lat: 45.7483, lng: 4.8430 }
@@ -159,6 +178,7 @@ export const SIGHTSEEING_SPOTS: SightseeingSpot[] = [
     id: 'lumiere',
     name: "Musée Lumière",
     desc: "Dedicated to the Lumière brothers, pioneers of cinema, this museum is housed in their former family home.",
+    category: "Museum",
     mapEmbed: "https://maps.google.com/maps?q=45.7410,4.8329&z=15&output=embed",
     directions: "https://www.google.com/maps/dir/?api=1&destination=Musée+Lumière,+Lyon",
     location: { lat: 45.7410, lng: 4.8329 }
@@ -167,6 +187,7 @@ export const SIGHTSEEING_SPOTS: SightseeingSpot[] = [
     id: 'traboules',
     name: "Traboules of Lyon",
     desc: "Unique covered passageways primarily found in Vieux Lyon and La Croix-Rousse, allowing silk workers to transport goods.",
+    category: "UNESCO",
     mapEmbed: "https://maps.google.com/maps?q=45.7620,4.8270&z=15&output=embed",
     directions: "https://www.google.com/maps/dir/?api=1&destination=Vieux+Lyon,+Lyon",
     location: { lat: 45.7620, lng: 4.8270 }
