@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { FC } from 'react';
-import { Search, Globe } from 'lucide-react';
+import { Search } from 'lucide-react';
 import SectionTitle from '../components/ui/SectionTitle';
 import SEO from '../components/layout/SEO';
 import { useParticipants } from '../utils/csvLoader';
@@ -77,7 +77,6 @@ const ParticipantsView: FC = () => {
                   <tr>
                       <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Name</th>
                       <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Affiliation</th>
-                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Country</th>
                   </tr>
               </thead>
               <tbody className="bg-white dark:bg-slate-800 divide-y divide-slate-200 dark:divide-slate-700">
@@ -86,18 +85,11 @@ const ParticipantsView: FC = () => {
                           <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
                               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900 dark:text-slate-200">{person.name}</td>
                               <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-400">{person.affiliation}</td>
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-400 flex items-center">
-                                  {person.country && (
-                                    <>
-                                      <Globe className="w-4 h-4 mr-2 text-slate-400" /> {person.country}
-                                    </>
-                                  )}
-                              </td>
                           </tr>
                       ))
                   ) : (
                       <tr>
-                          <td colSpan={3} className="px-6 py-10 text-center text-slate-500 dark:text-slate-400">
+                          <td colSpan={2} className="px-6 py-10 text-center text-slate-500 dark:text-slate-400">
                               No participants found starting with "{selectedLetter !== 'All' ? selectedLetter : ''}" {participantSearch ? `matching "${participantSearch}"` : ''}
                           </td>
                       </tr>
