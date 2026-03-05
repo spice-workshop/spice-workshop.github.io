@@ -13,6 +13,7 @@ const ScheduleView = lazy(() => import('./pages/Schedule'));
 const ParticipantsView = lazy(() => import('./pages/Participants'));
 const LogisticsView = lazy(() => import('./pages/Logistics'));
 const SightseeingView = lazy(() => import('./pages/Sightseeing'));
+const NotFoundView = lazy(() => import('./pages/NotFound'));
 
 export default function SpiceConferenceWebsite() {
   const location = useLocation();
@@ -49,6 +50,7 @@ export default function SpiceConferenceWebsite() {
             <Route path="/participants" element={<ParticipantsView />} />
             <Route path="/logistics" element={<LogisticsView />} />
             <Route path="/sightseeing" element={<SightseeingView />} />
+            <Route path="*" element={<NotFoundView />} />
           </Routes>
         </Suspense>
       </main>
