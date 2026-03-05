@@ -52,7 +52,7 @@
     "title": "Discussion"
   },
   {
-    "firstName": "La commune",
+    "firstName": "",
     "lastName": "",
     "sessionDate": "2026-03-16",
     "timeRange": "18:30 - 00:00",
@@ -169,7 +169,7 @@
     "title": "Discussion"
   },
   {
-    "firstName": "Le Bouchon des Filles",
+    "firstName": "",
     "lastName": "",
     "sessionDate": "2026-03-18",
     "timeRange": "19:00 - 00:00",
@@ -608,7 +608,7 @@
     "isChair": false,
     "organisation": "Universidad de Concepcion",
     "country": "Chile",
-    "title": "From protostellar envelopes to exomoons: The role of multi-species dust and gas dynamics"
+    "title": "From protoplanetary envelopes to exomoons: The role of multi-species dust and gas dynamics"
   },
   {
     "firstName": "Guillaume",
@@ -645,7 +645,7 @@
     "isLOC": false,
     "isSOC": true,
     "isChair": false,
-    "organisation": "National Taiwan Normal University",
+    "organisation": "NTNU",
     "country": "Taiwan",
     "title": "A new model proposition on streamers around class 0/I disks"
   },

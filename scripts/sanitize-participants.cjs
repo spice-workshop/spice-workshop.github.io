@@ -6,7 +6,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const CSV_INPUT = path.resolve(__dirname, '../src/data/participants.csv');
+const CSV_INPUT = process.env.PARTICIPANTS_CSV
+  ? path.resolve(process.env.PARTICIPANTS_CSV)
+  : path.resolve(__dirname, '../src/data/participants.csv');
 const JSON_OUTPUT = path.resolve(__dirname, '../src/data/participants.json');
 
 function parseCSV(text) {
@@ -48,10 +50,16 @@ function sanitize() {
   const csv = fs.readFileSync(CSV_INPUT, 'utf-8');
   const records = parseCSV(csv);
 
+  const isRealParticipant = r =>
+    (r.Participant || '').toLowerCase() === 'true' ||
+    (r.LOC || '').toLowerCase() === 'true' ||
+    (r.SOC || '').toLowerCase() === 'true' ||
+    (r.Chairs || '').toLowerCase() === 'true';
+
   const sanitized = records
     // .filter(r => r.Firstname || r.Lastname) // skip empty rows
     .map(r => ({
-      firstName: r.Firstname || '',
+      firstName: isRealParticipant(r) ? (r.Firstname || '') : '',
       lastName: r.Lastname || '',
       sessionDate: r.SessionDate || '',
       timeRange: r.TimeRange || '',
@@ -59,7 +67,7 @@ function sanitize() {
       isLOC: (r.LOC || '').toLowerCase() === 'true',
       isSOC: (r.SOC || '').toLowerCase() === 'true',
       isChair: (r.Chairs || '').toLowerCase() === 'true',
-      organisation: r.Organisation || '',
+      organisation: (r.Organisation || '').replace('National Taiwan Normal University', 'NTNU'),
       country: r.Country || '',
       title: r.Title || '',
     }))
