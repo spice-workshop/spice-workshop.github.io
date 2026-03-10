@@ -613,8 +613,8 @@
   {
     "firstName": "Guillaume",
     "lastName": "Laibe",
-    "sessionDate": "2026-03-19",
-    "timeRange": "09:00 - 09:25",
+    "sessionDate": "2026-03-16",
+    "timeRange": "10:15 - 10:40",
     "isParticipant": true,
     "isLOC": false,
     "isSOC": false,
@@ -691,8 +691,8 @@
   {
     "firstName": "Min-Kai",
     "lastName": "Lin",
-    "sessionDate": "2026-03-16",
-    "timeRange": "10:15 - 10:40",
+    "sessionDate": "2026-03-19",
+    "timeRange": "09:00 - 09:25",
     "isParticipant": true,
     "isLOC": false,
     "isSOC": false,
