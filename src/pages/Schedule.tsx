@@ -146,7 +146,7 @@ const ScheduleView: FC = () => {
             <input
               type="text"
               placeholder="Search talks or speakers"
-              className="pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full shadow-sm bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400"
+              className="pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:shadow-glow-indigo w-full shadow-soft bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 transition-shadow"
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
             />

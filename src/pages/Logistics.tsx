@@ -89,7 +89,7 @@ const LogisticsView: FC = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card className="p-6 bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700">
               <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
+                <div className="p-2.5 bg-indigo-100 dark:bg-indigo-900/30 rounded-xl">
                   <Globe className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                 </div>
                 <h4 className="font-bold text-slate-800 dark:text-white">Visa Requirements</h4>
@@ -109,7 +109,7 @@ const LogisticsView: FC = () => {
 
             <Card className="p-6 bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700">
               <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
+                <div className="p-2.5 bg-indigo-100 dark:bg-indigo-900/30 rounded-xl">
                   <Shield className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                 </div>
                 <h4 className="font-bold text-slate-800 dark:text-white">EES & ETIAS</h4>
@@ -134,7 +134,7 @@ const LogisticsView: FC = () => {
 
             <Card className="p-6 bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700">
               <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
+                <div className="p-2.5 bg-indigo-100 dark:bg-indigo-900/30 rounded-xl">
                   <CreditCard className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                 </div>
                 <h4 className="font-bold text-slate-800 dark:text-white">Currency</h4>
@@ -146,7 +146,7 @@ const LogisticsView: FC = () => {
 
             <Card className="p-6 bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700">
               <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
+                <div className="p-2.5 bg-indigo-100 dark:bg-indigo-900/30 rounded-xl">
                   <Zap className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                 </div>
                 <h4 className="font-bold text-slate-800 dark:text-white">Electricity</h4>
@@ -158,7 +158,7 @@ const LogisticsView: FC = () => {
 
             <Card className="p-6 bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700">
               <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
+                <div className="p-2.5 bg-indigo-100 dark:bg-indigo-900/30 rounded-xl">
                   <Phone className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                 </div>
                 <h4 className="font-bold text-slate-800 dark:text-white">Emergency</h4>
@@ -170,7 +170,7 @@ const LogisticsView: FC = () => {
 
             <Card className="p-6 bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700">
               <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
+                <div className="p-2.5 bg-indigo-100 dark:bg-indigo-900/30 rounded-xl">
                   <Clock className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                 </div>
                 <h4 className="font-bold text-slate-800 dark:text-white">Time Zone</h4>
@@ -312,7 +312,7 @@ const LogisticsView: FC = () => {
                   href={CONSTANTS.links.mapDirections}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full shadow-lg flex items-center transition-transform transform hover:scale-105"
+                  className="bg-gradient-indigo text-white font-bold py-3 px-6 rounded-full shadow-lg flex items-center transition-all duration-200 hover:-translate-y-1 hover:shadow-glow-indigo-lg"
                 >
                   <Compass className="w-5 h-5 mr-2" /> Get Directions
                 </a>

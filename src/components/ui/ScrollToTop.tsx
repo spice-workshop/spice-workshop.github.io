@@ -26,7 +26,7 @@ const ScrollToTop: FC = () => {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-8 right-8 z-[60] bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:ring-offset-slate-900"
+      className="fixed bottom-8 right-8 z-[60] bg-gradient-indigo text-white p-3 rounded-full shadow-glow-indigo transition-all duration-300 transform hover:-translate-y-1 hover:shadow-glow-indigo-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:ring-offset-slate-900"
       aria-label="Back to top"
     >
       <ArrowUp size={24} />

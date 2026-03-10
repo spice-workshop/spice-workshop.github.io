@@ -56,9 +56,9 @@ const ParticipantsView: FC = () => {
                     setSelectedLetter(letter);
                     setParticipantSearch(""); // Clear search when filtering by letter
                 }}
-                className={`px-3 py-1 text-sm font-medium rounded-md transition-colors ${
+                className={`px-3 py-1 text-sm font-medium rounded-md transition-all duration-200 ${
                     selectedLetter === letter
-                        ? 'bg-indigo-600 text-white'
+                        ? 'bg-gradient-indigo text-white shadow-glow-indigo'
                         : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
                 }`}
             >
@@ -71,7 +71,7 @@ const ParticipantsView: FC = () => {
           Number of registrants: {filteredParticipants.length}
       </div>
 
-      <div className="overflow-x-auto bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
+      <div className="overflow-x-auto bg-white dark:bg-slate-800 rounded-2xl shadow-soft border border-slate-200/80 dark:border-slate-700/80">
           <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
               <thead className="bg-slate-50 dark:bg-slate-700/50">
                   <tr>

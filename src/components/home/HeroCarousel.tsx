@@ -46,10 +46,10 @@ const HeroCarousel: FC = () => {
         <div className="absolute inset-0 bg-slate-900/40" />
       </div>
 
-      <button onClick={prev} className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white transition-colors" aria-label="Previous image">
+      <button onClick={prev} className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md text-white transition-all hover:scale-110" aria-label="Previous image">
         <ChevronLeft className="w-8 h-8" />
       </button>
-      <button onClick={next} className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white transition-colors" aria-label="Next image">
+      <button onClick={next} className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md text-white transition-all hover:scale-110" aria-label="Next image">
         <ChevronRight className="w-8 h-8" />
       </button>
 
@@ -65,11 +65,11 @@ const HeroCarousel: FC = () => {
             {CONSTANTS.details.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mb-12 animate-fade-in-up delay-300">
-            <div className="flex items-center text-slate-700 dark:text-slate-300 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm px-6 py-3 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+            <div className="flex items-center text-slate-700 dark:text-slate-300 bg-white/50 dark:bg-slate-800/50 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/30 dark:border-slate-700/50 shadow-lifted">
               <Calendar className="w-5 h-5 mr-3 text-indigo-600 dark:text-indigo-400" />
               <span className="font-medium">{CONSTANTS.details.date}</span>
             </div>
-            <div className="flex items-center text-slate-700 dark:text-slate-300 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm px-6 py-3 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+            <div className="flex items-center text-slate-700 dark:text-slate-300 bg-white/50 dark:bg-slate-800/50 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/30 dark:border-slate-700/50 shadow-lifted">
               <MapPin className="w-5 h-5 mr-3 text-indigo-600 dark:text-indigo-400" />
               <span className="font-medium">{CONSTANTS.details.location}</span>
             </div>
