@@ -74,7 +74,7 @@ const SpecialEventCard: FC<Props> = ({
   return (
     <div
       id={id}
-      className={`bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden scroll-mt-32 ${className}`}
+      className={`bg-white dark:bg-slate-800 rounded-2xl shadow-lifted hover:shadow-elevated transition-all duration-300 border border-slate-200 dark:border-slate-700 overflow-hidden scroll-mt-32 ${className}`}
     >
       <div className="grid md:grid-cols-2">
         {/* Info side */}
@@ -103,7 +103,7 @@ const SpecialEventCard: FC<Props> = ({
                 href={registrationHref}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="flex items-center justify-center gap-2 w-full py-3 px-6 rounded-xl font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm"
+                className="flex items-center justify-center gap-2 w-full py-3 px-6 rounded-xl font-bold text-white bg-gradient-indigo hover:shadow-glow-indigo hover:-translate-y-0.5 transition-all duration-200"
               >
                 <ClipboardList className="w-5 h-5" /> Register Now
               </a>
@@ -156,7 +156,7 @@ const SpecialEventCard: FC<Props> = ({
                 href={directionsHref}
                 target="_blank"
                 rel="noreferrer noopener"
-                className={`${btnColorClass} text-white font-bold py-3 px-6 rounded-full shadow-lg flex items-center transition-transform transform hover:scale-105`}
+                className={`${btnColorClass} text-white font-bold py-3 px-6 rounded-full shadow-lg flex items-center transition-all duration-200 hover:-translate-y-1 hover:shadow-glow-indigo-lg`}
               >
                 <Compass className="w-5 h-5 mr-2" /> Get Directions
               </a>

@@ -24,7 +24,7 @@ const CommitteesSection: FC = () => {
                 <span className={`w-8 h-1 ${comm.color} mr-3 rounded-full`} />
                 {comm.title}
               </h3>
-              <ul className="bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 divide-y divide-slate-100 dark:divide-slate-700">
+              <ul className="bg-white dark:bg-slate-800 rounded-2xl shadow-soft border border-slate-200/80 dark:border-slate-700/80 divide-y divide-slate-100 dark:divide-slate-700">
                 {comm.list.map((member, mIdx) => (
                   <li key={mIdx} className="p-4 flex flex-col sm:flex-row justify-between sm:items-center">
                     <div>

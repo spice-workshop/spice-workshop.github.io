@@ -39,7 +39,7 @@ const SightseeingView: FC = () => {
                         className={`cursor-pointer bg-white dark:bg-slate-800 p-4 rounded-xl border shadow-sm transition-all duration-300 ${
                             activeSpot.id === spot.id
                                 ? 'border-indigo-500 ring-2 ring-indigo-100 dark:ring-indigo-900/30'
-                                : 'border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-md'
+                                : 'border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-lifted hover:-translate-y-0.5'
                         }`}
                     >
                         <div className="flex justify-between items-start">
@@ -69,7 +69,7 @@ const SightseeingView: FC = () => {
             </div>
 
             {/* Interactive Map Display */}
-            <div className="h-full min-h-[500px] bg-slate-100 dark:bg-slate-700 rounded-xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-700 sticky top-24 relative">
+            <div className="h-full min-h-[500px] bg-slate-100 dark:bg-slate-700 rounded-2xl overflow-hidden shadow-lifted border border-slate-200 dark:border-slate-700 sticky top-24 relative">
                  <iframe
                     key={activeSpot.id}
                     src={activeSpot.mapEmbed}

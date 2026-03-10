@@ -32,11 +32,11 @@ const Navigation: FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, theme, tog
   };
 
   return (
-    <nav className="fixed w-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md z-50 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+    <nav className="fixed w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl z-50 border-b border-slate-200/60 dark:border-slate-800/60 shadow-soft transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <Link to="/" className="flex items-center cursor-pointer">
-            <div className="bg-indigo-600 p-1.5 rounded-lg mr-2">
+            <div className="bg-gradient-indigo p-1.5 rounded-lg mr-2 shadow-sm">
                <Globe className="w-5 h-5 text-white" />
             </div>
             <span className="font-bold text-xl text-slate-900 dark:text-white">SPiCE 2</span>
@@ -88,7 +88,7 @@ const Navigation: FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, theme, tog
       </div>
 
       {isMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 py-2 px-4 shadow-lg">
+        <div className="md:hidden bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-t border-slate-100/60 dark:border-slate-800/60 py-2 px-4 shadow-lifted animate-slide-down">
           <div className="flex flex-col space-y-2">
             {navItems.map((item) => (
               <Link

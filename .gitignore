@@ -25,3 +25,9 @@ dist-ssr
 
 # Sensitive data
 src/data/participants.csv
+
+# Gemini
+GEMINI.md
+
+# Claude
+CLAUDE.md

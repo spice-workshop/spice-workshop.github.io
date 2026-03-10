@@ -14,7 +14,7 @@ const NotFoundView: FC = () => (
     <p className="text-xl text-slate-600 dark:text-slate-400 mb-8">Page not found</p>
     <Link
       to="/"
-      className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full transition-colors"
+      className="inline-flex items-center gap-2 bg-gradient-indigo text-white font-bold py-3 px-6 rounded-full shadow-soft hover:shadow-glow-indigo hover:-translate-y-0.5 transition-all duration-200"
     >
       <Home className="w-5 h-5" /> Back to Home
     </Link>
