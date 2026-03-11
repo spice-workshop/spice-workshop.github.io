@@ -99,14 +99,12 @@ const SpecialEventCard: FC<Props> = ({
             ))}
 
             {registrationHref && (
-              <a
-                href={registrationHref}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="flex items-center justify-center gap-2 w-full py-3 px-6 rounded-xl font-bold text-white bg-gradient-indigo hover:shadow-glow-indigo hover:-translate-y-0.5 transition-all duration-200"
-              >
-                <ClipboardList className="w-5 h-5" /> Register Now
-              </a>
+              <div className="flex items-center justify-center gap-2 w-full py-3 px-6 rounded-xl font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600">
+                <ClipboardList className="w-5 h-5 flex-shrink-0" />
+                Registration closed —{' '}
+                <a href="mailto:spice2.workshop@gmail.com" className="underline hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">contact us</a>{' '}
+                for inquiries.
+              </div>
             )}
 
             {menuHref && (
