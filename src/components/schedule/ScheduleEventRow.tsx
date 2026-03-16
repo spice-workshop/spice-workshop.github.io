@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { Utensils, Users, FileDown } from 'lucide-react';
+import { Users, MapPin, FileDown } from 'lucide-react';
 import StatusIndicator from '../ui/StatusIndicator';
 import type { EnrichedScheduleEvent } from '../../utils/useSchedule';
 
@@ -58,11 +58,15 @@ const ScheduleEventRow: FC<Props> = ({ event, eventId }) => {
               <h4 className={`font-bold text-lg ${getTextClasses(event.highlight)}`}>
                 {event.title}
               </h4>
-              {event.type === 'talk' && event.speaker && (
+              {event.speaker && (
                 <div className="mt-1">
                   <p className="text-slate-600 dark:text-slate-400 text-sm flex items-center">
-                    {event.type === 'fixed' ? <Utensils className="w-3 h-3 mr-1" /> : <Users className="w-3 h-3 mr-1" />}
-                    {event.speaker}
+                    {event.type === 'fixed' && event.title !== 'Discussion'
+                      ? <MapPin className="w-3 h-3 mr-1" />
+                      : <Users className="w-3 h-3 mr-1" />}
+                    {event.type === 'fixed'
+                      ? `${event.title === 'Discussion' ? 'Host' : 'Venue'}: ${event.speaker}`
+                      : event.speaker}
                   </p>
                   {event.type === 'talk' && (
                     <div className="mt-1">

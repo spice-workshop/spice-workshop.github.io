@@ -31,36 +31,45 @@ export const useSchedule = () => {
             if (!daysMap.has(date)) return;
 
             const startTime = p.timeRange.split('-')[0].trim();
-            const isFixed = !p.name || p.name.trim() === '';
+            const isFixed = p.roles.length === 0;
+
+            let title = p.talkTitle;
+            let speaker = p.name;
+
+            // For social events, extract the place name as the venue
+            if (isFixed && title.startsWith('Social Event:')) {
+                speaker = title.replace('Social Event:', '').trim();
+                title = 'Social Evening';
+            }
 
             let highlight: EnrichedScheduleEvent['highlight'] = false;
             if (isFixed) {
-                if (p.talkTitle === 'Opening') {
+                if (title === 'Opening') {
                     highlight = 'amber';
-                } else if (p.talkTitle.includes('Dinner')) {
+                } else if (title.includes('Dinner')) {
                     highlight = 'rose';
-                } else if (p.talkTitle === 'Discussion') {
+                } else if (title === 'Discussion') {
                     highlight = 'emerald';
-                } else if (p.talkTitle.includes('Lunch')) {
+                } else if (title.includes('Lunch')) {
                     highlight = 'indigo';
-                } else if (p.talkTitle.includes('Coffee Break')) {
+                } else if (title.includes('Coffee Break')) {
                     highlight = 'fuchsia';
-                } else if (p.talkTitle.includes('Social Evening')) {
+                } else if (title === 'Social Evening') {
                     highlight = 'orange';
-                } else if (p.talkTitle === 'End') {
+                } else if (title === 'End') {
                     highlight = 'slate';
                 }
             }
 
             const linkId = isFixed
-                ? `fixed-${date}-${startTime.replace(':', '')}-${p.talkTitle.replace(/\s+/g, '-').toLowerCase()}`
+                ? `fixed-${date}-${startTime.replace(':', '')}-${title.replace(/\s+/g, '-').toLowerCase()}`
                 : `talk-${p.lastName.toLowerCase()}-${startTime.replace(':', '')}`;
 
             daysMap.get(date)!.push({
                 time: p.timeRange,
-                title: p.talkTitle,
+                title,
                 status: 'upcoming',
-                speaker: p.name,
+                speaker,
                 highlight,
                 type: isFixed ? 'fixed' : 'talk',
                 sortTime: startTime,
