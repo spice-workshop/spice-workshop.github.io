@@ -64,14 +64,17 @@ const HeroCarousel: FC = () => {
           <p className="text-xl md:text-2xl text-slate-300 dark:text-slate-300 max-w-3xl mx-auto mb-10 font-light animate-fade-in-up delay-200">
             {CONSTANTS.details.subtitle}
           </p>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mb-12 animate-fade-in-up delay-300">
-            <div className="flex items-center text-slate-700 dark:text-slate-300 bg-white/50 dark:bg-slate-800/50 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/30 dark:border-slate-700/50 shadow-lifted">
-              <Calendar className="w-5 h-5 mr-3 text-indigo-600 dark:text-indigo-400" />
-              <span className="font-medium">{CONSTANTS.details.date}</span>
+          <div className="flex flex-col sm:flex-row justify-center items-stretch gap-4 mb-12 animate-fade-in-up delay-300">
+            <div className="flex items-center justify-center text-slate-700 dark:text-slate-300 bg-white/50 dark:bg-slate-800/50 backdrop-blur-md px-5 py-2.5 rounded-2xl border border-white/30 dark:border-slate-700/50 shadow-lifted min-w-[16rem]">
+              <Calendar className="w-4 h-4 mr-2.5 text-indigo-600 dark:text-indigo-400" />
+              <span className="font-medium text-sm">{CONSTANTS.details.date}</span>
             </div>
-            <div className="flex items-center text-slate-700 dark:text-slate-300 bg-white/50 dark:bg-slate-800/50 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/30 dark:border-slate-700/50 shadow-lifted">
-              <MapPin className="w-5 h-5 mr-3 text-indigo-600 dark:text-indigo-400" />
-              <span className="font-medium">{CONSTANTS.details.location}</span>
+            <div className="flex items-start text-slate-700 dark:text-slate-300 bg-white/50 dark:bg-slate-800/50 backdrop-blur-md px-5 py-2.5 rounded-2xl border border-white/30 dark:border-slate-700/50 shadow-lifted min-w-[16rem]">
+              <MapPin className="w-4 h-4 mr-2.5 mt-0.5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" />
+              <div className="text-left">
+                <span className="font-medium text-sm block">{CONSTANTS.details.venue}</span>
+                <span className="font-medium text-xs opacity-80 block">{CONSTANTS.details.location}</span>
+              </div>
             </div>
           </div>
         </div>

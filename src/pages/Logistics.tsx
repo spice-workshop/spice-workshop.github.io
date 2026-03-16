@@ -328,7 +328,7 @@ const LogisticsView: FC = () => {
           <div className="grid md:grid-cols-2 gap-12">
             <div>
               <div className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                <h4 className="font-bold text-slate-800 dark:text-white mb-1">Salle Condorcet - ENS de Lyon (Monod Site)</h4>
+                <h4 className="font-bold text-slate-800 dark:text-white mb-1">Salle "Place de l'Ecole" Condorcet - ENS de Lyon (Monod Site)</h4>
                 <p className="text-slate-600 dark:text-slate-400 text-sm mb-1">1 Pl. de l'École, 69007 Lyon</p>
                 <p className="text-slate-600 dark:text-slate-400 text-sm mb-2">The star icon on the map show the location of the venue. Click the map to zoom in and find the venue.</p>
                 <div className="bg-amber-400 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mb-4 flex items-start gap-3">

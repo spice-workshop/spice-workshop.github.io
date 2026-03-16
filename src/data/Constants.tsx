@@ -9,6 +9,7 @@ interface ConstantsType {
     title: string;
     subtitle: string;
     date: string;
+    venue: string;
     location: string;
     email: string;
     cocText: string;
@@ -54,7 +55,8 @@ export const CONSTANTS: ConstantsType = {
     title: "SPiCE 2",
     subtitle: "Simulating Physics in Celestial Ecosystems",
     date: "March 16-20, 2026",
-    location: "Lyon, France",
+    venue: "Salle Condorcet, Place de l'Ecole",
+    location: "ENS de Lyon Monod Campus — Lyon, France",
     email: "spice2.workshop@gmail.com",
     cocText: "SPiCE 2 is dedicated to providing a harassment-free conference experience for everyone. We do not tolerate harassment of conference participants in any form. Participants violating these rules may be sanctioned or expelled at the discretion of the organizers."
   },
