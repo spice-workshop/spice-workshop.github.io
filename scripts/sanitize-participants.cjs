@@ -59,7 +59,7 @@ function sanitize() {
   const sanitized = records
     // .filter(r => r.Firstname || r.Lastname) // skip empty rows
     .map(r => ({
-      firstName: isRealParticipant(r) ? (r.Firstname || '') : '',
+      firstName: r.Firstname || '',
       lastName: r.Lastname || '',
       sessionDate: r.SessionDate || '',
       timeRange: r.TimeRange || '',
