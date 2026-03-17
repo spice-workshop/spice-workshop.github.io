@@ -1,101 +1,134 @@
-# Spice Conference Website
+# SPiCE Conference Website
 
-This is the repository for the Spice Conference website, built with React and Vite.
+A single-page application for the SPiCE Conference, built with React 19, TypeScript, Vite, and Tailwind CSS. Deployed to GitHub Pages.
 
-## 🚀 Installation & Deployment
+## Getting Started
 
 ### Prerequisites
 
-- Node.js (v18 or higher recommended)
-- npm (comes with Node.js)
+- Node.js (v18 or higher)
+- npm
 
 ### Setup
 
-1.  **Install dependencies:**
+```bash
+npm install
+npm run dev
+```
 
-    ```bash
-    npm install
-    ```
+The dev server runs at `http://localhost:5173`.
 
-2.  **Run local development server:**
-    ```bash
-    npm run dev
-    ```
-    The site will be available at `http://localhost:5173` (or another port if 5173 is busy).
+## Scripts
 
-### Deployment
+| Command             | Description                                                        |
+| ------------------- | ------------------------------------------------------------------ |
+| `npm run dev`       | Start Vite dev server                                              |
+| `npm run build`     | Run prebuild scripts (sitemap + CSV sanitization), then Vite build |
+| `npm run lint`      | Run ESLint                                                         |
+| `npm run preview`   | Serve production build locally                                     |
+| `npm run deploy`    | Build and push to GitHub Pages (`main` branch)                     |
 
-This project is configured to deploy to GitHub Pages.
+## Branching & Deployment
 
-1.  **Build and Deploy:**
-    ```bash
-    npm run deploy
-    ```
-    This command builds the project to the `dist` folder and pushes it to the `gh-pages` branch.
+- **`source`** — development branch (all source code lives here)
+- **`main`** — deploy target (built output pushed by `npm run deploy` via `gh-pages`)
 
-## 📂 Project Structure & Modification
+## Project Structure
 
-The source code is located in the `src` directory.
+```
+src/
+├── App.tsx                    # Router setup with lazy-loaded pages
+├── main.tsx                   # Entry point
+├── index.css                  # Global styles + Tailwind directives
+│
+├── pages/                     # Route-level components
+│   ├── Home.tsx               # Landing page
+│   ├── Schedule.tsx           # Conference schedule (day/event views)
+│   ├── Participants.tsx       # Speaker & participant directory
+│   ├── Logistics.tsx          # Travel, accommodation, venue info
+│   ├── Sightseeing.tsx        # Local sightseeing recommendations
+│   └── NotFound.tsx           # 404 catch-all
+│
+├── components/
+│   ├── home/                  # HeroCarousel, CommitteesSection, PartnersSection, DescriptionContent
+│   ├── layout/                # Navigation, Footer, SEO (react-helmet-async)
+│   ├── schedule/              # ScheduleDayCard, ScheduleEventRow, SpecialEventCard
+│   └── ui/                    # Button, Card, Modal, ErrorBoundary, Loading, ScrollToTop, etc.
+│
+├── data/
+│   ├── Constants.tsx          # Site-wide config: dates, venue, links, committees, partners
+│   ├── participants.json      # Sanitized participant data (generated, committed)
+│   ├── participants.csv       # Raw participant data (gitignored, sensitive)
+│   ├── lunchPlaces.json       # Lunch venue recommendations
+│   ├── PartnerData.ts         # Partner/sponsor definitions
+│   └── SightseeingData.ts     # Sightseeing spots with categories
+│
+├── utils/
+│   ├── csvLoader.ts           # useParticipants() — useMemo-based hook loading participants.json
+│   ├── useSchedule.ts         # useSchedule() — transforms participants into DaySchedule[]
+│   ├── useTheme.ts            # useTheme() — dark mode toggle (class strategy, localStorage)
+│   └── generateSchedulePDF.ts # PDF export via jsPDF + autotable
+│
+├── types/
+│   ├── Participant.ts         # Participant/speaker type definitions
+│   └── Schedule.ts            # EnrichedScheduleEvent, DaySchedule, etc.
+│
+└── assets/                    # Images, logos, PDFs
 
-- **`src/App.jsx`**: The main component containing the routing and layout logic.
-- **`src/main.jsx`**: The entry point of the application.
-- **`src/components/`**: Reusable UI components (e.g., Header, Footer, SpeakerCard).
-- **`src/data/`**: Static data files (e.g., speakers list, schedule).
-- **`src/assets/`**: Images and other static assets.
+scripts/
+├── generate-sitemap.cjs       # Generates public/sitemap.xml (runs during prebuild)
+└── sanitize-participants.cjs  # participants.csv → participants.json (runs during prebuild)
 
-### How to Modify
+public/                        # Static files served at root
+├── sitemap.xml
+├── robots.txt
+├── spice-logo.png
+├── spice2-conference.ics      # iCalendar export
+└── dinner-menu.pdf
+```
 
-- **Content**: To update text or images, check the relevant component in `src/components` or data file in `src/data`.
-- **Styles**: Tailwind CSS is used for styling. You can modify classes directly in the JSX files or update `src/index.css` for global styles.
+## Data Pipeline
 
-## 🎨 Format & Refactor
+```
+participants.csv (gitignored, sensitive)
+  → scripts/sanitize-participants.cjs (prebuild)
+    → src/data/participants.json (committed)
+      → useParticipants() hook
+        → useSchedule() hook → DaySchedule[] → Schedule UI
+```
 
-We use ESLint for code quality and formatting.
+The CSV contains sensitive fields that are stripped during sanitization. Only the sanitized JSON is committed to the repo. Both prebuild scripts (sitemap generation and CSV sanitization) run automatically before every `npm run build`.
 
-- **Linting**:
+## How to Modify
 
-  ```bash
-  npm run lint
-  ```
+- **Site config** (dates, venue, links, committees): `src/data/Constants.tsx`
+- **Participant data**: Update `src/data/participants.csv` and rebuild
+- **Schedule structure**: `src/utils/useSchedule.ts` (event classification, highlight colors)
+- **Sightseeing / lunch places**: `src/data/SightseeingData.ts`, `src/data/lunchPlaces.json`
+- **Styles**: Tailwind classes in JSX, or `src/index.css` for globals. Custom theme in `tailwind.config.js` (indigo/amber palette, custom shadows, animations).
 
-  Run this command to check for code issues.
+## Linting
 
-- **Formatting**:
-  Ensure your editor is configured to use the project's ESLint and Prettier settings (if applicable) to maintain consistent code style.
+```bash
+npm run lint
+```
 
-## 📝 Commit Messages
+> **Note:** The ESLint config does not include a TypeScript parser, so `.ts`/`.tsx` files will show parse errors during linting. The Vite/TypeScript build (`npm run build`) passes cleanly regardless.
 
-Please follow this format for commit messages to keep the history clean:
+## Commit Messages
 
-`[Category] Description of the change`
+Format: `[Category] Description`
 
-**Categories:**
+| Category     | Use for                                              |
+| ------------ | ---------------------------------------------------- |
+| `[Feature]`  | New feature (page, component, functionality)         |
+| `[Fix]`      | Bug fix                                              |
+| `[Style]`    | Formatting, whitespace — no logic changes            |
+| `[Refactor]` | Code restructuring — no new features or bug fixes    |
+| `[Docs]`     | Documentation only                                   |
+| `[Chore]`    | Build process, tooling, dependencies                 |
 
-- `[Feature]`: Adding a new feature (e.g., new page, new component).
-- `[Fix]`: Fixing a bug or issue.
-- `[Style]`: Changes that do not affect the meaning of the code (white-space, formatting, etc).
-- `[Refactor]`: A code change that neither fixes a bug nor adds a feature.
-- `[Docs]`: Documentation only changes.
-- `[Chore]`: Changes to the build process or auxiliary tools.
-
-**Examples:**
-
+Examples:
 - `[Feature] Add speaker profile page`
 - `[Fix] Correct navigation link on mobile`
-- `[Docs] Update README with deployment instructions`
-
-## 👁️ Preview
-
-To preview the production build locally before deploying:
-
-1.  **Build the project:**
-
-    ```bash
-    npm run build
-    ```
-
-2.  **Preview the build:**
-    ```bash
-    npm run preview
-    ```
-    This will serve the built application from the `dist` folder, allowing you to verify exactly what will be deployed.
+- `[Chore] Update participant data and sanitize script`
