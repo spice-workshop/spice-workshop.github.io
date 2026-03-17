@@ -45,9 +45,15 @@ export const generateSchedulePDF = (schedule: DaySchedule[]) => {
 
     // Build table data
     const tableBody = day.events.map(event => {
-      const isTalk = event.type === 'talk';
       const title = event.title || '';
-      const speaker = isTalk && event.speaker ? event.speaker : '';
+      let speaker = '';
+      if (event.type === 'talk' && event.speaker) {
+        speaker = event.speaker;
+      } else if (event.title === 'Discussion' && event.speaker) {
+        speaker = `Host: ${event.speaker}`;
+      } else if ((event.title === 'Social Evening' || event.title?.includes('Dinner')) && event.speaker) {
+        speaker = `Venue: ${event.speaker}`;
+      }
       return [event.time, title, speaker];
     });
 
