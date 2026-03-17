@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import type { FC } from 'react';
 import { Calendar, Utensils, Search, Download } from 'lucide-react';
 import { CONSTANTS } from '../data/Constants';
@@ -10,11 +10,31 @@ import Button from '../components/ui/Button';
 import ScheduleDayCard from '../components/schedule/ScheduleDayCard';
 import SpecialEventCard from '../components/schedule/SpecialEventCard';
 
+/** Return the schedule day index that matches today, or 0 if before / last if after. */
+const getCurrentDayIndex = (dates: string[]): number => {
+  const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD in local-ish UTC
+  const idx = dates.indexOf(today);
+  if (idx !== -1) return idx;
+  if (today < dates[0]) return 0;
+  if (today > dates[dates.length - 1]) return dates.length - 1;
+  // Mid-conference but not a session day — pick nearest previous day
+  for (let i = dates.length - 1; i >= 0; i--) {
+    if (dates[i] <= today) return i;
+  }
+  return 0;
+};
+
 const ScheduleView: FC = () => {
-  const [activeDay, setActiveDay] = useState(0);
+  const { schedule, loading, error } = useSchedule();
+
+  const currentDayIndex = useMemo(
+    () => getCurrentDayIndex(schedule.map(d => d.date)),
+    [schedule],
+  );
+
+  const [activeDay, setActiveDay] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeView, setActiveView] = useState<'schedule' | 'events'>('schedule');
-  const { schedule, loading, error } = useSchedule();
 
   if (loading) return <div className="text-center py-20 text-slate-500">Loading schedule...</div>;
   if (error)   return <div className="text-center py-20 text-red-500">Error loading schedule: {error}</div>;
@@ -32,7 +52,8 @@ const ScheduleView: FC = () => {
     }))
     .filter(day => day.events.length > 0);
 
-  const currentDayData = schedule[activeDay] ?? { day: 'TBD', date: '', label: 'TBD', events: [] };
+  const effectiveDay = activeDay ?? currentDayIndex;
+  const currentDayData = schedule[effectiveDay] ?? { day: 'TBD', date: '', label: 'TBD', events: [] };
   const displaySchedule = isSearching ? filteredSchedule : [currentDayData];
 
   return (
@@ -101,7 +122,7 @@ const ScheduleView: FC = () => {
       <div className="flex justify-center mb-10 border-b border-slate-200 dark:border-slate-700">
         <div className="flex space-x-8">
           <button
-            onClick={() => setActiveView('schedule')}
+            onClick={() => { setActiveView('schedule'); setActiveDay(null); }}
             className={`pb-4 px-1 text-lg font-bold border-b-2 transition-colors flex items-center ${
               activeView === 'schedule'
                 ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400'
@@ -132,7 +153,7 @@ const ScheduleView: FC = () => {
                 <Button
                   key={index}
                   onClick={() => { setActiveDay(index); setSearchTerm(''); }}
-                  variant={activeDay === index ? 'primary' : 'outline'}
+                  variant={effectiveDay === index ? 'primary' : 'outline'}
                   className="rounded-full flex-shrink-0 whitespace-nowrap"
                 >
                   {data.day}
@@ -162,10 +183,10 @@ const ScheduleView: FC = () => {
                   dayData={dayData}
                   dayIdx={dayIdx}
                   {...(!isSearching && {
-                    onPrev: () => setActiveDay(d => Math.max(0, d - 1)),
-                    onNext: () => setActiveDay(d => Math.min(schedule.length - 1, d + 1)),
-                    isFirst: activeDay === 0,
-                    isLast:  activeDay === schedule.length - 1,
+                    onPrev: () => setActiveDay(Math.max(0, effectiveDay - 1)),
+                    onNext: () => setActiveDay(Math.min(schedule.length - 1, effectiveDay + 1)),
+                    isFirst: effectiveDay === 0,
+                    isLast:  effectiveDay === schedule.length - 1,
                   })}
                 />
               ))
