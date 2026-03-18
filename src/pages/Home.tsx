@@ -69,13 +69,22 @@ const HomeView: FC = () => (
       </div>
 
       {/* Full Width Group Photo */}
-      <div className="mb-24">
-        <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-6 flex items-center">
+      <div className="mb-18">
+        <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-4 flex items-center">
           <Camera className="w-6 h-6 mr-3 text-indigo-500" /> Group Photo
         </h3>
-        <div className="w-full h-64 md:h-96 bg-slate-200 dark:bg-slate-800 rounded-2xl flex flex-col items-center justify-center border-2 border-dashed border-slate-300 dark:border-slate-700 text-slate-500 relative overflow-hidden group">
-          <Camera className="w-16 h-16 mb-4 text-slate-400 group-hover:scale-110 transition-transform" />
-          <p className="text-sm font-medium">Official Group Photo (Coming Soon)</p>
+        {/* <div className="w-full min-h-[65vh] md:h-96 bg-slate-200 dark:bg-slate-800 rounded-xl flex flex-col items-center justify-center border-2 border-dashed border-slate-300 dark:border-slate-700 text-slate-500 relative overflow-hidden group"> */}
+        <div className="w-full min-h-[70vh] md:h-96 rounded-2xl flex flex-col items-center justify-center relative overflow-hidden group">
+          <img
+            src={CONSTANTS.assets.groupPhoto}
+            alt="Group Photo"
+            width="1920"
+            height="1080"
+            className="w-full h-full object-contain"
+            fetchPriority="high"
+            loading="eager"
+            decoding="sync"
+          />
         </div>
       </div>
 

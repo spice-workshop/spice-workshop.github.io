@@ -3,6 +3,7 @@ import HeaderImage from '../assets/HeaderImage.jpeg';
 import figCR from '../assets/Fig_CR.jpeg';
 import diskform from '../assets/diskFormation.jpeg';
 import BD from '../assets/BD.jpeg';
+import groupPhoto from '../assets/group_photo.jpg';
 
 interface ConstantsType {
   details: {
@@ -42,6 +43,7 @@ interface ConstantsType {
     heroImage: string;
     heroImages: { src: string; alt: string }[];
     mapENS: string;
+    groupPhoto: string;
   };
   social: {
     ens: string;
@@ -103,6 +105,7 @@ export const CONSTANTS: ConstantsType = {
       { src: figCR, alt: "Circumstellar disk structure" },
     ],
     mapENS: mapENS,
+    groupPhoto: groupPhoto
   },
   social: {
     ens: "https://www.ens-lyon.fr/en/",
