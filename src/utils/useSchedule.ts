@@ -1,9 +1,17 @@
 import { useMemo } from 'react';
 import { useParticipants } from './csvLoader';
 import type { EnrichedScheduleEvent, DaySchedule } from '../types/Schedule';
+// import slidesData from '../data/slides.json';
 
 // Re-export for consumers that import from this module
 export type { ScheduleEvent, EnrichedScheduleEvent, DaySchedule } from '../types/Schedule';
+
+// interface SlideEntry {
+//     lastName: string;
+//     firstName: string;
+//     sessionDate: string;
+//     url: string;
+// }
 
 const CONFERENCE_DAYS = [
     { date: "2026-03-16", label: "Day 1", fullLabel: "Day 1 (Mar 16)" },
@@ -18,6 +26,13 @@ export const useSchedule = () => {
 
     const schedule = useMemo<DaySchedule[]>(() => {
         if (loading || error) return [];
+
+        // Build slides lookup: "lastName|date" → url
+        // const slidesLookup = new Map<string, string>();
+        // for (const slide of slidesData as SlideEntry[]) {
+        //     const key = `${slide.lastName.toLowerCase()}|${slide.sessionDate}`;
+        //     slidesLookup.set(key, slide.url);
+        // }
 
         // Group talks by day
         const daysMap = new Map<string, EnrichedScheduleEvent[]>();
@@ -65,6 +80,11 @@ export const useSchedule = () => {
                 ? `fixed-${date}-${startTime.replace(':', '')}-${title.replace(/\s+/g, '-').toLowerCase()}`
                 : `talk-${p.lastName.toLowerCase()}-${startTime.replace(':', '')}`;
 
+            // Look up slides URL for talks
+            // const slidesUrl = !isFixed && p.lastName
+            //     ? slidesLookup.get(`${p.lastName.toLowerCase()}|${date}`)
+            //     : undefined;
+
             daysMap.get(date)!.push({
                 time: p.timeRange,
                 title,
@@ -74,6 +94,7 @@ export const useSchedule = () => {
                 type: isFixed ? 'fixed' : 'talk',
                 sortTime: startTime,
                 linkId,
+                // slidesUrl,
             });
         });
 

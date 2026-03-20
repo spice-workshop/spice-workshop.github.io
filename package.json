@@ -9,7 +9,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prebuild": "node scripts/generate-sitemap.cjs && node scripts/sanitize-participants.cjs",
+    "prebuild": "node scripts/generate-sitemap.cjs && node scripts/sanitize-participants.cjs && node scripts/process-slides.cjs",
     "predeploy": "npm run build && for dir in schedule participants logistics sightseeing; do mkdir -p dist/$dir && cp dist/index.html dist/$dir/index.html; done",
     "deploy": "gh-pages -d dist -b main"
   },
