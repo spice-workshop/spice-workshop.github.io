@@ -68,7 +68,7 @@ const ScheduleEventRow: FC<Props> = ({ event, eventId }) => {
                       ? `${event.title === 'Discussion' ? 'Host' : 'Venue'}: ${event.speaker}`
                       : event.speaker}
                   </p>
-                  {event.type === 'talk' && (
+                  {(event.type === 'talk' || (event.title === 'Discussion' && event.slidesUrl)) && (
                     <div className="mt-1">
                       {event.slidesUrl ? (
                         <a
