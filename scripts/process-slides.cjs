@@ -105,6 +105,17 @@ function processSlides() {
       continue;
     }
 
+    // Handle Discussion slides separately
+    const discussionMatch = filename.match(/^Discussion_Day\d+/i);
+    if (discussionMatch) {
+      slides.push({
+        type: 'discussion',
+        sessionDate,
+        url,
+      });
+      continue;
+    }
+
     const normalizedFilename = normalize(filename);
 
     // Find all participants whose last name appears in the filename
