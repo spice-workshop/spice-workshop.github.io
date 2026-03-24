@@ -1,17 +1,5 @@
 [
   {
-    "lastName": "Lee",
-    "firstName": "Yueh-Ning",
-    "sessionDate": "2026-03-20",
-    "url": "https://drive.google.com/file/d/1d7yQQgbCKoywZoHJEDTPd3LgykhhQobg/view?usp=drivesdk"
-  },
-  {
-    "lastName": "Lebreuilly",
-    "firstName": "Ugo",
-    "sessionDate": "2026-03-20",
-    "url": "https://drive.google.com/file/d/1eb4Tr2ciYTb-4gqKHJi7uXYgtGiIIgoc/view?usp=drivesdk"
-  },
-  {
     "lastName": "Drazkowska",
     "firstName": "Joanna",
     "sessionDate": "2026-03-20",
@@ -24,16 +12,39 @@
     "url": "https://drive.google.com/file/d/1R1OKwvhuJddV0QcHb9W53qt584rKTCSp/view?usp=drivesdk"
   },
   {
+    "lastName": "Benítez Llambay",
+    "firstName": "Pablo",
+    "sessionDate": "2026-03-20",
+    "url": "https://drive.google.com/file/d/1kC2vUrFp6ApniN_spsu5P_TEw_P2atJq/view?usp=drivesdk"
+  },
+  {
+    "lastName": "Lebreuilly",
+    "firstName": "Ugo",
+    "sessionDate": "2026-03-20",
+    "url": "https://drive.google.com/file/d/1eb4Tr2ciYTb-4gqKHJi7uXYgtGiIIgoc/view?usp=drivesdk"
+  },
+  {
+    "lastName": "Lee",
+    "firstName": "Yueh-Ning",
+    "sessionDate": "2026-03-20",
+    "url": "https://drive.google.com/file/d/1d7yQQgbCKoywZoHJEDTPd3LgykhhQobg/view?usp=drivesdk"
+  },
+  {
+    "lastName": "Tomida",
+    "firstName": "Kengo",
+    "sessionDate": "2026-03-20",
+    "url": "https://drive.google.com/file/d/1c6DbQFo5jBKfeGwb9XX1Lo3LU1n6r-O0/view?usp=drivesdk"
+  },
+  {
+    "type": "discussion",
+    "sessionDate": "2026-03-19",
+    "url": "https://drive.google.com/file/d/1C6_LkNLVEvxdYv5tTGwjDoFyhC0lmSZd/view?usp=drivesdk"
+  },
+  {
     "lastName": "Qiao",
     "firstName": "Lin",
     "sessionDate": "2026-03-19",
     "url": "https://drive.google.com/file/d/1gEcjNNaAmDoJVrBMaGrraSEc6bHubc4k/view?usp=drivesdk"
-  },
-  {
-    "lastName": "Lega",
-    "firstName": "Elena",
-    "sessionDate": "2026-03-19",
-    "url": "https://drive.google.com/file/d/1csf-ajvKU0yotLiAflqe-krC-Lh-tRe7/view?usp=drivesdk"
   },
   {
     "lastName": "Mayer",
@@ -42,22 +53,10 @@
     "url": "https://drive.google.com/file/d/1UTV9n-POa8hGYFNogSELM8lJjVeLXn0A/view?usp=drivesdk"
   },
   {
-    "lastName": "Vallucci-Goy",
-    "firstName": "Valentin",
-    "sessionDate": "2026-03-19",
-    "url": "https://drive.google.com/file/d/18LERWlVNub-NYstGbeXPZlpLjjyycToi/view?usp=drivesdk"
-  },
-  {
     "lastName": "Abe",
     "firstName": "Daisei",
     "sessionDate": "2026-03-19",
     "url": "https://drive.google.com/file/d/1vkmIbsK8KEZJu45yZy6XVXvmlN4G9Al_/view?usp=drivesdk"
-  },
-  {
-    "lastName": "Williams",
-    "firstName": "Joe",
-    "sessionDate": "2026-03-19",
-    "url": "https://drive.google.com/file/d/11s5P09p7OLZFUOaMeJQ1hZJAhP8VTZYj/view?usp=drivesdk"
   },
   {
     "lastName": "Hühn",
@@ -66,40 +65,34 @@
     "url": "https://drive.google.com/file/d/1iS2WJjveA4BVgoKGL8xtFMsXT89XVR2K/view?usp=drivesdk"
   },
   {
+    "lastName": "Paardekooper",
+    "firstName": "Sijme-Jan",
+    "sessionDate": "2026-03-19",
+    "url": "https://drive.google.com/file/d/1wii1sd7xp7TBJaLJKZJ1wFhEIETXGRdx/view?usp=drivesdk"
+  },
+  {
+    "lastName": "Williams",
+    "firstName": "Joe",
+    "sessionDate": "2026-03-19",
+    "url": "https://drive.google.com/file/d/11s5P09p7OLZFUOaMeJQ1hZJAhP8VTZYj/view?usp=drivesdk"
+  },
+  {
+    "lastName": "Lega",
+    "firstName": "Elena",
+    "sessionDate": "2026-03-19",
+    "url": "https://drive.google.com/file/d/1csf-ajvKU0yotLiAflqe-krC-Lh-tRe7/view?usp=drivesdk"
+  },
+  {
+    "lastName": "Vallucci-Goy",
+    "firstName": "Valentin",
+    "sessionDate": "2026-03-19",
+    "url": "https://drive.google.com/file/d/18LERWlVNub-NYstGbeXPZlpLjjyycToi/view?usp=drivesdk"
+  },
+  {
     "lastName": "Lin",
     "firstName": "Min-Kai",
     "sessionDate": "2026-03-19",
     "url": "https://drive.google.com/file/d/1sn_7h1edX89HYCCMiLEijWy-s1yRA8uu/view?usp=drivesdk"
-  },
-  {
-    "lastName": "Takasao",
-    "firstName": "Shinsuke",
-    "sessionDate": "2026-03-18",
-    "url": "https://drive.google.com/file/d/1HtVxwLy0KZHAfzIDCqAT_yTthmz6xEzf/view?usp=drivesdk"
-  },
-  {
-    "lastName": "Gonzalez",
-    "firstName": "Jean-François",
-    "sessionDate": "2026-03-18",
-    "url": "https://drive.google.com/file/d/1Rn4MGWpm9-7kLP40NPCTl5N4wBLtw9jV/view?usp=drivesdk"
-  },
-  {
-    "lastName": "Baehr",
-    "firstName": "Hans",
-    "sessionDate": "2026-03-18",
-    "url": "https://drive.google.com/file/d/1FjL_9aMN8Fp-L_FXpuQMWdzVbwcIQMwJ/view?usp=drivesdk"
-  },
-  {
-    "lastName": "Kadam",
-    "firstName": "Kundan",
-    "sessionDate": "2026-03-18",
-    "url": "https://drive.google.com/file/d/1Esub6dEt5Sny-IR-fvGHlzMNUqxNbu4A/view?usp=drivesdk"
-  },
-  {
-    "lastName": "Fairbairn",
-    "firstName": "Callum",
-    "sessionDate": "2026-03-18",
-    "url": "https://drive.google.com/file/d/1JZ96TjJyeR5v0kxIJpRnOeZDOBcZCkpJ/view?usp=drivesdk"
   },
   {
     "lastName": "David-Cléris",
@@ -108,10 +101,69 @@
     "url": "https://drive.google.com/file/d/1wKcOuXe-tGUTMNyGiSa1o7FrUtFhcRGL/view?usp=drivesdk"
   },
   {
+    "lastName": "Takasao",
+    "firstName": "Shinsuke",
+    "sessionDate": "2026-03-18",
+    "url": "https://drive.google.com/file/d/1HtVxwLy0KZHAfzIDCqAT_yTthmz6xEzf/view?usp=drivesdk"
+  },
+  {
+    "lastName": "Kadam",
+    "firstName": "Kundan",
+    "sessionDate": "2026-03-18",
+    "url": "https://drive.google.com/file/d/1Esub6dEt5Sny-IR-fvGHlzMNUqxNbu4A/view?usp=drivesdk"
+  },
+  {
+    "lastName": "Sarafidou",
+    "firstName": "Eleftheria",
+    "sessionDate": "2026-03-18",
+    "url": "https://drive.google.com/file/d/1easO7xSJb9YND2gOgqUGC2SannRVCaT4/view?usp=drivesdk"
+  },
+  {
+    "lastName": "Baehr",
+    "firstName": "Hans",
+    "sessionDate": "2026-03-18",
+    "url": "https://drive.google.com/file/d/1FjL_9aMN8Fp-L_FXpuQMWdzVbwcIQMwJ/view?usp=drivesdk"
+  },
+  {
+    "lastName": "Nishio",
+    "firstName": "Erika",
+    "sessionDate": "2026-03-18",
+    "url": "https://drive.google.com/file/d/1W-LR-WvDws2EKNnU92Wt1C7yIfVt4s1j/view?usp=drivesdk"
+  },
+  {
+    "lastName": "Xu",
+    "firstName": "Ziyan",
+    "sessionDate": "2026-03-18",
+    "url": "https://drive.google.com/file/d/1jCiYIE7ZM45bbKdRgqWFO5mxM_pR5F8H/view?usp=drivesdk"
+  },
+  {
+    "lastName": "Gonzalez",
+    "firstName": "Jean-François",
+    "sessionDate": "2026-03-18",
+    "url": "https://drive.google.com/file/d/1Rn4MGWpm9-7kLP40NPCTl5N4wBLtw9jV/view?usp=drivesdk"
+  },
+  {
     "lastName": "Nakatani",
     "firstName": "Riouhei",
     "sessionDate": "2026-03-18",
     "url": "https://drive.google.com/file/d/1ZN1_GEznJIk9b0Xr9OkFA46Obq0m-Zjx/view?usp=drivesdk"
+  },
+  {
+    "lastName": "Fairbairn",
+    "firstName": "Callum",
+    "sessionDate": "2026-03-18",
+    "url": "https://drive.google.com/file/d/1JZ96TjJyeR5v0kxIJpRnOeZDOBcZCkpJ/view?usp=drivesdk"
+  },
+  {
+    "type": "discussion",
+    "sessionDate": "2026-03-17",
+    "url": "https://drive.google.com/file/d/1LnoGm4sNlqC4iGDV-K-SWOzmm383n323/view?usp=drivesdk"
+  },
+  {
+    "lastName": "Borderies",
+    "firstName": "Antonin",
+    "sessionDate": "2026-03-17",
+    "url": "https://drive.google.com/file/d/1I1gta-erBVio2pqwGtq5oK0rLjct3SHj/view?usp=drivesdk"
   },
   {
     "lastName": "Lombart",
@@ -144,16 +196,10 @@
     "url": "https://drive.google.com/file/d/1RjkQF98ob8jDQ3vnh7g8XjRf0gQHfKu-/view?usp=drivesdk"
   },
   {
-    "lastName": "Borderies",
-    "firstName": "Antonin",
+    "lastName": "Lynch",
+    "firstName": "Elliot",
     "sessionDate": "2026-03-17",
-    "url": "https://drive.google.com/file/d/1I1gta-erBVio2pqwGtq5oK0rLjct3SHj/view?usp=drivesdk"
-  },
-  {
-    "lastName": "Vorobyov",
-    "firstName": "Eduard",
-    "sessionDate": "2026-03-16",
-    "url": "https://docs.google.com/presentation/d/1hhIwPE4sMg8lf1RW7FuOkRR1lf_1XE6k/edit?usp=drivesdk&ouid=114697180935964785466&rtpof=true&sd=true"
+    "url": "https://drive.google.com/file/d/19xSdZj3BwSUH9oXRp6x7A1haqKNk-wAN/view?usp=drivesdk"
   },
   {
     "lastName": "Verrier",
@@ -172,5 +218,11 @@
     "firstName": "Thomas",
     "sessionDate": "2026-03-16",
     "url": "https://drive.google.com/file/d/1VqP0CNNf3v18Ie_TmQYkkZsnJ6UkF26E/view?usp=drivesdk"
+  },
+  {
+    "lastName": "Vorobyov",
+    "firstName": "Eduard",
+    "sessionDate": "2026-03-16",
+    "url": "https://docs.google.com/presentation/d/1hhIwPE4sMg8lf1RW7FuOkRR1lf_1XE6k/edit?usp=drivesdk&ouid=114697180935964785466&rtpof=true&sd=true"
   }
 ]
