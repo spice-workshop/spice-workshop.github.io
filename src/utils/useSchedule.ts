@@ -7,10 +7,11 @@ import slidesData from '../data/slides.json';
 export type { ScheduleEvent, EnrichedScheduleEvent, DaySchedule } from '../types/Schedule';
 
 interface SlideEntry {
-    lastName: string;
-    firstName: string;
+    lastName?: string;
+    firstName?: string;
     sessionDate: string;
     url: string;
+    type?: 'discussion';
 }
 
 const CONFERENCE_DAYS = [
@@ -27,11 +28,16 @@ export const useSchedule = () => {
     const schedule = useMemo<DaySchedule[]>(() => {
         if (loading || error) return [];
 
-        // Build slides lookup: "lastName|date" → url
+        // Build slides lookups
         const slidesLookup = new Map<string, string>();
+        const discussionSlidesLookup = new Map<string, string>();
         for (const slide of slidesData as SlideEntry[]) {
-            const key = `${slide.lastName.toLowerCase()}|${slide.sessionDate}`;
-            slidesLookup.set(key, slide.url);
+            if (slide.type === 'discussion') {
+                discussionSlidesLookup.set(slide.sessionDate, slide.url);
+            } else if (slide.lastName) {
+                const key = `${slide.lastName.toLowerCase()}|${slide.sessionDate}`;
+                slidesLookup.set(key, slide.url);
+            }
         }
 
         // Group talks by day
@@ -80,10 +86,13 @@ export const useSchedule = () => {
                 ? `fixed-${date}-${startTime.replace(':', '')}-${title.replace(/\s+/g, '-').toLowerCase()}`
                 : `talk-${p.lastName.toLowerCase()}-${startTime.replace(':', '')}`;
 
-            // Look up slides URL for talks
-            const slidesUrl = !isFixed && p.lastName
-                ? slidesLookup.get(`${p.lastName.toLowerCase()}|${date}`)
-                : undefined;
+            // Look up slides URL for talks and discussions
+            let slidesUrl: string | undefined;
+            if (!isFixed && p.lastName) {
+                slidesUrl = slidesLookup.get(`${p.lastName.toLowerCase()}|${date}`);
+            } else if (title === 'Discussion') {
+                slidesUrl = discussionSlidesLookup.get(date);
+            }
 
             daysMap.get(date)!.push({
                 time: p.timeRange,
